@@ -1,18 +1,16 @@
----
-name: "✅ FEATURE 템플릿"
-about: Feature 작업 사항을 입력해주세요.
-title: ''
-labels: "⭐️ feat"
-assignees: ''
+# 💡 PR 요약
+예시) 지점 선택하는 component를 적용하기 위해 PR을 했습니다. 
 
----
+## ⭐️ 관련 이슈
+- closes : 이슈 번호
+- 
+## ⭐️ 작업한 내용
+- 작업 1
+- 작업 2
+- 작업 3
 
-## 🍀 Description
-설명을 작성하세요.
+## ⭐️ PR Checklist
+PR이 다음 요구 사항을 충족하는지 확인하세요.
 
-## ✅ Todo
-- [ ] todo
-- [ ] todo
-
-## ETC
-기타사항
+- [ ] 커밋 메시지 컨벤션에 맞게 작성했습니다.
+- [ ] 변경 사항에 대한 테스트를 했습니다. 
