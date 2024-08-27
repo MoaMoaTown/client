@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import { Loading } from '../index';
 import landModel from '../../assets/glb/land.glb';
 import cloudModel1 from '../../assets/glb/cloud1.glb';
 import cloudModel2 from '../../assets/glb/cloud2.glb';
@@ -15,7 +16,7 @@ import characterModel from '../../assets/glb/heendy_with_closet.glb';
 import jellyModel from '../../assets/glb/jelly.glb';
 import logoModel from '../../assets/glb/logo.glb';
 
-function Model({ url, refProp, scale, brightness, onLoad }) {
+const Model = React.memo(({ url, refProp, scale, brightness, onLoad }) => {
   const { scene: loadedScene } = useGLTF(url);
 
   useEffect(() => {
@@ -39,9 +40,11 @@ function Model({ url, refProp, scale, brightness, onLoad }) {
   }, [loadedScene, brightness, onLoad]);
 
   return <primitive ref={refProp} object={loadedScene} scale={scale} />;
-}
+});
 
 export default function Model3D() {
+  const [loading, setLoading] = useState(true);
+  const [loadedModels, setLoadedModels] = useState(0);
   const landRef = useRef();
   const departmentRef = useRef();
   const boardRef = useRef();
@@ -57,6 +60,7 @@ export default function Model3D() {
   const cloudRef3 = useRef();
 
   const handleModelLoad = (loadedScene, name) => {
+    setLoadedModels((prev) => prev + 1);
     if (name === 'Land' && landRef.current) {
       const landBox = new THREE.Box3().setFromObject(landRef.current);
 
@@ -84,8 +88,8 @@ export default function Model3D() {
       );
       investRef.current.position.set(
         landBox.getCenter(new THREE.Vector3()).x + 0.9,
-        landBox.max.y - 0.31,
-        landBox.getCenter(new THREE.Vector3()).z - 1.6
+        landBox.max.y - 0.6,
+        landBox.getCenter(new THREE.Vector3()).z - 1.7
       );
       characterRef.current.position.set(
         landBox.getCenter(new THREE.Vector3()).x + 2.75,
@@ -94,14 +98,14 @@ export default function Model3D() {
       );
       characterRef.current.rotation.set(0, Math.PI / 8, 0);
       jellyRef.current.position.set(
-        landBox.getCenter(new THREE.Vector3()).x + 0.2,
-        landBox.max.y - 0.61,
-        landBox.getCenter(new THREE.Vector3()).z + 1.4
+        landBox.getCenter(new THREE.Vector3()).x - 1.3,
+        landBox.max.y - 0.62,
+        landBox.getCenter(new THREE.Vector3()).z + 0.3
       );
       jellyRef.current.rotation.set(0, Math.PI / 4, 0);
       logoRef.current.position.set(
         landBox.getCenter(new THREE.Vector3()).x + 1.6,
-        landBox.max.y - 0.51,
+        landBox.max.y - 0.48,
         landBox.getCenter(new THREE.Vector3()).z + 1.4
       );
       logoRef.current.rotation.set(0, Math.PI / 3.4, 0);
@@ -117,115 +121,124 @@ export default function Model3D() {
     cloudRef3.current.rotation.set(0, Math.PI / 6, 0);
   };
 
-  return (
-    <Canvas
-      shadows
-      style={{
-        width: '100vw',
-        height: '100vh',
-        margin: 'auto',
-        background:
-          'linear-gradient(180deg, rgba(202, 119, 0, 0.3), rgba(30, 157, 139, 0.3))',
-      }}
-      camera={{ position: [20, 10, 15], fov: 13 }}
-    >
-      <ambientLight intensity={0.5} />
-      <directionalLight
-        position={[0, 50, 0]}
-        intensity={1.5}
-        castShadow
-        shadow-mapSize={{ width: 2048, height: 2048 }}
-      />
-      <directionalLight position={[0, 5, 10]} intensity={2.2} />
-      <spotLight
-        position={[
-          (logoRef.current?.position.x || 0) + 1,
-          (logoRef.current?.position.y || 0) + 0.4,
-          (logoRef.current?.position.z || 0) + 0.8,
-        ]}
-        intensity={0.1}
-        angle={1}
-        penumbra={1}
-        castShadow
-        shadow-mapSize={{ width: 2048, height: 2048 }}
-        target={logoRef.current}
-      />
-      <Model
-        url={landModel}
-        refProp={landRef}
-        onLoad={(scene) => handleModelLoad(scene, 'Land')}
-      />
-      <Model
-        url={cloudModel1}
-        refProp={cloudRef1}
-        scale={new THREE.Vector3(0.2, 0.2, 0.2)}
-        brightness={0.8}
-        onLoad={(scene) => handleModelLoad(scene, 'Cloud 1')}
-      />
-      <Model
-        url={cloudModel2}
-        refProp={cloudRef2}
-        scale={new THREE.Vector3(0.2, 0.2, 0.2)}
-        brightness={0.8}
-        onLoad={(scene) => handleModelLoad(scene, 'Cloud 2')}
-      />
-      <Model
-        url={cloudModel3}
-        refProp={cloudRef3}
-        scale={new THREE.Vector3(0.2, 0.2, 0.2)}
-        brightness={0.8}
-        onLoad={(scene) => handleModelLoad(scene, 'Cloud 3')}
-      />
-      <Model
-        url={departmentModel}
-        refProp={departmentRef}
-        scale={new THREE.Vector3(0.07, 0.07, 0.04)}
-        onLoad={(scene) => handleModelLoad(scene, 'Department')}
-      />
-      <Model
-        url={boardModel}
-        refProp={boardRef}
-        scale={new THREE.Vector3(0.15, 0.15, 0.15)}
-        onLoad={(scene) => handleModelLoad(scene, 'Board')}
-      />
-      <Model
-        url={fountainModel}
-        refProp={fountainRef}
-        scale={new THREE.Vector3(0.1, 0.1, 0.1)}
-        onLoad={(scene) => handleModelLoad(scene, 'Fountain')}
-      />
-      <Model
-        url={jobMoaModel}
-        refProp={jobMoaRef}
-        scale={new THREE.Vector3(0.15, 0.15, 0.15)}
-        onLoad={(scene) => handleModelLoad(scene, 'Job Moa')}
-      />
-      <Model
-        url={investModel}
-        refProp={investRef}
-        scale={new THREE.Vector3(0.1, 0.1, 0.1)}
-        onLoad={(scene) => handleModelLoad(scene, 'Bank')}
-      />
-      <Model
-        url={characterModel}
-        refProp={characterRef}
-        scale={new THREE.Vector3(0.2, 0.2, 0.2)}
-        onLoad={(scene) => handleModelLoad(scene, 'Character')}
-      />
-      <Model
-        url={jellyModel}
-        refProp={jellyRef}
-        scale={new THREE.Vector3(0.1, 0.1, 0.1)}
-        onLoad={(scene) => handleModelLoad(scene, 'Jelly')}
-      />
-      <Model
-        url={logoModel}
-        refProp={logoRef}
-        scale={new THREE.Vector3(0.5, 0.5, 0.5)}
-        onLoad={(scene) => handleModelLoad(scene, 'Logo')}
-      />
+  useEffect(() => {
+    if (loadedModels === 12) {
+      setLoading(false);
+    }
+  }, [loadedModels]);
 
-      <OrbitControls target={[0, 1, 0]} />
-    </Canvas>
+  return (
+    <React.Fragment>
+      {loading && <Loading />}
+      <Canvas
+        shadows
+        style={{
+          width: '100vw',
+          height: '100vh',
+          margin: 'auto',
+          background:
+            'linear-gradient(180deg, rgba(202, 119, 0, 0.3), rgba(30, 157, 139, 0.3))',
+        }}
+        camera={{ position: [20, 10, 15], fov: 13 }}
+      >
+        <ambientLight intensity={0.5} />
+        <directionalLight
+          position={[0, 50, 0]}
+          intensity={1.5}
+          castShadow
+          shadow-mapSize={{ width: 1024, height: 1024 }}
+        />
+        <directionalLight
+          position={[0, 5, 10]}
+          intensity={2.2}
+          castShadow={false}
+        />
+        <spotLight
+          position={[
+            (logoRef.current?.position.x || 0) + 1,
+            (logoRef.current?.position.y || 0) + 0.4,
+            (logoRef.current?.position.z || 0) + 0.8,
+          ]}
+          intensity={0.1}
+          angle={1}
+          penumbra={1}
+          castShadow={false}
+          target={logoRef.current}
+        />
+        <Model
+          url={landModel}
+          refProp={landRef}
+          onLoad={(scene) => handleModelLoad(scene, 'Land')}
+        />
+        <Model
+          url={cloudModel1}
+          refProp={cloudRef1}
+          scale={new THREE.Vector3(0.2, 0.2, 0.2)}
+          brightness={0.8}
+          onLoad={(scene) => handleModelLoad(scene, 'Cloud 1')}
+        />
+        <Model
+          url={cloudModel2}
+          refProp={cloudRef2}
+          scale={new THREE.Vector3(0.2, 0.2, 0.2)}
+          brightness={0.8}
+          onLoad={(scene) => handleModelLoad(scene, 'Cloud 2')}
+        />
+        <Model
+          url={cloudModel3}
+          refProp={cloudRef3}
+          scale={new THREE.Vector3(0.2, 0.2, 0.2)}
+          brightness={0.8}
+          onLoad={(scene) => handleModelLoad(scene, 'Cloud 3')}
+        />
+        <Model
+          url={departmentModel}
+          refProp={departmentRef}
+          scale={new THREE.Vector3(0.07, 0.07, 0.04)}
+          onLoad={(scene) => handleModelLoad(scene, 'Department')}
+        />
+        <Model
+          url={boardModel}
+          refProp={boardRef}
+          scale={new THREE.Vector3(0.15, 0.15, 0.15)}
+          onLoad={(scene) => handleModelLoad(scene, 'Board')}
+        />
+        <Model
+          url={fountainModel}
+          refProp={fountainRef}
+          scale={new THREE.Vector3(0.1, 0.1, 0.1)}
+          onLoad={(scene) => handleModelLoad(scene, 'Fountain')}
+        />
+        <Model
+          url={jobMoaModel}
+          refProp={jobMoaRef}
+          scale={new THREE.Vector3(0.15, 0.15, 0.15)}
+          onLoad={(scene) => handleModelLoad(scene, 'Job Moa')}
+        />
+        <Model
+          url={investModel}
+          refProp={investRef}
+          onLoad={(scene) => handleModelLoad(scene, 'Bank')}
+        />
+        <Model
+          url={characterModel}
+          refProp={characterRef}
+          scale={new THREE.Vector3(0.2, 0.2, 0.2)}
+          onLoad={(scene) => handleModelLoad(scene, 'Character')}
+        />
+        <Model
+          url={jellyModel}
+          refProp={jellyRef}
+          scale={new THREE.Vector3(0.5, 0.5, 0.5)}
+          onLoad={(scene) => handleModelLoad(scene, 'Jelly')}
+        />
+        <Model
+          url={logoModel}
+          refProp={logoRef}
+          onLoad={(scene) => handleModelLoad(scene, 'Logo')}
+        />
+        <OrbitControls target={[0, 1, 0]} />
+      </Canvas>
+    </React.Fragment>
   );
 }
