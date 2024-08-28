@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input, Button } from '../../components';
 import { useNavigate } from 'react-router-dom';
-import { axiosInstance } from '../../apis';
+import { useMutation } from 'react-query';
+import { signUp } from '../../apis/memberApi';
 import logo from '../../assets/images/logo.png';
 import bg from '../../assets/images/signup_back.svg';
 import {
@@ -25,24 +26,21 @@ const SignUp = () => {
   const isButtonDisabled =
     password !== confirmPassword || !password || !confirmPassword;
 
-  const handleSignUp = async () => {
-    if (isButtonDisabled) return;
-
-    try {
-      const response = await axiosInstance.post('/member/sign-up', {
-        nickname,
-        loginId,
-        password,
-        role: 0,
-      });
-
-      if (response.status === 200) {
-        navigate('/');
-      }
-    } catch (error) {
+  const mutation = useMutation(() => signUp(nickname, loginId, password, 0), {
+    onSuccess: () => {
+      navigate('/');
+    },
+    onError: (error) => {
       console.error('회원가입 실패:', error);
+    },
+  });
+
+  const handleSignUp = () => {
+    if (!isButtonDisabled) {
+      mutation.mutate();
     }
   };
+
   return (
     <Container>
       <BackgroundImage src={bg} alt="background" />

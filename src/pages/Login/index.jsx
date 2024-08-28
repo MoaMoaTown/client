@@ -2,8 +2,11 @@ import React from 'react';
 import { Input, Button } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { useMutation } from 'react-query';
+import { login } from '../../apis/memberApi';
+import useDebouncedState from '../../hooks/useDebouncedState';
 import { loginState, loginInfo } from '../../store/atoms';
-import { axiosInstance } from '../../apis';
+
 import logo from '../../assets/images/logo.png';
 import bg from '../../assets/images/login_back.svg';
 import {
@@ -14,7 +17,6 @@ import {
   Description,
   Form,
 } from './styled';
-import useDebouncedState from '../../hooks/useDebouncedState';
 
 const Login = () => {
   const [loginId, debouncedSetUserId] = useDebouncedState('');
@@ -27,45 +29,44 @@ const Login = () => {
 
   const isButtonDisabled = loginId === '' || password === '';
 
-  const handleSignUp = async () => {
-    if (isButtonDisabled) return;
+  const mutation = useMutation(() => login(loginId, password), {
+    onSuccess: (data) => {
+      const { nickname, role, hasTownId } = data;
 
-    try {
-      const response = await axiosInstance.post('/member/login', {
-        loginId,
-        password,
+      setLoginState({ isLogin: true });
+
+      setLoginInfo({
+        nickname,
+        role,
+        hasTownId,
       });
 
-      if (response.status === 200) {
-        const { nickname, role, hasTownId } = response.data;
-
-        setLoginState({ isLogin: true });
-
-        setLoginInfo({
-          nickname,
-          role,
-          hasTownId,
-        });
-
-        if (role === 1) {
-          // role이 1이면 관리자 페이지로 리디렉션
-          if (hasTownId) {
-            //navigate('/admin-main');
-          } else {
-            //navigate('/admin-maketown');
-          }
-        } else if (role === 0) {
-          if (hasTownId) {
-            navigate('/main');
-          } else {
-            navigate('/join-town');
-          }
+      if (role === 1) {
+        // role이 1이면 관리자 페이지로 리디렉션
+        if (hasTownId) {
+          //navigate('/admin-main');
+        } else {
+          //navigate('/admin-maketown');
+        }
+      } else if (role === 0) {
+        if (hasTownId) {
+          navigate('/main');
+        } else {
+          navigate('/join-town');
         }
       }
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error('로그인 실패:', error);
+    },
+  });
+
+  const handleSignUp = () => {
+    if (!isButtonDisabled) {
+      mutation.mutate();
     }
   };
+
   return (
     <Container>
       <BackgroundImage src={bg} alt="background" />
