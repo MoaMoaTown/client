@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { axiosInstance } from '../../apis';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { fetchJobInfo } from '../../apis/memberApi';
 import { Container, TitleText, DescriptionText, PayText } from './styled';
 
 const JobInfo = () => {
-  const [jobInfo, setJobInfo] = useState({
-    name: '',
-    description: '',
-    pay: '',
-  });
-
-  useEffect(() => {
-    const fetchJobInfo = async () => {
-      try {
-        const response = await axiosInstance.get('/member/job', {});
-        if (response.status === 200) {
-          setJobInfo(response.data);
-        }
-      } catch (error) {
-        console.error('역할 정보 불러오기 실패:', error);
-      }
-    };
-
-    fetchJobInfo();
-  }, []);
+  const {
+    data: jobInfo = {},
+    isLoading,
+    isError,
+  } = useQuery('jobInfo', fetchJobInfo);
 
   return (
     <Container>

@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { axiosInstance } from '../../apis';
+import { useQuery } from 'react-query';
+import { fetchBalance } from '../../apis/memberApi';
 import { Container, PassbookImage, TitleText, BalanceText } from './styled';
 import passbook from '../../assets/images/passbook.svg';
 
 const Passbook = () => {
-  const [balance, setBalance] = useState('');
-
-  useEffect(() => {
-    const handleBalance = async () => {
-      try {
-        const response = await axiosInstance.get('/member/balance', {});
-        if (response.status === 200) {
-          setBalance(response.data.balance);
-        }
-      } catch (error) {
-        console.error('잔액 불러오기 실패:', error);
-      }
-    };
-
-    handleBalance();
-  }, []);
+  const {
+    data: balance = '',
+    isLoading,
+    isError,
+  } = useQuery('balance', fetchBalance);
 
   return (
     <Container>

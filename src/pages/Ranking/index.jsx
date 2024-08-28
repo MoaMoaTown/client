@@ -1,38 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { axiosInstance } from '../../apis';
+import React, { useEffect, useRef } from 'react';
+import { useQuery } from 'react-query';
+import { fetchRanks } from '../../apis/memberApi';
 import { Header, Rank } from '../../components';
 import { Container, Title, Image, RankList } from './styled';
 import rank from '../../assets/images/rank.svg';
 
 const Ranking = () => {
-  const [rankData, setRankData] = useState([]);
   const rankListRef = useRef(null);
+  const { data: rankData = [] } = useQuery('ranks', fetchRanks);
 
   useEffect(() => {
-    const fetchRankData = async () => {
-      try {
-        const response = await axiosInstance.get('/member/ranks');
-        if (response.status === 200) {
-          setRankData(response.data);
-        }
-      } catch (error) {
-        console.error('랭킹 정보 불러오기 실패:', error);
+    if (rankData.length > 0) {
+      const currentUserIndex = rankData.findIndex(
+        (user) => user.isCurrentUser === 'Y'
+      );
+      if (currentUserIndex !== -1 && rankListRef.current) {
+        const currentUserElement =
+          rankListRef.current.children[currentUserIndex];
+        currentUserElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
       }
-    };
-
-    fetchRankData();
-  }, []);
-
-  useEffect(() => {
-    const currentUserIndex = rankData.findIndex(
-      (user) => user.isCurrentUser === 'Y'
-    );
-    if (currentUserIndex !== -1 && rankListRef.current) {
-      const currentUserElement = rankListRef.current.children[currentUserIndex];
-      currentUserElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
     }
   }, [rankData]);
 
