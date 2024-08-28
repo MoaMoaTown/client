@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import JoinTown from './pages/JoinTown';
 import Mypage from './pages/Mypage';
+import Ranking from './pages/Ranking';
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/join-town" element={<JoinTown />} />
         <Route path="/mypage" element={<Mypage />} />
+        <Route path="/rank" element={<Ranking />} />
       </Routes>
     </BrowserRouter>
   );

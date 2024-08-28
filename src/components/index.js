@@ -10,3 +10,7 @@ export { default as Header } from './Header';
 export { default as Passbook } from './Passbook';
 // 역할 정보
 export { default as JobInfo } from './JobInfo';
+// 순위
+export { default as Ordinal } from './Ordinal';
+// 랭킹
+export { default as Rank } from './Rank';
