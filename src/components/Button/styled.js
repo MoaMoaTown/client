@@ -36,6 +36,23 @@ const buttonStyles = {
       color: white;
     }
   `,
+  joinBtn: css`
+    width: 45dvw;
+    height: 5dvh;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 2dvh;
+
+    &:disabled {
+      cursor: not-allowed;
+      color: ${colors.gray};
+    }
+  `,
 };
 
 export const StyledButton = styled.button`
