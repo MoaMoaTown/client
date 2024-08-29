@@ -53,6 +53,15 @@ const buttonStyles = {
       color: ${colors.gray};
     }
   `,
+  confirmBtn: css`
+    padding: 1.5dvh 5dvw;
+    font-size: 1.2rem;
+    color: white;
+    background-color: ${colors.green};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  `,
 };
 
 export const StyledButton = styled.button`

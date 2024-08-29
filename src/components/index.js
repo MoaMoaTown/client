@@ -14,3 +14,5 @@ export { default as JobInfo } from './JobInfo';
 export { default as Ordinal } from './Ordinal';
 // 랭킹
 export { default as Rank } from './Rank';
+// 모달
+export { default as InfoModal } from './InfoModal';
