@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
+import { useGesture } from '@use-gesture/react';
 import { selectedKnowledgeIdState } from '../../store/atoms';
 import {
   fetchKnowledgeDetail,
@@ -35,14 +36,16 @@ const KnowledgeDetail = () => {
 
   const formatDate = (dateString) => dateString.split(' ')[0];
 
-  const handleSelect = () => {
-    const selectedText = window.getSelection().toString().trim();
-    if (selectedText.length > 0 && selectedText.length <= 10) {
-      setWord(selectedText);
-    } else if (selectedText.length > 10) {
-      setWord('주의');
-    }
-  };
+  const bind = useGesture({
+    onDragEnd: () => {
+      const selectedText = window.getSelection().toString().trim();
+      if (selectedText.length > 0 && selectedText.length <= 10) {
+        setWord(selectedText);
+      } else if (selectedText.length > 10) {
+        setWord('주의');
+      }
+    },
+  });
 
   useEffect(() => {
     if (word === '주의') {
@@ -70,7 +73,7 @@ const KnowledgeDetail = () => {
 
   return (
     <React.Fragment>
-      <DetailContainer onMouseUp={handleSelect}>
+      <DetailContainer {...bind()}>
         <BackButton onClick={() => setSelectedKnowledgeId(null)}>
           뒤로가기
         </BackButton>
