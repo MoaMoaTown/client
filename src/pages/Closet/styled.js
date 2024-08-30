@@ -20,25 +20,23 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 84dvw;
-  height: 92dvh;
-  padding: 4dvh 8dvw;
+  width: 100dvw;
+  height: 100dvh;
+
 `;
 
 export const Wrapper = styled.div`
-  width: 100%;
+  width: 84dvw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0dvh 8dvw;
+  justify-content: space-between;
+  padding: 4dvh 8dvw;
 `;
 
 export const BackButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  margin-rignt: 20dvw;
-
   img {
     width: 8dvw;
     height: 8vw;
@@ -46,7 +44,6 @@ export const BackButton = styled.button`
 `;
 
 export const Title = styled.div`
-  width: 90%;
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;

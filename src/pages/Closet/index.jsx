@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import html2canvas from 'html2canvas';
+import { Container, Wrapper, Title, BackButton } from './styled';
 import { Button } from '../../components';
-import { fetchMyclothes } from '../../apis/closetApi';
-import leftArrow from '../../assets/images/left_arrow.svg';
+import { updateProfile } from '../../apis/closetApi';
+import back from '../../assets/images/back.svg';
 import heendy from '../../assets/images/heendy_avatar.png';
 
-import { Container, Wrapper, Title, BackButton} from './styled';
+import Canvas from '../../components/Canvas';
+import ClothesContainer from '../../components/ClothesContainer';
+import TypeSelector from '../../components/TypeSelector';
 
 /**
  * 옷장 진입 페이지
@@ -22,30 +25,48 @@ import { Container, Wrapper, Title, BackButton} from './styled';
  */
 
 const Closet = () => {
-  const navigate = useNavigate();
-
-  const handleUpdate = () => {
-    
-  };
-
-  const handleGoBack = () => {
-    navigate('/closet-entry');
-  };
-
-  return (
-    <Container>
+    const [selectedType, setSelectedType] = useState(0);  // 초기 타입은 '상의'
+    const [currentClothes, setCurrentClothes] = useState(null);
+    const navigate = useNavigate();
+  
+    const handleGoBack = () => {
+      navigate(-1);
+    };
+  
+    const handleUpdate = () => {
+      html2canvas(document.querySelector("#canvas")).then(canvas => {
+        canvas.toBlob(blob => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+              const base64data = reader.result;
+              updateProfile(base64data).then(response => {
+                console.log('Profile updated successfully:', response);
+              }).catch(error => {
+                console.error('Error updating profile:', error);
+              });
+            };
+          });
+      });
+    };
+  
+    return (
+      <Container>
         <Wrapper>
-            <BackButton onClick={handleGoBack}>
-                <img src={leftArrow} alt="뒤로가기" />
-            </BackButton>
-            <Title>흰디의 옷장</Title>
-            <Button variant="updateBtn" onClick={handleUpdate}>
-                올리기
-            </Button>
+          <BackButton onClick={handleGoBack}>
+            <img src={back} alt="뒤로가기" />
+          </BackButton>
+          <Title>흰디의 옷장</Title>
+          <Button variant="updateBtn" onClick={handleUpdate}>올리기</Button>
         </Wrapper>
-    </Container>
-  );
-};
-
-
-export default Closet;
+  
+        <Canvas id="canvas" heendy={heendy} currentClothes={currentClothes} />
+  
+        <TypeSelector selectedType={selectedType} onSelectType={setSelectedType} />
+  
+        <ClothesContainer selectedType={selectedType} onSelectClothes={setCurrentClothes} />
+      </Container>
+    );
+  };
+  
+  export default Closet;

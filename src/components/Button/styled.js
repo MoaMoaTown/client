@@ -107,7 +107,7 @@ const buttonStyles = {
     font-weight: bold;
   `,
   updateBtn: css`
-    width: 22dvw;
+    width: 15dvw;
     height: 4dvh;
     background-color: ${colors.orange};
     color: white;
