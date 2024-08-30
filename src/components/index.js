@@ -28,3 +28,5 @@ export { default as KnowledgeDetail } from './KnowledgeDetail';
 export { default as GptModal } from './GptModal';
 // 통장 상세
 export { default as PassbookDetail } from './PassbookDetail';
+// 토스트
+export { default as Toast } from './Toast';

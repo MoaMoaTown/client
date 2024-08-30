@@ -20,7 +20,7 @@ export const ClothesContainerWrapper = styled.div`
   flex-wrap: wrap;
   gap: 4dvw;
   margin-top: 2dvh;
-  padding: 0dvh 4dvw;
+  padding: 0dvh 8dvw;
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: #888 #f4f4f4;

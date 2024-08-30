@@ -2,71 +2,82 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { Container, Wrapper, Title, BackButton } from './styled';
-import { Button } from '../../components';
-import { updateProfile } from '../../apis/closetApi';
+import { Button, Toast } from '../../components';
 import back from '../../assets/images/back.svg';
 import heendy from '../../assets/images/heendy_avatar.png';
-
 import Canvas from '../../components/Canvas';
 import ClothesContainer from '../../components/ClothesContainer';
 import TypeSelector from '../../components/TypeSelector';
-
-/**
- * 옷장 진입 페이지
- * @author 임원정
- * @since 2024.08.30
- * @version 1.0
- *
- * <pre>
- * 수정일        수정자        수정내용
- * ----------  --------    ---------------------------
- * 2024.08.30  	임원정        최초 생성
- * </pre>
- */
+import { updateProfile } from '../../apis/closetApi';
 
 const Closet = () => {
-    const [selectedType, setSelectedType] = useState(0);  // 초기 타입은 '상의'
-    const [currentClothes, setCurrentClothes] = useState(null);
-    const navigate = useNavigate();
-  
-    const handleGoBack = () => {
-      navigate(-1);
-    };
-  
-    const handleUpdate = () => {
+  const [selectedType, setSelectedType] = useState(0);
+  const [clothes, setClothes] = useState([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);  // 이미지 로드 상태
+  const [toast, setToast] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSelectClothes = (clothesData) => {
+    setClothes([...clothes, clothesData]);
+  };
+
+  const handleImagesLoaded = () => {
+    setImagesLoaded(true);
+    console.log("All images loaded.");
+  };
+
+  const handleUpdate = () => {
+    if (imagesLoaded) {
+      console.log("Images are fully loaded. Proceeding with update.");
       html2canvas(document.querySelector("#canvas")).then(canvas => {
         canvas.toBlob(blob => {
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = () => {
-              const base64data = reader.result;
-              updateProfile(base64data).then(response => {
-                console.log('Profile updated successfully:', response);
-              }).catch(error => {
-                console.error('Error updating profile:', error);
-              });
-            };
-          });
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+            const base64data = reader.result;
+
+            // Base64 데이터를 브라우저에서 바로 열기 (새 탭)
+            const newWindow = window.open();
+            newWindow.document.write(`<img src="${base64data}" />`);
+
+            console.log("Base64 Data:", base64data);
+            updateProfile(base64data).then(response => {
+              setToast(true);
+            }).catch(error => {
+              console.error('Error updating profile:', error);
+            });
+          };
+        });
       });
-    };
-  
-    return (
-      <Container>
-        <Wrapper>
-          <BackButton onClick={handleGoBack}>
-            <img src={back} alt="뒤로가기" />
-          </BackButton>
-          <Title>흰디의 옷장</Title>
-          <Button variant="updateBtn" onClick={handleUpdate}>올리기</Button>
-        </Wrapper>
-  
-        <Canvas id="canvas" heendy={heendy} currentClothes={currentClothes} />
-  
-        <TypeSelector selectedType={selectedType} onSelectType={setSelectedType} />
-  
-        <ClothesContainer selectedType={selectedType} onSelectClothes={setCurrentClothes} />
-      </Container>
-    );
-  };
-  
-  export default Closet;
+    } else {
+      console.warn("Images are not fully loaded yet.");
+    }
+};
+
+
+
+
+  return (
+    <Container>
+      <Wrapper>
+        <BackButton onClick={() => navigate(-1)}>
+          <img src={back} alt="뒤로가기" />
+        </BackButton>
+        <Title>나의 옷장</Title>
+        <Button variant="updateBtn" onClick={handleUpdate}>올리기</Button>
+      </Wrapper>
+
+      <Canvas
+        heendy={heendy}
+        clothes={clothes}
+        onImagesLoaded={handleImagesLoaded}
+      />
+
+      <TypeSelector selectedType={selectedType} onSelectType={setSelectedType} />
+      <ClothesContainer selectedType={selectedType} onSelectClothes={handleSelectClothes} />
+      {toast && <Toast setToast={setToast} text="프로필이 업데이트 됐습니다." duration={3000} />}
+    </Container>
+  );
+};
+
+export default Closet;

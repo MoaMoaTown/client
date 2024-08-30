@@ -4,7 +4,7 @@ export const ItemContainer = styled.div`
   width: 20dvw;
   height: 30dvw;
   padding: 2dvw;
-  background-color: #f4f4f4;
+  background-color: white;
   border-radius: 8px;
   display: flex;
   flex-direction: column;

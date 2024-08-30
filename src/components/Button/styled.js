@@ -115,8 +115,33 @@ const buttonStyles = {
     border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    font-weight: regular;
+    font-weight: bold;
   `,
+  typeBtn: css`
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: ${({ active }) => (active ? colors.green : 'white')};
+    color: ${({ active }) => (active ? 'white' : 'black')};
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+
+    img {
+      margin-right: 2vw;
+      width: 6vw;
+      height: auto;
+    }
+
+    &:hover {
+      background-color: ${colors.green};
+      color: white;
+    }
+  `,
+
 };
 
 export const StyledButton = styled.button`

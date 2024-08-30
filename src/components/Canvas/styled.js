@@ -18,9 +18,15 @@ export const Character = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  
+
   img {
     width: 70%;
     height: auto;
   }
+`;
+
+export const Clothes = styled.img`
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;  /* 옷을 클릭해도 캔버스가 반응하지 않도록 설정 */
 `;
