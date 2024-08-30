@@ -18,6 +18,7 @@ const GptModal = ({ setModalOpen, word, explanation, setExplanation }) => {
   const closeModal = () => {
     setModalOpen(false);
     setExplanation('설명을 불러오는 중입니다.');
+    window.getSelection().removeAllRanges();
   };
 
   useEffect(() => {
