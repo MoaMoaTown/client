@@ -9,6 +9,7 @@ import JoinTown from './pages/JoinTown';
 import Mypage from './pages/Mypage';
 import Ranking from './pages/Ranking';
 import Knowledge from './pages/Knowledge';
+import Account from './pages/Account';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/rank" element={<Ranking />} />
         <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </BrowserRouter>
   );

@@ -28,6 +28,11 @@ export const fetchRanks = async () => {
   return response.data;
 };
 
+export const fetchAccount = async () => {
+  const response = await axiosInstance.get('/member/account');
+  return response.data;
+};
+
 export const joinTown = async (townCode) => {
   const response = await axiosInstance.post('/member/join-town', { townCode });
   return response.data;

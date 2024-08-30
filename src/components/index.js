@@ -22,3 +22,5 @@ export { default as Board } from './Board';
 export { default as KnowledgeDetail } from './KnowledgeDetail';
 // GPT 모달
 export { default as GptModal } from './GptModal';
+// 통장 상세
+export { default as PassbookDetail } from './PassbookDetail';
