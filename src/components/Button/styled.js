@@ -63,12 +63,20 @@ const buttonStyles = {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-
     &:disabled {
       background-color: ${colors.gray};
       cursor: not-allowed;
       color: white;
     }
+  `,
+  confirmBtn: css`
+    padding: 1.5dvh 5dvw;
+    font-size: 1.2rem;
+    color: white;
+    background-color: ${colors.green};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   `,
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
 import { Input, Button } from '../../components';
 import useDebouncedState from '../../hooks/useDebouncedState';
-import { axiosInstance } from '../../apis';
+import { joinTown } from '../../apis/memberApi';
 
 import { Container, Logo, Title, Description } from './styled';
 import logo from '../../assets/images/join_town.png';
@@ -11,18 +12,18 @@ const JoinTown = () => {
   const [townCode, debouncedSetTownCode] = useDebouncedState('');
   const navigate = useNavigate();
   const isButtonDisabled = townCode === '';
-  const handleJoin = async () => {
-    if (isButtonDisabled) return;
-    try {
-      const response = await axiosInstance.post('/member/join-town', {
-        townCode,
-      });
-
-      if (response.status === 200) {
-        navigate('/main');
-      }
-    } catch (error) {
+  const mutation = useMutation(() => joinTown(townCode), {
+    onSuccess: () => {
+      navigate('/main');
+    },
+    onError: (error) => {
       console.error('타운 코드 입력 실패:', error);
+    },
+  });
+
+  const handleJoin = () => {
+    if (!isButtonDisabled) {
+      mutation.mutate();
     }
   };
   return (

@@ -14,3 +14,15 @@ export { default as JobInfo } from "./JobInfo";
 export { default as ClothButton } from "./ClothButton";
 // 백화점 위시상품 리스트
 export { default as WishButton } from "./WishButton";
+// 순위
+export { default as Ordinal } from './Ordinal';
+// 랭킹
+export { default as Rank } from './Rank';
+// 모달
+export { default as InfoModal } from './InfoModal';
+// 게시판 컴포넌트
+export { default as Board } from './Board';
+// 지식 상세
+export { default as KnowledgeDetail } from './KnowledgeDetail';
+// GPT 모달
+export { default as GptModal } from './GptModal';
