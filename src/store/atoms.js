@@ -19,3 +19,9 @@ export const loginInfo = atom({
   default: {},
   effects_UNSTABLE: [persistAtom],
 });
+
+export const selectedKnowledgeIdState = atom({
+  key: 'selectedKnowledgeIdState',
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
