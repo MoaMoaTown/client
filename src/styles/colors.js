@@ -7,4 +7,5 @@ export const colors = {
   light_green: '#90BE6D',
   light_orange: '#F9C74F',
   intermediate_color: '#F8961E',
+  purple: '#C76EFD',
 };
