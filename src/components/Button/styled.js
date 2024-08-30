@@ -106,6 +106,17 @@ const buttonStyles = {
     text-align: center;
     font-weight: bold;
   `,
+  updateBtn: css`
+    width: 22dvw;
+    height: 4dvh;
+    background-color: ${colors.orange};
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: regular;
+  `,
 };
 
 export const StyledButton = styled.button`

@@ -10,6 +10,8 @@ import Ranking from './pages/Ranking';
 import Knowledge from './pages/Knowledge';
 import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry'
+import Dept from "./pages/Dept";
+import Closet from "./pages/Closet"
 
 /**
  * 라우터
@@ -45,6 +47,7 @@ const Router = () => {
         <Route path="/knowledge" element={<Knowledge />} />
         <Route path="/account" element={<Account />} />
         <Route path="/closet-entry" element={<ClosetEntry />} />
+        <Route path="/closet" element={<Closet />} />
       </Routes>
     </BrowserRouter>
   );
