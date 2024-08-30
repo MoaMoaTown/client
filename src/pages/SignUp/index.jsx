@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button } from '../../components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { signUp } from '../../apis/memberApi';
 import logo from '../../assets/images/logo.png';
@@ -22,18 +22,24 @@ const SignUp = () => {
   const [confirmPassword, debouncedSetConfirmPassword] = useDebouncedState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const role = location.state?.role || 0;
 
+  console.log(role);
   const isButtonDisabled =
     password !== confirmPassword || !password || !confirmPassword;
 
-  const mutation = useMutation(() => signUp(nickname, loginId, password, 0), {
-    onSuccess: () => {
-      navigate('/');
-    },
-    onError: (error) => {
-      console.error('회원가입 실패:', error);
-    },
-  });
+  const mutation = useMutation(
+    () => signUp(nickname, loginId, password, role),
+    {
+      onSuccess: () => {
+        navigate('/');
+      },
+      onError: (error) => {
+        console.error('회원가입 실패:', error);
+      },
+    }
+  );
 
   const handleSignUp = () => {
     if (!isButtonDisabled) {
