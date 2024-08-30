@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 export const Container = styled.div`
   background: ${colors.background_gray};
@@ -34,18 +34,34 @@ export const Dept_backImage = styled.img`
 //   height: auto;
 // `;
 
+// export const ClothButtonStyled = styled.div`
+//   position: absolute;
+//   top: 10%; /* 이미지 안에서 첫 번째 버튼을 상단에 배치 */
+//   left: 50%;
+//   transform: translateX(-50%);
+//   width: auto;
+//   display: flex;
+//   flex-direction: column; /* 버튼들을 위아래로 배치 */
+//   justify-content: space-between; /* 버튼들 사이에 균등한 간격을 제공 */
+//   align-items: center; /* 버튼들을 수평 중앙에 배치 */
+//   gap: 20px;
+// `;
 export const ClothButtonStyled = styled.div`
   position: absolute;
-  top: 10%; /* 이미지 안에서 첫 번째 버튼을 상단에 배치 */
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
+  max-height: 80%; /* 높이를 제한하여 백이미지를 초과하지 않도록 설정 */
   display: flex;
-  flex-direction: column; /* 버튼들을 위아래로 배치 */
-  justify-content: space-between; /* 버튼들 사이에 균등한 간격을 제공 */
-  align-items: center; /* 버튼들을 수평 중앙에 배치 */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 20px;
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  padding-right: 10px; /* 선택 사항: 스크롤바를 위한 여유 공간 */
 `;
+
 export const ToggleContainer = styled.div`
   display: flex;
   justify-content: center;
