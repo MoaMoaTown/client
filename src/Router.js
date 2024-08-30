@@ -8,6 +8,7 @@ import JoinTown from './pages/JoinTown';
 import Mypage from './pages/Mypage';
 import Ranking from './pages/Ranking';
 import Knowledge from './pages/Knowledge';
+import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry'
 
 /**
@@ -42,6 +43,7 @@ const Router = () => {
         <Route path="/dept" element={<Dept />} />
         <Route path="/rank" element={<Ranking />} />
         <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/closet-entry" element={<ClosetEntry />} />
       </Routes>
     </BrowserRouter>
