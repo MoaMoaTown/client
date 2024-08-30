@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Button } from '../../components';
 import { fetchMyclothes } from '../../apis/closetApi';
 import leftArrow from '../../assets/images/left_arrow.svg';
-import heendy from '../../assets/images/heendy.png';
+import heendy from '../../assets/images/heendy_avatar.png';
 
 import { Container, Wrapper, Title, BackButton} from './styled';
 

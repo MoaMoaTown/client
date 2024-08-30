@@ -1,6 +1,6 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Onboarding from "./pages/Onboarding";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Onboarding from './pages/Onboarding';
 import Main from './pages/Main';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
@@ -12,6 +12,7 @@ import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry'
 import Dept from "./pages/Dept";
 import Closet from "./pages/Closet"
+import SelectRole from './pages/SelectRole';
 
 /**
  * 라우터
@@ -26,11 +27,10 @@ import Closet from "./pages/Closet"
  * 2024.08.20   이주현        Onboarding, Main 추가
  * 2024.08.27   이주현        SignUp, Login 추가
  * 2024.08.28   이주현        JoinTown, Mypage, Ranking 추가
- * 2024.08.30   이주현        Knowledge 추가
+ * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
  * </pre>
  */
-
 
 const Router = () => {
   return (
@@ -48,6 +48,7 @@ const Router = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/closet-entry" element={<ClosetEntry />} />
         <Route path="/closet" element={<Closet />} />
+        <Route path="/select-role" element={<SelectRole />} />
       </Routes>
     </BrowserRouter>
   );
