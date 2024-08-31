@@ -4,15 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { signUp } from '../../apis/memberApi';
 import logo from '../../assets/images/logo.png';
-import bg from '../../assets/images/signup_back.svg';
-import {
-  Container,
-  BackgroundImage,
-  Logo,
-  Title,
-  Description,
-  Form,
-} from './styled';
+import { Container, Logo, Title, Description, Form } from './styled';
 import useDebouncedState from '../../hooks/useDebouncedState';
 
 const SignUp = () => {
@@ -25,7 +17,6 @@ const SignUp = () => {
   const location = useLocation();
   const role = location.state?.role || 0;
 
-  console.log(role);
   const isButtonDisabled =
     password !== confirmPassword || !password || !confirmPassword;
 
@@ -49,7 +40,6 @@ const SignUp = () => {
 
   return (
     <Container>
-      <BackgroundImage src={bg} alt="background" />
       <Logo src={logo} alt="logo" />
       <Title>모아모아 타운 입장하기</Title>
       <Description>

@@ -12,16 +12,6 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const BackgroundImage = styled.img`
-  position: absolute;
-  top: 20dvh;
-  left: 0;
-  width: 100dvw;
-  height: 60dvh;
-  object-fit: cover;
-  z-index: -1;
-`;
-
 export const Logo = styled.img`
   width: 68dvw;
   margin-bottom: 6dvh;
