@@ -8,7 +8,7 @@ import useDebouncedState from '../../hooks/useDebouncedState';
 import { loginState, loginInfo } from '../../store/atoms';
 
 import logo from '../../assets/images/logo.png';
-import bg from '../../assets/images/login_back.svg';
+import ph from '../../assets/images/prone_heendy.svg';
 import {
   Container,
   BackgroundImage,
@@ -69,7 +69,7 @@ const Login = () => {
 
   return (
     <Container>
-      <BackgroundImage src={bg} alt="background" />
+      <BackgroundImage src={ph} alt="heendy" />
       <Logo src={logo} alt="logo" />
       <Title>모아모아 타운 입장하기</Title>
       <Description>
