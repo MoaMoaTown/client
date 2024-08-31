@@ -1,4 +1,3 @@
-// components/WishButton/index.jsx
 import React from 'react';
 import { StyledWishButton } from './styled';
 

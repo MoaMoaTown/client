@@ -13,3 +13,22 @@ export const purchaseClothes = async (clothId) => {
   });
   return response.data;
 };
+
+// 위시리스트를 가져오는 API 호출
+export const getWishlist = async () => {
+  const response = await axiosInstance.get('/wish/wishlist', {});
+  return response.data;
+};
+
+export const purchaseWishItem = async (wishId) => {
+  const response = await axiosInstance.post(
+    '/wish/wishlist/purchase',
+    { wishId },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  return response.data;
+};

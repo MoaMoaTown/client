@@ -1,6 +1,5 @@
-// components/WishButton/styled.js
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 export const StyledWishButton = styled.button`
   width: 62dvw;

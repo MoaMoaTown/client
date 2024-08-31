@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
+import dept_back from '../../assets/images/dept_back.svg';
 
 export const Container = styled.div`
   background: ${colors.background_gray};
@@ -18,67 +19,56 @@ export const DeptTitle = styled.div`
   text-align: center;
   font-weight: bold;
 `;
-
-export const Dept_backImage = styled.img`
-  width: 100%;
-  position: relative; /* 버튼을 배치하기 위한 relative 속성 추가 */
+export const ContentWrapper = styled.div`
+  width: 90%;
+  padding: 5% 5%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url(${dept_back});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
-// export const ClothButtonStyled = styled.div`
-//   position: absolute;
-//   justify-content: space-between;
-//   top: 10%; /* 이미지 안에서 버튼을 하단에 배치 */
-//   left: 50%;
-//   transform: translateX(-50%);
-//   width: 100%;
-//   height: auto;
-// `;
-
-// export const ClothButtonStyled = styled.div`
-//   position: absolute;
-//   top: 10%; /* 이미지 안에서 첫 번째 버튼을 상단에 배치 */
-//   left: 50%;
-//   transform: translateX(-50%);
-//   width: auto;
-//   display: flex;
-//   flex-direction: column; /* 버튼들을 위아래로 배치 */
-//   justify-content: space-between; /* 버튼들 사이에 균등한 간격을 제공 */
-//   align-items: center; /* 버튼들을 수평 중앙에 배치 */
-//   gap: 20px;
-// `;
 export const ClothButtonStyled = styled.div`
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: auto;
-  max-height: 80%; /* 높이를 제한하여 백이미지를 초과하지 않도록 설정 */
+  height: 84%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  overflow-y: auto; /* 세로 스크롤 활성화 */
-  padding-right: 10px; /* 선택 사항: 스크롤바를 위한 여유 공간 */
+  overflow-y: auto;
+  border: 1px solid red;
 `;
 
 export const ToggleContainer = styled.div`
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  position: relative;
+  background-color: ${colors.light_gray};
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 export const ToggleButton = styled.button`
-  background-color: ${(props) => (props.active ? colors.primary : colors.gray)};
-  color: white;
+  flex: 1;
+  background-color: ${(props) =>
+    props.active ? colors.primary : colors.white};
+  color: ${(props) => (props.active ? colors.white : colors.black)};
   border: none;
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: ${(props) =>
-      props.active ? colors.primary_dark : colors.dark_gray};
+      props.active ? colors.primary_dark : colors.gray};
   }
 `;
