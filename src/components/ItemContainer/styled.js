@@ -7,10 +7,12 @@ export const ContainerWrapper = styled.div`
   gap: 4dvw;
   padding: 1dvh 1dvw;
   overflow-x: auto;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
+  align-items: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
+  height: ${({ isLoading }) => (isLoading ? '50dvh' : 'auto')};
   scrollbar-width: thin;
   scrollbar-color: #888 #f4f4f4;
+
   &::-webkit-scrollbar {
     height: 4dvh;
   }

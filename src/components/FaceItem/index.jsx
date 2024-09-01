@@ -1,6 +1,4 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { selectedFaceState } from '../../store/atoms';
 import { ItemContainer, ItemImage } from './styled';
 
 /**

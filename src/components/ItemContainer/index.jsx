@@ -3,8 +3,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { useQuery } from 'react-query';
 import { selectedTypeState, selectedFaceState } from '../../store/atoms';
 import { fetchMyclothes } from '../../apis/closetApi';
-import ClothItem from '../ClothItem';
-import FaceItem from '../FaceItem';
+import { FaceItem, ClothItem, Loading } from '../index';
 import { ContainerWrapper } from './styled';
 import face1 from '../../assets/images/heendy_face1.png';
 import face2 from '../../assets/images/heendy_face2.png';
@@ -46,7 +45,11 @@ const ItemContainer = ({ onSelectItem }) => {
   );
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return (
+      <ContainerWrapper isLoading={true}>
+        <Loading />
+      </ContainerWrapper>
+    );
   }
 
   if (isError) {
