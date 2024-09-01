@@ -14,16 +14,16 @@ export const PassbookImage = styled.img`
 
 export const TitleText = styled.span`
   position: absolute;
-  top: 15%;
-  left: 10%;
+  top: 3dvh;
+  left: 6dvw;
   font-size: 1.5rem;
   font-weight: bold;
 `;
 
 export const BalanceText = styled.span`
   position: absolute;
-  bottom: 15%;
-  right: 10%;
+  bottom: 3dvh;
+  right: 6dvw;
   font-size: 1.5rem;
   color: ${colors.dark_gray};
   font-weight: bold;

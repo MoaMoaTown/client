@@ -19,7 +19,7 @@ import {
 } from './styled';
 import bbo from '../../assets/images/bbo.png';
 
-const Board = () => {
+const KnowledgeCard = () => {
   const [selectedKnowledgeId, setSelectedKnowledgeId] = useRecoilState(
     selectedKnowledgeIdState
   );
@@ -68,4 +68,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default KnowledgeCard;

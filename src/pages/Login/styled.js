@@ -6,18 +6,18 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 8dvh;
+  padding-top: 25dvh;
   width: 100dvw;
-  height: 100dvh;
+  height: 75dvh;
   position: relative;
 `;
 
 export const BackgroundImage = styled.img`
   position: absolute;
-  top: 20dvh;
-  left: 0;
-  width: 100dvw;
-  height: 60dvh;
+  top: 0;
+  right: 10dvw;
+  width: 60dvw;
+  height: auto;
   object-fit: cover;
   z-index: -1;
 `;

@@ -20,11 +20,18 @@ export { default as Ordinal } from './Ordinal';
 export { default as Rank } from './Rank';
 // 모달
 export { default as InfoModal } from './InfoModal';
-// 게시판 컴포넌트
-export { default as Board } from './Board';
+// 지식 컴포넌트
+export { default as KnowledgeCard } from './KnowledgeCard';
 // 지식 상세
 export { default as KnowledgeDetail } from './KnowledgeDetail';
 // GPT 모달
 export { default as GptModal } from './GptModal';
 // 투자 현황 컴포넌트
 export { default as EmptyBoard } from './EmptyBoard';
+// 통장 상세
+export { default as PassbookDetail } from './PassbookDetail';
+// 사이드 바
+export { default as Sidebar } from './Sidebar';
+// 퀘스트 컴포넌트
+export { default as QuestCard } from './QuestCard';
+
