@@ -30,9 +30,9 @@ export const ModalContent = styled.div`
   text-align: center;
   background-color: white;
   border-radius: 10px;
-  padding: 4.5dvh 5dvw;
+  padding: 3dvh 5dvw;
   width: 80dvw;
-  height: 60dvh;
+  height: 22dvh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-image: url(${bg});
   background-repeat: no-repeat;
@@ -40,39 +40,34 @@ export const ModalContent = styled.div`
   background-size: 35%;
 `;
 
-export const HintText = styled.span`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 2dvh;
-`;
-
-export const HdyImage = styled.img`
-  width: 150px;
-  height: 150px;
-  margin-bottom: -12px;
+export const TitleText = styled.h2`
+  font-size: 1.5rem;
+  color: black;
 `;
 
 export const QuantityInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  // margin: 1dvh 0; /* 간격을 절반으로 줄임 */
+  //   justify-content: space-between; /* '개수' 텍스트와 토글을 양쪽에 배치 */
+  width: 100%; /* 전체 너비 사용 */
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: -40px;
+  margin-bottom: -10px;
+  padding-left: 150px; /* 왼쪽 여백 추가 */
+`;
+
+export const QuantityLabel = styled.span`
+  margin-left: -10px; /* '개수' 텍스트를 왼쪽으로 더 이동 */
 `;
 
 export const QuantityContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 1dvw;
+  margin-left: 10px; /* 오른쪽 정렬 */
   background-color: ${colors.background_gray};
   border-radius: 20px;
   padding: 2px;
-`;
-
-export const QuantityDisplay = styled.span`
-  width: 40px;
-  text-align: center;
+  //   width: 60px;
 `;
 
 export const ArrowButton = styled.button`
@@ -97,43 +92,36 @@ export const ArrowButton = styled.button`
   background-repeat: no-repeat;
   background-size: contain;
   filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
-    contrast(100%); /* 검정색으로 변경 */
+    contrast(100%);
 `;
 
 export const TotalPrice = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   color: ${colors.primary};
-  margin: 1dvh 0; /* 간격을 절반으로 줄임 */
+  display: flex;
+  //   justify-content: space-between; /* '총액' 텍스트와 숫자를 양쪽에 배치 */
+  width: 100%;
+  margin-top: 1dvh;
+  padding-left: 150px; /* 왼쪽 여백 추가 */
+`;
+
+export const TotalLabel = styled.span`
+  margin-left: -10px; /* '총액' 텍스트를 왼쪽으로 더 이동 */
+`;
+
+export const TotalAmount = styled.div`
   display: flex;
   align-items: center;
-`;
-
-export const YesterdayPriceWrapper = styled.div`
-  font-size: 1.5rem;
-  color: ${colors.secondary};
-  margin: 0.75dvh 0; /* 간격을 절반으로 줄임 */
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  margin-bottom: -55px;
-`;
-
-export const CurrentMoa = styled.div`
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: ${colors.secondary};
-  margin-top: 2dvh;
-`;
-
-export const TitleText = styled.h2`
-  font-size: 1.5rem;
-  color: black;
-  margin-bottom: 2dvh;
+  justify-content: flex-end; /* 숫자와 이미지 오른쪽 정렬 */
 `;
 
 export const MoaImage = styled.img`
   width: 8dvw;
-  height: 8dvh;
+  height: 8dvw;
   margin-left: 5px;
+`;
+
+export const SellButtonContainer = styled.div`
+  margin-top: 2dvh;
 `;
