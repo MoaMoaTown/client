@@ -13,12 +13,17 @@ const animateLoader = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 100dvw;
-  height: 100dvh;
+  position: ${(props) => (props.page ? 'absolute' : 'relative')};
+  top: ${(props) => (props.page ? '0' : 'auto')};
+  left: ${(props) => (props.page ? '0' : 'auto')};
+  width: ${(props) => (props.page ? '100dvw' : '100%')};
+  height: ${(props) => (props.page ? '100dvh' : '100%')};
+  background: ${(props) => (props.page ? 'white' : 'transparent')};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: ${(props) => (props.page ? 11 : 'auto')};
 `;
 
 export const LoadingContainer = styled.div`

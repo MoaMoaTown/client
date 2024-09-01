@@ -42,3 +42,8 @@ export const fetchJobInfo = async () => {
   const response = await axiosInstance.get('/member/job');
   return response.data;
 };
+
+export const fetchTownInfo = async () => {
+  const response = await axiosInstance.get('/member/town');
+  return response.data;
+};

@@ -111,13 +111,13 @@ export default function Model3D() {
       logoRef.current.rotation.set(0, Math.PI / 3.4, 0);
     }
 
-    cloudRef1.current.position.set(-2, 2.2, -2);
+    cloudRef1.current.position.set(-2, 1.4, -2);
     cloudRef1.current.rotation.set(0, Math.PI / 4, 0);
 
-    cloudRef2.current.position.set(-0.2, 2.5, 2);
+    cloudRef2.current.position.set(-0.2, 1.8, 2);
     cloudRef2.current.rotation.set(0, Math.PI / 2, 0);
 
-    cloudRef3.current.position.set(2, 2.4, -1);
+    cloudRef3.current.position.set(2, 1.7, -1);
     cloudRef3.current.rotation.set(0, Math.PI / 6, 0);
   };
 
@@ -129,7 +129,7 @@ export default function Model3D() {
 
   return (
     <React.Fragment>
-      {loading && <Loading />}
+      {loading && <Loading text={'티운으로 들어가는 중...'} page />}
       <Canvas
         shadows
         style={{

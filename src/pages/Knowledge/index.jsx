@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Board } from '../../components';
+import { Header, KnowledgeCard } from '../../components';
 
 import { Container, Title } from './styled';
 
@@ -8,7 +8,7 @@ const Knowledge = () => {
     <Container>
       <Header />
       <Title>젤뽀의 경제 교실</Title>
-      <Board />
+      <KnowledgeCard />
     </Container>
   );
 };

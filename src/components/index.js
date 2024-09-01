@@ -20,12 +20,14 @@ export { default as Ordinal } from './Ordinal';
 export { default as Rank } from './Rank';
 // 모달
 export { default as InfoModal } from './InfoModal';
-// 게시판 컴포넌트
-export { default as Board } from './Board';
+// 지식 컴포넌트
+export { default as KnowledgeCard } from './KnowledgeCard';
 // 지식 상세
 export { default as KnowledgeDetail } from './KnowledgeDetail';
 // GPT 모달
 export { default as GptModal } from './GptModal';
+// 투자 현황 컴포넌트
+export { default as EmptyBoard } from './EmptyBoard';
 // 통장 상세
 export { default as PassbookDetail } from './PassbookDetail';
 // 캔버스
@@ -40,3 +42,11 @@ export { default as ItemContainer } from './ItemContainer';
 export { default as TypeSelector } from './TypeSelector';
 // 프로필 모달
 export { default as ProfileModal } from './ProfileModal';
+// 사이드 바
+export { default as Sidebar } from './Sidebar';
+// 퀘스트 컴포넌트
+export { default as QuestCard } from './QuestCard';
+// 3D 모델
+export { default as Model3D } from './Model3D';
+// 타운 정보 컴포넌트
+export { default as TownInfo } from './TownInfo';

@@ -1,11 +1,15 @@
-// components/WishButton/index.jsx
 import React from 'react';
-import { StyledWishButton } from './styled';
+import { StyledWishButton, PriceWrapper, MoaImage } from './styled';
+import moaImage from '../../assets/images/moa.svg';
 
-const WishButton = ({ children, onClick, ...rest }) => {
+const WishButton = ({ children, price, onClick, ...rest }) => {
   return (
     <StyledWishButton onClick={onClick} {...rest}>
-      {children}
+      <span>{children}</span>
+      <PriceWrapper>
+        {price}
+        <MoaImage src={moaImage} alt='Moa' />
+      </PriceWrapper>
     </StyledWishButton>
   );
 };
