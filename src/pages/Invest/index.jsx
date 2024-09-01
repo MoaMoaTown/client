@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Board } from '../../components';
+import { Header, EmptyBoard } from '../../components';
 
 import { Container, Title } from './styled';
 
@@ -7,8 +7,8 @@ const Invest = () => {
   return (
     <Container>
       <Header />
-      <Title>흰디의 내일</Title>
-      <Board />
+      <Title>흰디의 내일을 맞춰봐요</Title>
+      <EmptyBoard />
     </Container>
   );
 };

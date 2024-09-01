@@ -9,7 +9,7 @@ import Mypage from './pages/Mypage';
 import Ranking from './pages/Ranking';
 import Knowledge from './pages/Knowledge';
 import Dept from './pages/Dept';
-
+import Invest from './pages/Invest';
 const Router = () => {
   return (
     <BrowserRouter>
@@ -23,6 +23,7 @@ const Router = () => {
         <Route path='/dept' element={<Dept />} />
         <Route path='/rank' element={<Ranking />} />
         <Route path='/knowledge' element={<Knowledge />} />
+        <Route path='/invest' element={<Invest />} />
       </Routes>
     </BrowserRouter>
   );
