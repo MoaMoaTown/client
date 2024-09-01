@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 export const Container = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ export const MoaImage = styled.img`
 export const Balance = styled.span`
   font-size: 1rem;
   font-weight: bold;
-  color: black;
+  color: ${colors.dark_gray};
   margin-left: 2dvw;
 `;
 
@@ -59,7 +60,7 @@ export const Modal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 100;
 `;
 
 export const ModalImage = styled.img`
