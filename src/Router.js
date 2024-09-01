@@ -28,6 +28,8 @@ import Quest from './pages/Quest';
  * 2024.08.20   이주현        Onboarding, Main 추가
  * 2024.08.27   이주현        SignUp, Login 추가
  * 2024.08.28   이주현        JoinTown, Mypage, Ranking 추가
+ * 2024.08.29   임재성        Dept 추가
+ * 2024.08.30   임재성        Invest 추가
  * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
  * 2024.09.01   이주현        Quest 추가
