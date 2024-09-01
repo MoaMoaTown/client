@@ -43,8 +43,6 @@ const ClosetEntry = () => {
     return <div>프로필을 불러오는 데 실패했습니다.</div>;
   }
 
-  // Base64 인코딩된 이미지를 data URL로 변환
-  //const imageUrl = `data:image/png;base64,${profile?.encodedProfileImage}`;
   const imageUrl = `${profile?.encodedProfileImage}`;
 
   return (

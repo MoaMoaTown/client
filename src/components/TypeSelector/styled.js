@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const TypeSelectorWrapper = styled.div`
+  width: 80dvw;
   display: flex;
-  justify-content: center;
-  margin-top: 4dvh;
+  justify-content: space-between;
+  margin-top: 3dvh;
+  margin-bottom: 2dvh;
   margin-bottom: 2dvh;
 `;
