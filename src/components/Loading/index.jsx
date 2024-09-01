@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, LoadingContainer, Circle, Info } from './styled';
 import { colors } from '../../styles/colors';
 
-const Loading = () => {
+const Loading = ({ text }) => {
   return (
     <Container>
       <LoadingContainer>
@@ -12,7 +12,7 @@ const Loading = () => {
         <Circle delay="0.6s" color={colors.light_orange} />
         <Circle delay="0.8s" color={colors.orange} />
       </LoadingContainer>
-      <Info>타운으로 들어가는 중...</Info>
+      <Info>{text}</Info>
     </Container>
   );
 };
