@@ -26,6 +26,7 @@ import {
 import moaImage from '../../assets/images/moa.svg';
 import hdyImage from '../../assets/images/hdy.png';
 import LargeInfoModal from '../LargeInfoModal';
+import SellModal from '../SellModal';
 
 const EmptyBoard = () => {
   const [leftData, setLeftData] = useState(null);
@@ -34,6 +35,7 @@ const EmptyBoard = () => {
   const [rightAverage, setRightAverage] = useState({ average: 0, amount: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: '',
     price: 0,
@@ -42,29 +44,29 @@ const EmptyBoard = () => {
     typeId: 0,
   });
 
+  const fetchData = async () => {
+    try {
+      const todayData = await getTodayPrice();
+      const averageData = await getAverageWeightAndStep();
+
+      const leftItem = todayData.find((item) => item.type === 0);
+      const rightItem = todayData.find((item) => item.type === 1);
+
+      const leftAverageData = averageData.find((item) => item.typeId === 0);
+      const rightAverageData = averageData.find((item) => item.typeId === 1);
+
+      setLeftData(leftItem || {});
+      setRightData(rightItem || {});
+      setLeftAverage(leftAverageData || { average: 0, amount: 0 });
+      setRightAverage(rightAverageData || { average: 0, amount: 0 });
+    } catch (error) {
+      console.error('데이터를 가져오는데 실패했습니다.', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const todayData = await getTodayPrice();
-        const averageData = await getAverageWeightAndStep();
-
-        const leftItem = todayData.find((item) => item.type === 0);
-        const rightItem = todayData.find((item) => item.type === 1);
-
-        const leftAverageData = averageData.find((item) => item.typeId === 0);
-        const rightAverageData = averageData.find((item) => item.typeId === 1);
-
-        setLeftData(leftItem || {});
-        setRightData(rightItem || {});
-        setLeftAverage(leftAverageData || { average: 0, amount: 0 });
-        setRightAverage(rightAverageData || { average: 0, amount: 0 });
-      } catch (error) {
-        console.error('데이터를 가져오는데 실패했습니다.', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -94,8 +96,30 @@ const EmptyBoard = () => {
     setIsModalOpen(true);
   };
 
+  const handleSellClick = (data, typeText) => {
+    setModalContent({
+      title: `${typeText} 매도하기`,
+      price: data.price,
+      hint: data.hint,
+      currentMoa: 1000,
+      typeId: data.type,
+    });
+    setIsSellModalOpen(true);
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    fetchData(); // 모달 닫힐 때 데이터 갱신
+  };
+
+  const handleCloseSellModal = () => {
+    setIsSellModalOpen(false);
+    fetchData(); // 모달 닫힐 때 데이터 갱신
+  };
+
+  const handleSellConfirm = (quantity) => {
+    console.log(`매도: ${quantity} 개`);
+    fetchData(); // 판매 후 데이터 갱신
   };
 
   return (
@@ -140,7 +164,9 @@ const EmptyBoard = () => {
                 <AverageValue>{leftAverage.amount}</AverageValue>
               </AverageItem>
             </AverageWrapper>
-            <SellButton>판매</SellButton>
+            <SellButton onClick={() => handleSellClick(leftData, '몸무게')}>
+              판매
+            </SellButton>
           </SectionBox>
           <SectionBox>
             <HdyImage src={hdyImage} alt='HDY' />
@@ -157,7 +183,9 @@ const EmptyBoard = () => {
                 <AverageValue>{rightAverage.amount}</AverageValue>
               </AverageItem>
             </AverageWrapper>
-            <SellButton>판매</SellButton>
+            <SellButton onClick={() => handleSellClick(rightData, '걸음수')}>
+              판매
+            </SellButton>
           </SectionBox>
         </BottomSection>
       </BottomWrapper>
@@ -170,6 +198,14 @@ const EmptyBoard = () => {
         typeId={modalContent.typeId}
         onConfirm={handleCloseModal}
         onClose={handleCloseModal}
+      />
+      <SellModal
+        isOpen={isSellModalOpen}
+        title={modalContent.title}
+        price={modalContent.price}
+        typeId={modalContent.typeId}
+        onConfirm={handleSellConfirm}
+        onClose={handleCloseSellModal}
       />
     </Container>
   );

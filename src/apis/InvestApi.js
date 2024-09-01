@@ -34,3 +34,16 @@ export const getAverageWeightAndStep = async () => {
     throw error;
   }
 };
+
+export const sellInvest = async ({ typeId, sellAmount }) => {
+  try {
+    const response = await axiosInstance.patch('/invest/sell', {
+      typeId,
+      sellAmount,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('매도 요청 중 오류 발생:', error); // 오류가 발생한 경우 콘솔에 출력
+    throw error;
+  }
+};

@@ -15,7 +15,7 @@ export const TopWrapper = styled.div`
   flex: 1;
   display: flex;
   justify-content: space-between;
-  padding: 5%;
+  padding: 4px;
 `;
 
 export const BottomWrapper = styled.div`
