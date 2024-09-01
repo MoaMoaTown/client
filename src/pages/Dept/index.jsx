@@ -126,12 +126,21 @@ const Dept = () => {
             ) : isWishlistError ? (
               <div>Error loading wishlist data</div>
             ) : (
+              // wishlist.map((wishItem) => (
+              //   <WishButton
+              //     key={wishItem.wishId}
+              //     onClick={() => handleWishClick(wishItem.wishId)}
+              //   >
+              //     {wishItem.name} {wishItem.price}
+              //   </WishButton>
+              // ))
               wishlist.map((wishItem) => (
                 <WishButton
                   key={wishItem.wishId}
+                  price={wishItem.price} // price를 전달
                   onClick={() => handleWishClick(wishItem.wishId)}
                 >
-                  {wishItem.name} - {wishItem.price}모아
+                  {wishItem.name} {/* 아이템 이름 */}
                 </WishButton>
               ))
             )

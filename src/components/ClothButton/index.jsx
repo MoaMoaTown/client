@@ -6,7 +6,9 @@ import {
   Brand,
   Name,
   Price,
+  MoaImage,
 } from './styled';
+import moaImage from '../../assets/images/moa.svg';
 
 const ClothButton = ({ imgUrl, name, brand, price, onClick }) => {
   return (
@@ -15,7 +17,10 @@ const ClothButton = ({ imgUrl, name, brand, price, onClick }) => {
       <InfoWrapper>
         <Brand>{brand}</Brand>
         <Name>{name}</Name>
-        <Price>{`${price}모아`}</Price>
+        <Price>
+          {price}
+          <MoaImage src={moaImage} alt='Moa' />
+        </Price>
       </InfoWrapper>
     </Container>
   );

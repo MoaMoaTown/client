@@ -19,3 +19,8 @@ export const buyInvest = async (typeId, purchaseAmount) => {
   });
   return response.data;
 };
+
+export const getYesterdayPrice = async () => {
+  const response = await axiosInstance.get('/invest/yesterday');
+  return response.data;
+};

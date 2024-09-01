@@ -13,7 +13,6 @@ export const Container = styled.div`
   background-color: white;
   border-radius: 10px;
   box-sizing: border-box;
-  cursor: pointer;
 
   &:hover {
     background-color: ${colors.gray};
@@ -28,17 +27,6 @@ export const Container = styled.div`
     cursor: not-allowed;
   }
 `;
-
-// export const ImageWrapper = styled.div`
-//   width: 40%; /* 이미지가 차지할 가로 크기 */
-//   height: auto;
-// `;
-
-// export const ClothImage = styled.img`
-//   width: 100%;
-//   height: auto;
-//   object-fit: cover;
-// `;
 
 export const ClothImage = styled.img`
   height: auto;
@@ -70,6 +58,14 @@ export const Name = styled.div`
 export const Price = styled.div`
   margin-top: 4px;
   font-size: 0.9em;
+  display: flex;
+  align-items: center; /* 텍스트와 이미지를 수평으로 정렬 */
+`;
+
+export const MoaImage = styled.img`
+  width: 8dvw; /* 작게 설정 */
+  // height: 4dvh; /* 작게 설정 */
+  margin-left: 4px; /* 텍스트와 이미지 사이의 간격 */
 `;
 
 export const Modal = styled.div`

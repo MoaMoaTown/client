@@ -32,7 +32,7 @@ export const ModalContent = styled.div`
   border-radius: 10px;
   padding: 4.5dvh 5dvw;
   width: 80dvw;
-  height: 52dvh;
+  height: 60dvh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-image: url(${bg});
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@ export const HdyImage = styled.img`
 export const QuantityInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 2dvh 0;
+  margin: 1dvh 0; /* 간격을 절반으로 줄임 */
   font-size: 1.5rem;
   font-weight: bold;
 `;
@@ -103,7 +103,16 @@ export const TotalPrice = styled.div`
   font-size: 1.5rem;
   font-weight: bold;
   color: ${colors.primary};
-  margin: 2dvh 0;
+  margin: 1dvh 0; /* 간격을 절반으로 줄임 */
+  display: flex;
+  align-items: center;
+`;
+
+export const YesterdayPriceWrapper = styled.div`
+  font-size: 1.5rem;
+  color: ${colors.secondary};
+  margin: 0.75dvh 0; /* 간격을 절반으로 줄임 */
+  font-weight: bold;
   display: flex;
   align-items: center;
 `;

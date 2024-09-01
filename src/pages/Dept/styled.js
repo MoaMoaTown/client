@@ -19,6 +19,7 @@ export const DeptTitle = styled.div`
   text-align: center;
   font-weight: bold;
 `;
+
 export const ContentWrapper = styled.div`
   width: 90%;
   padding: 5% 5%;
@@ -42,7 +43,6 @@ export const ClothButtonStyled = styled.div`
   align-items: center;
   gap: 20px;
   overflow-y: auto;
-  border: 1px solid red;
 `;
 
 export const ToggleContainer = styled.div`
@@ -71,4 +71,15 @@ export const ToggleButton = styled.button`
     background-color: ${(props) =>
       props.active ? colors.primary_dark : colors.gray};
   }
+`;
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const MoaImage = styled.img`
+  width: 8dvw;
+  height: 8dvh;
+  margin-left: 5px;
 `;

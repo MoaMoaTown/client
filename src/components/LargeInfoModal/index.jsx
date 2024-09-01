@@ -11,32 +11,47 @@ import {
   QuantityInputWrapper,
   QuantityContainer,
   ArrowButton,
+  YesterdayPriceText, // 어제의 가격 텍스트 스타일 추가
+  YesterdayPriceWrapper, // 어제의 가격 표시를 위한 스타일
 } from './styled';
 import { Button } from '../index';
 import hdyImage from '../../assets/images/hdy.png';
 import moaImage from '../../assets/images/moa.svg';
-import { buyInvest } from '../../apis/InvestApi'; // API 호출 함수 import
+import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi'; // 어제의 가격 API import
 
 const LargeInfoModal = ({
   isOpen,
   title,
   price,
-  typeId, // typeId prop 추가
+  typeId,
   hint,
   currentMoa,
   onConfirm,
-  onClose, // 모달을 닫는 함수 prop 추가
+  onClose,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
+  const [yesterdayPrice, setYesterdayPrice] = useState(null); // 어제의 가격 상태 추가
 
-  // 모달이 열릴 때 상태 초기화
+  // 모달이 열릴 때 상태 초기화 및 어제의 가격 가져오기
   useEffect(() => {
+    const fetchYesterdayPrice = async () => {
+      try {
+        const data = await getYesterdayPrice();
+        const yesterdayData = data.find((item) => item.type === typeId);
+        setYesterdayPrice(yesterdayData ? yesterdayData.price : 'N/A');
+      } catch (error) {
+        console.error('어제의 가격을 가져오는데 실패했습니다.', error);
+        setYesterdayPrice('N/A');
+      }
+    };
+
     if (isOpen) {
       setQuantity(1);
       setTotalPrice(price);
+      fetchYesterdayPrice(); // 어제의 가격 가져오기
     }
-  }, [isOpen, price]);
+  }, [isOpen, price, typeId]);
 
   if (!isOpen) return null;
 
@@ -84,6 +99,11 @@ const LargeInfoModal = ({
               </div>
             </QuantityContainer>
           </QuantityInputWrapper>
+          <YesterdayPriceWrapper>
+            어제: {yesterdayPrice}
+            <MoaImage src={moaImage} alt='Moa Icon' />
+          </YesterdayPriceWrapper>{' '}
+          {/* 어제의 가격 표시 */}
           <TotalPrice>
             총액: {totalPrice}
             <MoaImage src={moaImage} alt='Moa Icon' />
