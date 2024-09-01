@@ -12,7 +12,6 @@ import Dept from './pages/Dept';
 import Invest from './pages/Invest';
 import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry';
-import Dept from './pages/Dept';
 import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 
@@ -29,6 +28,8 @@ import Quest from './pages/Quest';
  * 2024.08.20   이주현        Onboarding, Main 추가
  * 2024.08.27   이주현        SignUp, Login 추가
  * 2024.08.28   이주현        JoinTown, Mypage, Ranking 추가
+ * 2024.08.29   임재성        Dept 추가
+ * 2024.08.30   임재성        Invest 추가
  * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
  * 2024.09.01   이주현        Quest 추가
@@ -39,7 +40,6 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path='/' element={<Onboarding />} />
         <Route path='/main' element={<Main />} />
         <Route path='/signup' element={<SignUp />} />
@@ -50,11 +50,10 @@ const Router = () => {
         <Route path='/rank' element={<Ranking />} />
         <Route path='/knowledge' element={<Knowledge />} />
         <Route path='/invest' element={<Invest />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/closet-entry" element={<ClosetEntry />} />
-        <Route path="/select-role" element={<SelectRole />} />
-        <Route path="/quest" element={<Quest />} />
-
+        <Route path='/account' element={<Account />} />
+        <Route path='/closet-entry' element={<ClosetEntry />} />
+        <Route path='/select-role' element={<SelectRole />} />
+        <Route path='/quest' element={<Quest />} />
       </Routes>
     </BrowserRouter>
   );
