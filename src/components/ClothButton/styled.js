@@ -1,35 +1,88 @@
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
-export const StyledButton = styled.button`
-  width: 62dvw;
-  height: 12dvh;
-  font-size: 1rem;
-  border: 1px solid ${colors.gray};
-  border-radius: 8px;
-  outline: none;
-  box-sizing: border-box;
-  background-color: ${colors.primary}; // 기본 배경색 (예: primary 색상)
-  color: white; // 기본 텍스트 색상
+export const Container = styled.div`
+  width: 90%;
+  height: 18dvh;
+  padding: 2dvh 5%;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-
-  //   &:hover {
-  //     background-color: ${colors.primary_dark}; // 호버 시 배경색
-  //   }
-
-  //   &:active {
-  //     background-color: ${colors.primary_darker}; // 클릭 시 배경색
-  //   }
+  justify-content: space-between;
+  border: 1px solid ${colors.gray};
+  background-color: white;
+  border-radius: 10px;
+  box-sizing: border-box;
 
   &:hover {
-    background-color: ${colors.gray}; // 호버 시 배경색
+    background-color: ${colors.gray};
   }
 
   &:active {
-    background-color: ${colors.dark_gray}; // 클릭 시 배경색
+    background-color: ${colors.dark_gray};
   }
+
   &:disabled {
     background-color: ${colors.gray};
     cursor: not-allowed;
   }
+`;
+
+export const ClothImage = styled.img`
+  height: auto;
+  object-fit: contain;
+  flex: 1;
+  width: 15dvw;
+`;
+
+export const InfoWrapper = styled.div`
+  text-align: left;
+  margin-left: 16px;
+  flex: 3;
+`;
+
+export const Brand = styled.div`
+  font-weight: bold;
+  font-size: 1rem;
+`;
+
+export const Name = styled.div`
+  width: 100%;
+  margin-top: 4px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const Price = styled.div`
+  margin-top: 4px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center; /* 텍스트와 이미지를 수평으로 정렬 */
+`;
+
+export const MoaImage = styled.img`
+  width: 8dvw; /* 작게 설정 */
+  // height: 4dvh; /* 작게 설정 */
+  margin-left: 4px; /* 텍스트와 이미지 사이의 간격 */
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const ModalImage = styled.img`
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 `;
