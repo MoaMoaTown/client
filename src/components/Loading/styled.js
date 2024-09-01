@@ -13,12 +13,17 @@ const animateLoader = keyframes`
 `;
 
 export const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100dvw;
   height: 100dvh;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  z-index: 11;
 `;
 
 export const LoadingContainer = styled.div`

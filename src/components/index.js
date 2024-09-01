@@ -34,4 +34,7 @@ export { default as PassbookDetail } from './PassbookDetail';
 export { default as Sidebar } from './Sidebar';
 // 퀘스트 컴포넌트
 export { default as QuestCard } from './QuestCard';
-
+// 3D 모델
+export { default as Model3D } from './Model3D';
+// 타운 정보 컴포넌트
+export { default as TownInfo } from './TownInfo';

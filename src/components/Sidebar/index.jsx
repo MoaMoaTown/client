@@ -24,7 +24,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <SidebarContainer isOpen={isOpen}>
       <CloseIcon src={closeIcon} onClick={toggleSidebar} />
-      <LogoImage src={logo} />
+      <Link to="/main">
+        <LogoImage src={logo} />
+      </Link>
       <SidebarWrapper>
         <SidebarMenu>
           <SidebarLink as={Link} to="/dept" onClick={toggleSidebar}>
