@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchBalance } from '../../apis/memberApi';
 import { Sidebar } from '../index';
@@ -38,7 +38,9 @@ const Header = () => {
       </LeftWrapper>
       <RightWrapper>
         <NotiImage src={noti} />
-        <MypageImage src={mypage} />
+        <Link to="/mypage">
+          <MypageImage src={mypage} />
+        </Link>
         <MenuImage src={menu} onClick={toggleSidebar} />
       </RightWrapper>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
