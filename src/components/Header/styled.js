@@ -38,7 +38,7 @@ export const NotiImage = styled.img`
 export const MypageImage = styled.img`
   width: 8dvw;
   height: 8vw;
-  margin-right: 3dvw;
+  margin-right: 2.5dvw;
   cursor: pointer;
 `;
 

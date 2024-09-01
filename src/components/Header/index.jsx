@@ -1,7 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchBalance } from '../../apis/memberApi';
+import { Sidebar } from '../index';
 import {
   Container,
   LeftWrapper,
@@ -18,11 +19,16 @@ import mypage from '../../assets/images/mypage.svg';
 import menu from '../../assets/images/hamburger_menu.svg';
 
 const Header = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const {
     data: balance = '',
     isLoading,
     isError,
   } = useQuery('balance', fetchBalance);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <Container>
@@ -32,9 +38,12 @@ const Header = () => {
       </LeftWrapper>
       <RightWrapper>
         <NotiImage src={noti} />
-        <MypageImage src={mypage} />
-        <MenuImage src={menu} />
+        <Link to="/mypage">
+          <MypageImage src={mypage} />
+        </Link>
+        <MenuImage src={menu} onClick={toggleSidebar} />
       </RightWrapper>
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </Container>
   );
 };
