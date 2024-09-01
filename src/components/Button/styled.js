@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { colors } from "../../styles/colors";
+import styled, { css } from 'styled-components';
+import { colors } from '../../styles/colors';
 
 /**
  * 버튼 style
@@ -105,6 +105,63 @@ const buttonStyles = {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
+  `,
+  updateBtn: css`
+    width: 15dvw;
+    height: 4dvh;
+    background-color: ${colors.orange};
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+  `,
+  typeBtn: css`
+    width: 22dvw;
+    height: 5dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1dvh 2dvw;
+    background-color: ${({ active }) => (active ? colors.green : 'white')};
+    color: ${({ active }) => (active ? 'white' : 'black')};
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    img {
+      margin-right: 2vw;
+      width: 6vw;
+      height: auto;
+    }
+    &:hover {
+      background-color: ${colors.green};
+      color: white;
+    }
+    &.active {
+      background-color: ${colors.green};
+      color: white;
+    }
+  `,
+  confirmBtn2: css`
+    padding: 1dvh 5dvw;
+    font-size: 1rem;
+    color: white;
+    background-color: ${colors.green};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  `,
+  cancelBtn: css`
+    padding: 1dvh 5dvw;
+    font-size: 1rem;
+    color: white;
+    background-color: ${colors.gray};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   `,
 };
 

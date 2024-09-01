@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Header, Button } from '../../components';
 import { fetchProfile } from '../../apis/closetApi';
 
-import { Container, ClosetTitle, ProfileImage } from './styled';
+import { Container, Title, ProfileImage } from './styled';
 
 /**
  * 옷장 진입 페이지
@@ -24,7 +24,7 @@ const ClosetEntry = () => {
 
   const { data: profile, isLoading, isError } = useQuery('profile', fetchProfile, {
     onSuccess: () => {
-      console.log('프로필 데이터를 성공적으로 가져왔습니다:');
+      console.log('프로필 데이터를 성공적으로 가져왔습니다.');
     },
     onError: (error) => {
       console.error('프로필 이미지 가져오기 실패:', error);
@@ -43,13 +43,12 @@ const ClosetEntry = () => {
     return <div>프로필을 불러오는 데 실패했습니다.</div>;
   }
 
-  // Base64 인코딩된 이미지를 data URL로 변환
-  const imageUrl = `data:image/png;base64,${profile?.encodedProfileImage}`;
+  const imageUrl = `${profile?.encodedProfileImage}`;
 
   return (
     <Container>
       <Header />
-      <ClosetTitle>현재 내 프로필</ClosetTitle>
+      <Title>현재 내 프로필</Title>
       <ProfileImage src={imageUrl} alt="프로필 이미지" />
       <Button
         variant="entryBtn"

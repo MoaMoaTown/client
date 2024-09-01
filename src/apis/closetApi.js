@@ -13,8 +13,8 @@ import { axiosInstance } from './index';
  * </pre>
  */
 
-export const fetchMyclothes = async () => {
-  const response = await axiosInstance.get('/closet/myclothes');
+export const fetchMyclothes = async (type) => {
+  const response = await axiosInstance.get(`/closet/myclothes/${type}`);
   return response.data;
 };
 

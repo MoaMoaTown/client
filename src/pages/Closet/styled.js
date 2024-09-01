@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 
 /**
- * 옷장 진입 페이지 style
+ * 옷장 페이지 style
  * @author 임원정
  * @since 2024.08.30
  * @version 1.0
@@ -20,23 +20,31 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 100dvw;
+  height: 100dvh;
+
+`;
+
+export const Wrapper = styled.div`
   width: 84dvw;
-  height: 92dvh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 4dvh 8dvw;
 `;
 
+export const BackButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  img {
+    width: 8dvw;
+    height: 8vw;
+  }
+`;
+
 export const Title = styled.div`
-  width: 100%;
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  margin-top: 13vh;
-`;
-
-export const ProfileImage = styled.img`
-  width: 70dvw;
-  height: 70dvw;
-  border-radius: 8px;
-  margin: 8vh;
-  object-fit: cover;
 `;

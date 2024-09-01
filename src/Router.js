@@ -12,6 +12,7 @@ import Knowledge from './pages/Knowledge';
 import Invest from './pages/Invest';
 import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry';
+import Closet from './pages/Closet';
 import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 
@@ -49,10 +50,11 @@ const Router = () => {
         <Route path='/dept' element={<Dept />} />
         <Route path='/rank' element={<Ranking />} />
         <Route path='/knowledge' element={<Knowledge />} />
-        <Route path='/invest' element={<Invest />} />
         <Route path='/account' element={<Account />} />
         <Route path='/closet-entry' element={<ClosetEntry />} />
+        <Route path='/closet' element={<Closet />} />
         <Route path='/select-role' element={<SelectRole />} />
+        <Route path='/invest' element={<Invest />} />
         <Route path='/quest' element={<Quest />} />
       </Routes>
     </BrowserRouter>

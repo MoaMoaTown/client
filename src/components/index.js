@@ -30,6 +30,18 @@ export { default as GptModal } from './GptModal';
 export { default as EmptyBoard } from './EmptyBoard';
 // 통장 상세
 export { default as PassbookDetail } from './PassbookDetail';
+// 캔버스
+export { default as Canvas } from './Canvas';
+// 옷 선택
+export { default as ClothItem } from './ClothItem';
+// 얼굴 선택
+export { default as FaceItem } from './FaceItem';
+// 아이템 컨테이너
+export { default as ItemContainer } from './ItemContainer';
+// 아이템 종류 선택
+export { default as TypeSelector } from './TypeSelector';
+// 프로필 모달
+export { default as ProfileModal } from './ProfileModal';
 // 사이드 바
 export { default as Sidebar } from './Sidebar';
 // 퀘스트 컴포넌트
