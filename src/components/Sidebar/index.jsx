@@ -43,9 +43,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <SidebarLinkIcon src={four} />
             젤뽀의 경제 교실
           </SidebarLink>
-          <SidebarLink onClick={toggleSidebar}>
+          <SidebarLink as={Link} to="/quest" onClick={toggleSidebar}>
             <SidebarLinkIcon src={five} />
-            게시판
+            퀘스트
           </SidebarLink>
           <SidebarLink as={Link} to="/rank" onClick={toggleSidebar}>
             <SidebarLinkIcon src={six} />

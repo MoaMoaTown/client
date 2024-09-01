@@ -12,6 +12,7 @@ import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry';
 import Dept from './pages/Dept';
 import SelectRole from './pages/SelectRole';
+import Quest from './pages/Quest';
 
 /**
  * 라우터
@@ -28,6 +29,7 @@ import SelectRole from './pages/SelectRole';
  * 2024.08.28   이주현        JoinTown, Mypage, Ranking 추가
  * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
+ * 2024.09.01   이주현        Quest 추가
  * </pre>
  */
 
@@ -47,6 +49,7 @@ const Router = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/closet-entry" element={<ClosetEntry />} />
         <Route path="/select-role" element={<SelectRole />} />
+        <Route path="/quest" element={<Quest />} />
       </Routes>
     </BrowserRouter>
   );
