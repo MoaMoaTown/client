@@ -11,13 +11,12 @@ import {
   QuantityInputWrapper,
   QuantityContainer,
   ArrowButton,
-  YesterdayPriceText, // 어제의 가격 텍스트 스타일 추가
   YesterdayPriceWrapper, // 어제의 가격 표시를 위한 스타일
 } from './styled';
-import { Button } from '../index';
+import { Button, InfoModal } from '../index'; // InfoModal 추가
 import hdyImage from '../../assets/images/hdy.png';
 import moaImage from '../../assets/images/moa.svg';
-import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi'; // 어제의 가격 API import
+import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi';
 
 const LargeInfoModal = ({
   isOpen,
@@ -32,6 +31,8 @@ const LargeInfoModal = ({
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
   const [yesterdayPrice, setYesterdayPrice] = useState(null); // 어제의 가격 상태 추가
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // InfoModal 상태 추가
+  const [responseMessage, setResponseMessage] = useState(''); // 서버 응답 메시지 상태 추가
 
   // 모달이 열릴 때 상태 초기화 및 어제의 가격 가져오기
   useEffect(() => {
@@ -70,10 +71,12 @@ const LargeInfoModal = ({
   const handleBuy = async () => {
     try {
       const response = await buyInvest(typeId, quantity);
-      console.log('매수 성공:', response);
-      onConfirm(); // 매수 성공 후 모달 닫기
+      setResponseMessage(response.message); // 서버 응답 메시지를 상태에 저장
+      setIsInfoModalOpen(true); // InfoModal 열기
     } catch (error) {
       console.error('매수 실패:', error);
+      setResponseMessage('잔액이 부족합니다.'); // 실패 메시지
+      setIsInfoModalOpen(true); // InfoModal 열기
     }
   };
 
@@ -81,6 +84,11 @@ const LargeInfoModal = ({
     if (e.target === e.currentTarget) {
       onClose(); // 모달 닫기
     }
+  };
+
+  const handleCloseInfoModal = () => {
+    setIsInfoModalOpen(false); // InfoModal 닫기
+    onConfirm(); // LargeInfoModal 닫기
   };
 
   return (
@@ -102,8 +110,7 @@ const LargeInfoModal = ({
           <YesterdayPriceWrapper>
             어제: {yesterdayPrice}
             <MoaImage src={moaImage} alt='Moa Icon' />
-          </YesterdayPriceWrapper>{' '}
-          {/* 어제의 가격 표시 */}
+          </YesterdayPriceWrapper>
           <TotalPrice>
             총액: {totalPrice}
             <MoaImage src={moaImage} alt='Moa Icon' />
@@ -112,6 +119,14 @@ const LargeInfoModal = ({
             매수하기
           </Button>
         </ModalContent>
+
+        {/* InfoModal 추가 */}
+        <InfoModal
+          isOpen={isInfoModalOpen}
+          title='매수 결과'
+          message={responseMessage} // 서버에서 받은 메시지를 표시
+          onConfirm={handleCloseInfoModal}
+        />
       </Container>
     </Overlay>
   );

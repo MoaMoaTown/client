@@ -24,3 +24,13 @@ export const getYesterdayPrice = async () => {
   const response = await axiosInstance.get('/invest/yesterday');
   return response.data;
 };
+
+export const getAverageWeightAndStep = async () => {
+  try {
+    const response = await axiosInstance.get('/invest/average');
+    return response.data;
+  } catch (error) {
+    console.error('평균 평단가 및 보유 수량을 가져오는 중 오류 발생:', error);
+    throw error;
+  }
+};
