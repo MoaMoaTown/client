@@ -12,7 +12,6 @@ import Dept from './pages/Dept';
 import Invest from './pages/Invest';
 import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry';
-import Dept from './pages/Dept';
 import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 
@@ -39,7 +38,6 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path='/' element={<Onboarding />} />
         <Route path='/main' element={<Main />} />
         <Route path='/signup' element={<SignUp />} />
@@ -50,11 +48,10 @@ const Router = () => {
         <Route path='/rank' element={<Ranking />} />
         <Route path='/knowledge' element={<Knowledge />} />
         <Route path='/invest' element={<Invest />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/closet-entry" element={<ClosetEntry />} />
-        <Route path="/select-role" element={<SelectRole />} />
-        <Route path="/quest" element={<Quest />} />
-
+        <Route path='/account' element={<Account />} />
+        <Route path='/closet-entry' element={<ClosetEntry />} />
+        <Route path='/select-role' element={<SelectRole />} />
+        <Route path='/quest' element={<Quest />} />
       </Routes>
     </BrowserRouter>
   );
