@@ -8,7 +8,6 @@ import JoinTown from './pages/JoinTown';
 import Mypage from './pages/Mypage';
 import Ranking from './pages/Ranking';
 import Knowledge from './pages/Knowledge';
-import Dept from './pages/Dept';
 import Invest from './pages/Invest';
 import Account from './pages/Account';
 import ClosetEntry from './pages/ClosetEntry';
@@ -39,22 +38,20 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-
-        <Route path='/' element={<Onboarding />} />
-        <Route path='/main' element={<Main />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/join-town' element={<JoinTown />} />
-        <Route path='/mypage' element={<Mypage />} />
-        <Route path='/dept' element={<Dept />} />
-        <Route path='/rank' element={<Ranking />} />
-        <Route path='/knowledge' element={<Knowledge />} />
-        <Route path='/invest' element={<Invest />} />
+        <Route path="/" element={<Onboarding />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join-town" element={<JoinTown />} />
+        <Route path="/mypage" element={<Mypage />} />
+        <Route path="/dept" element={<Dept />} />
+        <Route path="/rank" element={<Ranking />} />
+        <Route path="/knowledge" element={<Knowledge />} />
+        <Route path="/invest" element={<Invest />} />
         <Route path="/account" element={<Account />} />
         <Route path="/closet-entry" element={<ClosetEntry />} />
         <Route path="/select-role" element={<SelectRole />} />
         <Route path="/quest" element={<Quest />} />
-
       </Routes>
     </BrowserRouter>
   );

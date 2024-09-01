@@ -1,10 +1,16 @@
 import React from 'react';
-import Model3D from '../../components/Model3D';
-import { Container } from './styled';
+import { Header, TownInfo, Model3D } from '../../components';
+import { Container, HeaderWrapper, TownInfoWrapper } from './styled';
 
 const Main = () => {
   return (
     <Container>
+      <HeaderWrapper>
+        <Header />
+      </HeaderWrapper>
+      <TownInfoWrapper>
+        <TownInfo />
+      </TownInfoWrapper>
       <Model3D />
     </Container>
   );
