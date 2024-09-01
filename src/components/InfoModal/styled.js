@@ -12,12 +12,12 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 99;
 `;
 
 export const Container = styled.div`
   position: relative;
-  z-index: 1001;
+  z-index: 100;
 `;
 
 export const ModalContent = styled.div`

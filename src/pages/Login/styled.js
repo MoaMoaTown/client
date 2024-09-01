@@ -19,7 +19,6 @@ export const BackgroundImage = styled.img`
   width: 60dvw;
   height: auto;
   object-fit: cover;
-  z-index: -1;
 `;
 
 export const Logo = styled.img`

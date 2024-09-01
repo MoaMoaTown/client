@@ -9,7 +9,7 @@ export const SidebarContainer = styled.div`
   height: 100%;
   background-color: white;
   transition: 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 100;
   border-radius: 10px;
   box-shadow: ${({ isOpen }) =>
     isOpen ? '0 0 10px rgba(0, 0, 0, 0.3)' : 'none'};
