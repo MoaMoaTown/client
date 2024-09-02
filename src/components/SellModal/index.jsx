@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import {
   Container,
   Overlay,
@@ -15,6 +15,7 @@ import {
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
 import { sellInvest } from '../../apis/InvestApi'; // sellInvest API 호출
+import { fetchBalance } from '../../apis/memberApi'; // sellInvest API 호출
 
 const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
   const [quantity, setQuantity] = useState(1);
@@ -22,11 +23,14 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
+  const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
+
   const sellMutation = useMutation(sellInvest, {
     onSuccess: (response) => {
       setResponseMessage(
         response.message || '매도가 성공적으로 완료되었습니다.'
       );
+      refetchBalance(); // 성공 시 balance를 갱신
       setIsInfoModalOpen(true);
     },
     onError: () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { getTodayPrice, getAverageWeightAndStep } from '../../apis/InvestApi';
 import {
   Container,
@@ -30,8 +30,6 @@ import LargeInfoModal from '../LargeInfoModal';
 import SellModal from '../SellModal';
 
 const EmptyBoard = () => {
-  const queryClient = useQueryClient();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -42,15 +40,17 @@ const EmptyBoard = () => {
     typeId: 0,
   });
 
-  const { data: todayData = [], isLoading: isTodayLoading } = useQuery(
-    'todayPrice',
-    getTodayPrice
-  );
+  const {
+    data: todayData = [],
+    isLoading: isTodayLoading,
+    refetch: refetchTodayPrice,
+  } = useQuery('todayPrice', getTodayPrice);
 
-  const { data: averageData = [], isLoading: isAverageLoading } = useQuery(
-    'averageWeightAndStep',
-    getAverageWeightAndStep
-  );
+  const {
+    data: averageData = [],
+    isLoading: isAverageLoading,
+    refetch: refetchAverageData,
+  } = useQuery('averageWeightAndStep', getAverageWeightAndStep);
 
   const leftData = todayData.find((item) => item.type === 0) || {};
   const rightData = todayData.find((item) => item.type === 1) || {};
@@ -103,22 +103,19 @@ const EmptyBoard = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    queryClient.invalidateQueries('todayPrice');
-    queryClient.invalidateQueries('averageWeightAndStep');
-    queryClient.invalidateQueries('balance'); // balance 업데이트
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
   const handleCloseSellModal = () => {
     setIsSellModalOpen(false);
-    queryClient.invalidateQueries('todayPrice');
-    queryClient.invalidateQueries('averageWeightAndStep');
-    queryClient.invalidateQueries('balance'); // balance 업데이트
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
   const handleSellConfirm = () => {
-    queryClient.invalidateQueries('todayPrice');
-    queryClient.invalidateQueries('averageWeightAndStep');
-    queryClient.invalidateQueries('balance'); // balance 업데이트
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
   return (
