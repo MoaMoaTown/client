@@ -20,17 +20,17 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100dvw;
-  height: 100dvh;
-
+  width: 84dvw;
+  height: 92dvh;
+  padding: 4dvh 8dvw;
 `;
 
 export const Wrapper = styled.div`
-  width: 84dvw;
+  width: 100%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4dvh 8dvw;
 `;
 
 export const BackButton = styled.button`
@@ -47,4 +47,5 @@ export const Title = styled.div`
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
+  margin-left: 3dvw;
 `;

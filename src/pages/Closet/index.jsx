@@ -15,7 +15,6 @@ import {
   ProfileModal,
 } from '../../components';
 import back from '../../assets/images/back.svg';
-import face1 from '../../assets/images/heendy_face1.png';
 import heendy from '../../assets/images/heendy_body.png';
 import { updateProfile } from '../../apis/closetApi';
 import html2canvas from 'html2canvas';
@@ -31,7 +30,7 @@ import html2canvas from 'html2canvas';
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
  * 2024.08.31   임원정        캔버스에 선택한 옷 올리기 추가
- * 2024.09.01   임원정        프로필 업데이트 수정
+ * 2024.09.01   임원정        프로필 업데이트, handleSelectItem 메소드 수정
  * </pre>
  */
 

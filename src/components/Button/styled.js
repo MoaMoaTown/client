@@ -118,7 +118,7 @@ const buttonStyles = {
     font-weight: bold;
   `,
   typeBtn: css`
-    width: 22dvw;
+    width: 24dvw;
     height: 5dvh;
     display: flex;
     justify-content: center;

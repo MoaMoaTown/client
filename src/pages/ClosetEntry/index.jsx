@@ -42,7 +42,7 @@ const ClosetEntry = () => {
   if (isLoading) {
     return (
       <Container>
-        <Loading />
+        <Loading text={'로딩 중...'} />
       </Container>
     );
   }

@@ -13,14 +13,13 @@ import { ItemContainer, ItemImage, ItemBrand, ItemName } from './styled';
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
+ * 2024.09.01   임원정        아이템 id 사용하도록 수정
  * </pre>
  */
 
 const ClothItem = ({ item, onClick }) => {
   const selectedItems = useRecoilValue(selectedItemsState);
   const isSelected = selectedItems.includes(item.clothId);
-  console.log(item.id);
-  console.log(selectedItems);
 
   const handleClick = () => {
     const clothesData = {
