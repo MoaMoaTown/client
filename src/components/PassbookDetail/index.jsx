@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import React, { useRef } from 'react';
+import { useInfiniteQuery } from 'react-query';
 import { fetchAccount } from '../../apis/memberApi';
 import {
   Container,
@@ -12,15 +11,23 @@ import {
   TransactionDate,
   TransactionDescription,
   TransactionAmount,
+  LoadMoreTrigger,
 } from './styled';
 import passbook from '../../assets/images/longpassbook.svg';
 
 const PassbookDetail = () => {
-  const {
-    data: transactions = [],
-    isLoading,
-    isError,
-  } = useQuery('transactions', fetchAccount);
+  const loadMoreRef = useRef();
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      'transactions',
+      ({ pageParam = 1 }) => fetchAccount({ page: pageParam }),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage.length === 5 ? allPages.length + 1 : undefined;
+        },
+      }
+    );
 
   const getTransactionDescription = (type) => {
     switch (type) {
@@ -47,6 +54,33 @@ const PassbookDetail = () => {
     }
   };
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [hasNextPage, fetchNextPage]);
+
+  if (isLoading) {
+    return <Container>Loading...</Container>;
+  }
+
+  const transactions = data ? data.pages.flat() : [];
+
   return (
     <Container>
       <PassbookImage src={passbook} />
@@ -61,6 +95,7 @@ const PassbookDetail = () => {
             <TransactionAmount>{transaction.moa}</TransactionAmount>
           </TransactionItem>
         ))}
+        <LoadMoreTrigger ref={loadMoreRef} />
       </ContentWrapper>
       <BalanceText>
         {transactions.reduce((sum, t) => sum + t.moa, 0)} MOA
