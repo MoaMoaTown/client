@@ -45,31 +45,52 @@ export const ClothButtonStyled = styled.div`
   overflow-y: auto;
 `;
 
-export const ToggleContainer = styled.div`
+export const ToggleWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  align-items: center;
+  background-color: ${colors.white};
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+`;
+
+export const ToggleContainer = styled.div`
+  display: flex;
+  width: 100%;
   position: relative;
-  background-color: ${colors.light_gray};
-  border-radius: 4px;
-  overflow: hidden;
+  height: 50px;
+  border-radius: 20px;
+`;
+
+export const ActiveBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: ${(props) => (props.activeIndex === 1 ? '50%' : '0')};
+  width: 50%;
+  height: 100%;
+  background-color: ${colors.green};
+  border-radius: 20px;
+  transition: left 0.5s ease;
+  z-index: 1; /* 배경색이 아래에 위치하게 설정 */
 `;
 
 export const ToggleButton = styled.button`
   flex: 1;
-  background-color: ${(props) =>
-    props.active ? colors.primary : colors.white};
+  background-color: transparent; /* 배경을 투명하게 설정 */
   color: ${(props) => (props.active ? colors.white : colors.black)};
   border: none;
   padding: 10px 20px;
   margin: 0;
-  border-radius: 4px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
+  z-index: 2; /* 버튼의 텍스트가 배경색 위에 오도록 설정 */
+  position: relative; /* z-index를 적용하기 위해 position 설정 */
 
   &:hover {
-    background-color: ${(props) =>
-      props.active ? colors.primary_dark : colors.gray};
+    color: ${(props) => (props.active ? colors.white : colors.black)};
   }
 `;
 
