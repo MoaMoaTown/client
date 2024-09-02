@@ -50,7 +50,7 @@ export const ToggleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.white};
-  border-radius: 20px;
+  border-radius: 200px;
   padding: 5px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -61,7 +61,7 @@ export const ToggleContainer = styled.div`
   width: 100%;
   position: relative;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 15px;
 `;
 
 export const ActiveBackground = styled.div`
@@ -71,23 +71,25 @@ export const ActiveBackground = styled.div`
   width: 50%;
   height: 100%;
   background-color: ${colors.green};
-  border-radius: 20px;
+  border-radius: 200px;
   transition: left 0.5s ease;
-  z-index: 1; /* 배경색이 아래에 위치하게 설정 */
+  z-index: 1;
 `;
 
 export const ToggleButton = styled.button`
   flex: 1;
-  background-color: transparent; /* 배경을 투명하게 설정 */
-  color: ${(props) => (props.active ? colors.white : colors.black)};
+  background-color: transparent;
+  color: ${(props) => (props.active ? colors.white : colors.gray)};
+  font-size: 1.3rem;
+  font-weight: bold;
   border: none;
   padding: 10px 20px;
   margin: 0;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
   transition: color 0.3s ease;
-  z-index: 2; /* 버튼의 텍스트가 배경색 위에 오도록 설정 */
-  position: relative; /* z-index를 적용하기 위해 position 설정 */
+  z-index: 2;
+  position: relative;
 
   &:hover {
     color: ${(props) => (props.active ? colors.white : colors.black)};

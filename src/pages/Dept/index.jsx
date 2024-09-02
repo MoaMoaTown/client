@@ -112,7 +112,7 @@ const Dept = () => {
 
   return (
     <Container>
-      <Header balance={balance} />
+      <Header />
       <DeptTitle>현대 백화점</DeptTitle>
 
       <ToggleWrapper>
