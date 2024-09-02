@@ -28,8 +28,10 @@ export const fetchRanks = async () => {
   return response.data;
 };
 
-export const fetchAccount = async () => {
-  const response = await axiosInstance.get('/member/account');
+export const fetchAccount = async ({ page = 1, size = 5 }) => {
+  const response = await axiosInstance.get('/member/account', {
+    params: { page, size },
+  });
   return response.data;
 };
 
