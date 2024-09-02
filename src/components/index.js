@@ -27,7 +27,7 @@ export { default as KnowledgeDetail } from './KnowledgeDetail';
 // GPT 모달
 export { default as GptModal } from './GptModal';
 // 투자 현황 컴포넌트
-export { default as EmptyBoard } from './EmptyBoard';
+export { default as InvestBoard } from './InvestBoard';
 // 통장 상세
 export { default as PassbookDetail } from './PassbookDetail';
 // 캔버스
@@ -52,3 +52,7 @@ export { default as Model3D } from './Model3D';
 export { default as TownInfo } from './TownInfo';
 // 알림 내역 모달
 export { default as NotiModal } from './NotiModal';
+// 직업 리스트
+export { default as JobList } from './JobList';
+// 역할 신청 모달
+export { default as CommentModal } from './CommentModal';

@@ -41,6 +41,7 @@ export const ModalContent = styled.div`
 export const TitleText = styled.h2`
   font-size: 1.5rem;
   color: black;
+  white-space: pre-wrap;
 `;
 
 export const MessageText = styled.p`

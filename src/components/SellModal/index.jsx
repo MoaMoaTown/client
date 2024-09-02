@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery } from 'react-query';
 import {
   Container,
   Overlay,
@@ -14,12 +15,29 @@ import {
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
 import { sellInvest } from '../../apis/InvestApi'; // sellInvest API 호출
+import { fetchBalance } from '../../apis/memberApi'; // sellInvest API 호출
 
 const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
+
+  const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
+
+  const sellMutation = useMutation(sellInvest, {
+    onSuccess: (response) => {
+      setResponseMessage(
+        response.message || '매도가 성공적으로 완료되었습니다.'
+      );
+      refetchBalance(); // 성공 시 balance를 갱신
+      setIsInfoModalOpen(true);
+    },
+    onError: () => {
+      setResponseMessage('매도 요청에 실패했습니다.');
+      setIsInfoModalOpen(true);
+    },
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -42,22 +60,13 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
     }
   };
 
-  const handleSell = async () => {
-    try {
-      const response = await sellInvest({ typeId, sellAmount: quantity });
-      setResponseMessage(
-        response.message || '매도가 성공적으로 완료되었습니다.'
-      ); // 서버 응답 메시지를 상태에 저장
-    } catch (error) {
-      setResponseMessage('매도 요청에 실패했습니다.'); // 실패 메시지
-    } finally {
-      setIsInfoModalOpen(true); // InfoModal 열기
-    }
+  const handleSell = () => {
+    sellMutation.mutate({ typeId, sellAmount: quantity });
   };
 
   const handleCloseInfoModal = () => {
-    setIsInfoModalOpen(false); // InfoModal 닫기
-    onConfirm(); // 매도 완료 후 추가 동작 (예: 모달 닫기)
+    setIsInfoModalOpen(false);
+    onConfirm(); // 매도 완료 후 추가 동작
     onClose(); // SellModal 닫기
   };
 
@@ -93,7 +102,6 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
           </SellButtonContainer>
         </ModalContent>
 
-        {/* InfoModal 추가 */}
         <InfoModal
           isOpen={isInfoModalOpen}
           title='매도 결과'

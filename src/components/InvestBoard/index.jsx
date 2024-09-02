@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { getTodayPrice, getAverageWeightAndStep } from '../../apis/InvestApi';
 import {
   Container,
@@ -25,15 +26,10 @@ import {
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import hdyImage from '../../assets/images/hdy.png';
-import LargeInfoModal from '../LargeInfoModal';
+import BuyModal from '../BuyModal';
 import SellModal from '../SellModal';
 
 const EmptyBoard = () => {
-  const [leftData, setLeftData] = useState(null);
-  const [rightData, setRightData] = useState(null);
-  const [leftAverage, setLeftAverage] = useState({ average: 0, amount: 0 });
-  const [rightAverage, setRightAverage] = useState({ average: 0, amount: 0 });
-  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -44,33 +40,31 @@ const EmptyBoard = () => {
     typeId: 0,
   });
 
-  const fetchData = async () => {
-    try {
-      const todayData = await getTodayPrice();
-      const averageData = await getAverageWeightAndStep();
+  const {
+    data: todayData = [],
+    isLoading: isTodayLoading,
+    refetch: refetchTodayPrice,
+  } = useQuery('todayPrice', getTodayPrice);
 
-      const leftItem = todayData.find((item) => item.type === 0);
-      const rightItem = todayData.find((item) => item.type === 1);
+  const {
+    data: averageData = [],
+    isLoading: isAverageLoading,
+    refetch: refetchAverageData,
+  } = useQuery('averageWeightAndStep', getAverageWeightAndStep);
 
-      const leftAverageData = averageData.find((item) => item.typeId === 0);
-      const rightAverageData = averageData.find((item) => item.typeId === 1);
+  const leftData = todayData.find((item) => item.type === 0) || {};
+  const rightData = todayData.find((item) => item.type === 1) || {};
 
-      setLeftData(leftItem || {});
-      setRightData(rightItem || {});
-      setLeftAverage(leftAverageData || { average: 0, amount: 0 });
-      setRightAverage(rightAverageData || { average: 0, amount: 0 });
-    } catch (error) {
-      console.error('데이터를 가져오는데 실패했습니다.', error);
-    } finally {
-      setIsLoading(false);
-    }
+  const leftAverage = averageData.find((item) => item.typeId === 0) || {
+    average: 0,
+    amount: 0,
+  };
+  const rightAverage = averageData.find((item) => item.typeId === 1) || {
+    average: 0,
+    amount: 0,
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (isLoading) {
+  if (isTodayLoading || isAverageLoading) {
     return <Container>Loading...</Container>;
   }
 
@@ -109,17 +103,19 @@ const EmptyBoard = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    fetchData(); // 모달 닫힐 때 데이터 갱신
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
   const handleCloseSellModal = () => {
     setIsSellModalOpen(false);
-    fetchData(); // 모달 닫힐 때 데이터 갱신
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
-  const handleSellConfirm = (quantity) => {
-    console.log(`매도: ${quantity} 개`);
-    fetchData(); // 판매 후 데이터 갱신
+  const handleSellConfirm = () => {
+    refetchTodayPrice();
+    refetchAverageData();
   };
 
   return (
@@ -189,7 +185,7 @@ const EmptyBoard = () => {
           </SectionBox>
         </BottomSection>
       </BottomWrapper>
-      <LargeInfoModal
+      <BuyModal
         isOpen={isModalOpen}
         title={modalContent.title}
         price={modalContent.price}

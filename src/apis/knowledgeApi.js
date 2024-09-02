@@ -1,7 +1,9 @@
 import { axiosInstance } from './index';
 
-export const fetchKnowledge = async () => {
-  const response = await axiosInstance.get('/knowledge');
+export const fetchKnowledge = async (page = 1, size = 10) => {
+  const response = await axiosInstance.get('/knowledge', {
+    params: { page, size },
+  });
   return response.data;
 };
 
