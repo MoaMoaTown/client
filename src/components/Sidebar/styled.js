@@ -10,7 +10,7 @@ export const SidebarContainer = styled.div`
   background-color: white;
   transition: 0.3s ease-in-out;
   z-index: 100;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   box-shadow: ${({ isOpen }) =>
     isOpen ? '0 0 10px rgba(0, 0, 0, 0.3)' : 'none'};
 `;

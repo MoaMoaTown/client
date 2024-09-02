@@ -129,7 +129,7 @@ export default function Model3D() {
 
   return (
     <React.Fragment>
-      {loading && <Loading text={'티운으로 들어가는 중...'} page />}
+      {loading && <Loading text={'타운으로 들어가는 중...'} page />}
       <Canvas
         shadows
         style={{
