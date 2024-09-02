@@ -37,7 +37,6 @@ import html2canvas from 'html2canvas';
 
 const Closet = () => {
   const [clothes, setClothes] = useState([]);
-  const [face, setFace] = useState(face1);
   const [selectedType, setSelectedType] = useRecoilState(selectedTypeState);
   const [selectedItems, setSelectedItems] = useRecoilState(selectedItemsState);
   const [selectedFace, setSelectedFace] = useRecoilState(selectedFaceState);
@@ -52,25 +51,27 @@ const Closet = () => {
     } else {
       const existingIndex = clothes.findIndex((c) => c.type === itemData.type);
       if (existingIndex !== -1) {
-        if (clothes[existingIndex].url === itemData.url) {
+        if (clothes[existingIndex].id === itemData.id) {
           const updatedClothes = clothes.filter(
             (_, index) => index !== existingIndex
           );
           setClothes(updatedClothes);
-          setSelectedItems((prev) => prev.filter((id) => id !== itemData.url));
+          setSelectedItems((prev) => prev.filter((id) => id !== itemData.id));
         } else {
           const updatedClothes = [...clothes];
           updatedClothes[existingIndex] = itemData;
           setClothes(updatedClothes);
           setSelectedItems((prev) => [
-            ...prev.filter((id) => id !== clothes[existingIndex].url),
-            itemData.url,
+            ...prev.filter((id) => id !== clothes[existingIndex].id),
+            itemData.id,
           ]);
         }
       } else {
         setClothes([...clothes, itemData]);
-        setSelectedItems((prev) => [...prev, itemData.url]);
+        setSelectedItems((prev) => [...prev, itemData.id]);
       }
+
+      console.log(selectedItems);
     }
   };
 

@@ -18,11 +18,14 @@ import { ItemContainer, ItemImage, ItemBrand, ItemName } from './styled';
 
 const ClothItem = ({ item, onClick }) => {
   const selectedItems = useRecoilValue(selectedItemsState);
-  const isSelected = selectedItems.includes(item.imgUrl);
+  const isSelected = selectedItems.includes(item.clothId);
+  console.log(item.id);
+  console.log(selectedItems);
 
   const handleClick = () => {
     const clothesData = {
-      url: item.imgUrl,
+      id: item.clothId,
+      image: item.image,
       type: item.type,
     };
     onClick(clothesData);
@@ -30,7 +33,7 @@ const ClothItem = ({ item, onClick }) => {
 
   return (
     <ItemContainer onClick={handleClick} isSelected={isSelected}>
-      <ItemImage src={item.imgUrl} alt={item.name} />
+      <ItemImage src={item.image} alt={item.name} />
       <ItemBrand>{`[${item.brand}]`}</ItemBrand>
       <ItemName>{`${item.name}`}</ItemName>
     </ItemContainer>
