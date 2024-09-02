@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery } from 'react-query';
 import {
   Container,
   Overlay,
@@ -11,9 +12,9 @@ import {
   QuantityInputWrapper,
   QuantityContainer,
   ArrowButton,
-  YesterdayPriceWrapper, // 어제의 가격 표시를 위한 스타일
+  YesterdayPriceWrapper,
 } from './styled';
-import { Button, InfoModal } from '../index'; // InfoModal 추가
+import { Button, InfoModal } from '../index';
 import hdyImage from '../../assets/images/hdy.png';
 import moaImage from '../../assets/images/moa.svg';
 import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi';
@@ -23,36 +24,43 @@ const LargeInfoModal = ({
   title,
   price,
   typeId,
-  hint,
-  currentMoa,
   onConfirm,
   onClose,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
-  const [yesterdayPrice, setYesterdayPrice] = useState(null); // 어제의 가격 상태 추가
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // InfoModal 상태 추가
-  const [responseMessage, setResponseMessage] = useState(''); // 서버 응답 메시지 상태 추가
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [responseMessage, setResponseMessage] = useState('');
 
-  // 모달이 열릴 때 상태 초기화 및 어제의 가격 가져오기
+  const { data: yesterdayPriceData, isLoading: isLoadingYesterdayPrice } =
+    useQuery(['yesterdayPrice', typeId], () => getYesterdayPrice(), {
+      enabled: isOpen,
+      select: (data) =>
+        data.find((item) => item.type === typeId)?.price || 'N/A',
+    });
+
+  const buyMutation = useMutation(
+    (data) => buyInvest(data.typeId, data.purchaseAmount),
+    {
+      onSuccess: (response) => {
+        setResponseMessage(
+          response.message || '매수가 성공적으로 완료되었습니다.'
+        );
+        setIsInfoModalOpen(true);
+      },
+      onError: () => {
+        setResponseMessage('잔액이 부족합니다.');
+        setIsInfoModalOpen(true);
+      },
+    }
+  );
+
   useEffect(() => {
-    const fetchYesterdayPrice = async () => {
-      try {
-        const data = await getYesterdayPrice();
-        const yesterdayData = data.find((item) => item.type === typeId);
-        setYesterdayPrice(yesterdayData ? yesterdayData.price : 'N/A');
-      } catch (error) {
-        console.error('어제의 가격을 가져오는데 실패했습니다.', error);
-        setYesterdayPrice('N/A');
-      }
-    };
-
     if (isOpen) {
       setQuantity(1);
       setTotalPrice(price);
-      fetchYesterdayPrice(); // 어제의 가격 가져오기
     }
-  }, [isOpen, price, typeId]);
+  }, [isOpen, price]);
 
   if (!isOpen) return null;
 
@@ -68,27 +76,19 @@ const LargeInfoModal = ({
     }
   };
 
-  const handleBuy = async () => {
-    try {
-      const response = await buyInvest(typeId, quantity);
-      setResponseMessage(response.message); // 서버 응답 메시지를 상태에 저장
-      setIsInfoModalOpen(true); // InfoModal 열기
-    } catch (error) {
-      console.error('매수 실패:', error);
-      setResponseMessage('잔액이 부족합니다.'); // 실패 메시지
-      setIsInfoModalOpen(true); // InfoModal 열기
-    }
+  const handleBuy = () => {
+    buyMutation.mutate({ typeId, purchaseAmount: quantity });
   };
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose(); // 모달 닫기
+      onClose();
     }
   };
 
   const handleCloseInfoModal = () => {
-    setIsInfoModalOpen(false); // InfoModal 닫기
-    onConfirm(); // LargeInfoModal 닫기
+    setIsInfoModalOpen(false);
+    onConfirm();
   };
 
   return (
@@ -108,7 +108,7 @@ const LargeInfoModal = ({
             </QuantityContainer>
           </QuantityInputWrapper>
           <YesterdayPriceWrapper>
-            어제: {yesterdayPrice}
+            어제: {isLoadingYesterdayPrice ? 'Loading...' : yesterdayPriceData}
             <MoaImage src={moaImage} alt='Moa Icon' />
           </YesterdayPriceWrapper>
           <TotalPrice>
@@ -120,11 +120,10 @@ const LargeInfoModal = ({
           </Button>
         </ModalContent>
 
-        {/* InfoModal 추가 */}
         <InfoModal
           isOpen={isInfoModalOpen}
           title='매수 결과'
-          message={responseMessage} // 서버에서 받은 메시지를 표시
+          message={responseMessage}
           onConfirm={handleCloseInfoModal}
         />
       </Container>

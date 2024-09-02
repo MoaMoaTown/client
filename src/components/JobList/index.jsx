@@ -1,26 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import { getJobsByTownId } from '../../apis/jobApi';
 import { StyledJobButton, PriceWrapper, MoaImage } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 
 const JobList = ({ onClick, ...rest }) => {
-  const [jobs, setJobs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const jobList = await getJobsByTownId();
-        setJobs(jobList);
-      } catch (error) {
-        console.error('JOB 목록을 가져오는 중 오류 발생:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, []);
+  const { data: jobs = [], isLoading } = useQuery('jobs', getJobsByTownId);
 
   if (isLoading) {
     return <div>Loading...</div>;
