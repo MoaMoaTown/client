@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { useRef } from 'react';
+import { useInfiniteQuery } from 'react-query';
 import { fetchKnowledge } from '../../apis/knowledgeApi';
-import { KnowledgeDetail } from '../index';
+import { KnowledgeDetail, Loading } from '../index';
 import { useRecoilState } from 'recoil';
 import { selectedKnowledgeIdState } from '../../store/atoms';
 import {
   Container,
   TopWrapper,
   BottomWrapper,
+  ScrollableArea,
   ItemWrapper,
   TitleText,
   InfoText,
@@ -16,6 +17,7 @@ import {
   HeaderWrapper,
   HeaderTitle,
   HeaderDate,
+  LoadMoreTrigger,
 } from './styled';
 import bbo from '../../assets/images/bbo.png';
 
@@ -23,16 +25,50 @@ const KnowledgeCard = () => {
   const [selectedKnowledgeId, setSelectedKnowledgeId] = useRecoilState(
     selectedKnowledgeIdState
   );
-  const {
-    data: knowledgeList,
-    isLoading,
-    isError,
-  } = useQuery('knowledgeList', fetchKnowledge);
+  const loadMoreRef = useRef();
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      'knowledgeList',
+      ({ pageParam = 1 }) => fetchKnowledge(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage && lastPage.length === 10
+            ? allPages.length + 1
+            : undefined;
+        },
+      }
+    );
 
   const formatDate = (dateString) => dateString.split(' ')[0];
 
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [hasNextPage, fetchNextPage]);
+
   if (isLoading) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container>
+        <Loading text={'지식 리스트 불러오는 중...'} />
+      </Container>
+    );
   }
 
   return (
@@ -52,15 +88,22 @@ const KnowledgeCard = () => {
               <HeaderTitle>제목</HeaderTitle>
               <HeaderDate>날짜</HeaderDate>
             </HeaderWrapper>
-            {knowledgeList.map((knowledge) => (
-              <ItemWrapper
-                key={knowledge.knowledgeId}
-                onClick={() => setSelectedKnowledgeId(knowledge.knowledgeId)}
-              >
-                <TitleText>{knowledge.title}</TitleText>
-                <DateText>{formatDate(knowledge.createdAt)}</DateText>
-              </ItemWrapper>
-            ))}
+            <ScrollableArea>
+              {data.pages.map((page) =>
+                page.map((knowledge) => (
+                  <ItemWrapper
+                    key={knowledge.knowledgeId}
+                    onClick={() =>
+                      setSelectedKnowledgeId(knowledge.knowledgeId)
+                    }
+                  >
+                    <TitleText>{knowledge.title}</TitleText>
+                    <DateText>{formatDate(knowledge.createdAt)}</DateText>
+                  </ItemWrapper>
+                ))
+              )}
+              <LoadMoreTrigger ref={loadMoreRef} />
+            </ScrollableArea>
           </>
         )}
       </BottomWrapper>

@@ -7,7 +7,7 @@ import {
   fetchKnowledgeDetail,
   fetchWordExplanation,
 } from '../../apis/knowledgeApi';
-import { GptModal } from '../index';
+import { GptModal, Loading } from '../index';
 import {
   DetailContainer,
   DetailTitle,
@@ -64,7 +64,11 @@ const KnowledgeDetail = () => {
   }, [word]);
 
   if (isLoading) {
-    return <DetailContainer>Loading...</DetailContainer>;
+    return (
+      <DetailContainer>
+        <Loading text={'지식 상세 정보 불러오는 중...'} />
+      </DetailContainer>
+    );
   }
 
   if (isError) {
