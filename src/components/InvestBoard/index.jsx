@@ -26,7 +26,7 @@ import {
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import hdyImage from '../../assets/images/hdy.png';
-import LargeInfoModal from '../LargeInfoModal';
+import BuyModal from '../BuyModal';
 import SellModal from '../SellModal';
 
 const EmptyBoard = () => {
@@ -185,7 +185,7 @@ const EmptyBoard = () => {
           </SectionBox>
         </BottomSection>
       </BottomWrapper>
-      <LargeInfoModal
+      <BuyModal
         isOpen={isModalOpen}
         title={modalContent.title}
         price={modalContent.price}

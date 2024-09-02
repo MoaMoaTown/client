@@ -27,7 +27,7 @@ export { default as KnowledgeDetail } from './KnowledgeDetail';
 // GPT 모달
 export { default as GptModal } from './GptModal';
 // 투자 현황 컴포넌트
-export { default as EmptyBoard } from './EmptyBoard';
+export { default as InvestBoard } from './InvestBoard';
 // 통장 상세
 export { default as PassbookDetail } from './PassbookDetail';
 // 캔버스
