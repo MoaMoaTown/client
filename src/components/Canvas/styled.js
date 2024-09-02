@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const CanvasContainer = styled.div`
   position: relative;
-  width: 80dvw;
-  height: 80dvw;
+  width: 84dvw;
+  height: 84dvw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
   border-radius: 10px;
+  margin: 4dvh 0dvw;
 `;
 
 export const StyledCanvas = styled.canvas`

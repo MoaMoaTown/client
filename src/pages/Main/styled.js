@@ -18,5 +18,5 @@ export const TownInfoWrapper = styled.div`
   top: 12dvh;
   left: 8dvw;
   width: 84dvw;
-  z-index: 10;
+  z-index: 9;
 `;

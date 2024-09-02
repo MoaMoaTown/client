@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Header, Button } from '../../components';
+import { Header, Button, Loading } from '../../components';
 import { fetchProfile } from '../../apis/closetApi';
 
 import { Container, Title, ProfileImage } from './styled';
@@ -22,7 +22,11 @@ import { Container, Title, ProfileImage } from './styled';
 const ClosetEntry = () => {
   const navigate = useNavigate();
 
-  const { data: profile, isLoading, isError } = useQuery('profile', fetchProfile, {
+  const {
+    data: profile,
+    isLoading,
+    isError,
+  } = useQuery('profile', fetchProfile, {
     onSuccess: () => {
       console.log('프로필 데이터를 성공적으로 가져왔습니다.');
     },
@@ -36,7 +40,11 @@ const ClosetEntry = () => {
   };
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return (
+      <Container>
+        <Loading text={'로딩 중...'} />
+      </Container>
+    );
   }
 
   if (isError) {
@@ -49,16 +57,12 @@ const ClosetEntry = () => {
     <Container>
       <Header />
       <Title>현재 내 프로필</Title>
-      <ProfileImage src={imageUrl} alt="프로필 이미지" />
-      <Button
-        variant="entryBtn"
-        onClick={handleEntry}
-      >
+      <ProfileImage src={imageUrl} alt='프로필 이미지' />
+      <Button variant='entryBtn' onClick={handleEntry}>
         새 프로필 만들기
       </Button>
     </Container>
   );
 };
-
 
 export default ClosetEntry;
