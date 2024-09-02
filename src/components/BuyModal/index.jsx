@@ -18,6 +18,7 @@ import { Button, InfoModal } from '../index';
 import hdyImage from '../../assets/images/hdy.png';
 import moaImage from '../../assets/images/moa.svg';
 import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi';
+import { fetchBalance } from '../../apis/memberApi';
 
 const LargeInfoModal = ({
   isOpen,
@@ -39,6 +40,8 @@ const LargeInfoModal = ({
         data.find((item) => item.type === typeId)?.price || 'N/A',
     });
 
+  const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
+
   const buyMutation = useMutation(
     (data) => buyInvest(data.typeId, data.purchaseAmount),
     {
@@ -46,6 +49,7 @@ const LargeInfoModal = ({
         setResponseMessage(
           response.message || '매수가 성공적으로 완료되었습니다.'
         );
+        refetchBalance(); // 성공 시 balance를 갱신
         setIsInfoModalOpen(true);
       },
       onError: () => {
