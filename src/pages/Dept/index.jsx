@@ -13,8 +13,10 @@ import {
   ContentWrapper,
   DeptTitle,
   ClothButtonStyled,
+  ToggleWrapper,
   ToggleContainer,
   ToggleButton,
+  ActiveBackground,
 } from './styled';
 import {
   clothesList,
@@ -22,7 +24,7 @@ import {
   getWishlist,
   purchaseWishItem,
 } from '../../apis/deptAPI';
-import { fetchBalance } from '../../apis/memberApi'; // balance API 호출
+import { fetchBalance } from '../../apis/memberApi';
 
 const Dept = () => {
   const navigate = useNavigate();
@@ -113,20 +115,23 @@ const Dept = () => {
       <Header balance={balance} />
       <DeptTitle>현대 백화점</DeptTitle>
 
-      <ToggleContainer>
-        <ToggleButton
-          active={!showWishlist}
-          onClick={() => setShowWishlist(false)}
-        >
-          일반 상품
-        </ToggleButton>
-        <ToggleButton
-          active={showWishlist}
-          onClick={() => setShowWishlist(true)}
-        >
-          위시 상품
-        </ToggleButton>
-      </ToggleContainer>
+      <ToggleWrapper>
+        <ToggleContainer>
+          <ActiveBackground activeIndex={showWishlist ? 1 : 0} />
+          <ToggleButton
+            active={!showWishlist}
+            onClick={() => setShowWishlist(false)}
+          >
+            일반 상품
+          </ToggleButton>
+          <ToggleButton
+            active={showWishlist}
+            onClick={() => setShowWishlist(true)}
+          >
+            위시 상품
+          </ToggleButton>
+        </ToggleContainer>
+      </ToggleWrapper>
 
       <ContentWrapper>
         <ClothButtonStyled ref={clothListRef}>
