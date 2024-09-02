@@ -15,6 +15,7 @@ import ClosetEntry from './pages/ClosetEntry';
 import Closet from './pages/Closet';
 import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
+import JobMoa from './pages/JobMoa';
 
 /**
  * 라우터
@@ -34,6 +35,7 @@ import Quest from './pages/Quest';
  * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
  * 2024.09.01   이주현        Quest 추가
+ * 2024.09.02   임재성        JobMoa 추가
  * </pre>
  */
 
@@ -56,6 +58,7 @@ const Router = () => {
         <Route path='/select-role' element={<SelectRole />} />
         <Route path='/invest' element={<Invest />} />
         <Route path='/quest' element={<Quest />} />
+        <Route path='/jobmoa' element={<JobMoa />} />
       </Routes>
     </BrowserRouter>
   );

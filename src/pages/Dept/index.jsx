@@ -31,7 +31,7 @@ const Dept = () => {
   const [purchaseMessage, setPurchaseMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const clothListRef = useRef(null);
-
+  //const { refetch } = useQuery('balance', fetchBalance);
   const {
     data: clothes = [],
     isLoading,

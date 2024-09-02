@@ -34,7 +34,6 @@ export const ModalContent = styled.div`
   width: 80dvw;
   height: 60dvh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-image: url(${bg});
   background-repeat: no-repeat;
   background-position: right bottom 10%;
   background-size: 35%;

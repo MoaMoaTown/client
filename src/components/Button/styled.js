@@ -13,6 +13,7 @@ import { colors } from '../../styles/colors';
  * 2024.08.20  	이주현        최초 생성
  * 2024.08.27   이주현        signupBtn, loginBtn 스타일 추가
  * 2024.08.28   이주현        joinBtn 스타일 추가
+ * 2024.08.29   임재성        buyBtn 스타일 추가
  * 2024.08.30   이주현        confirmBtn 스타일 추가
  * 2024.08.30   임원정        entryBtn 스타일 추가
  * </pre>

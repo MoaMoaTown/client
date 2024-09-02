@@ -4,6 +4,8 @@ import { Header, EmptyBoard } from '../../components';
 import { Container, Title } from './styled';
 
 const Invest = () => {
+  //const { refetch } = useQuery('balance', fetchBalance);
+
   return (
     <Container>
       <Header />
