@@ -19,43 +19,48 @@ import four from '../../assets/images/sidebar_4.svg';
 import five from '../../assets/images/sidebar_5.svg';
 import six from '../../assets/images/sidebar_6.svg';
 import seven from '../../assets/images/sidebar_7.svg';
+import eight from '../../assets/images/sidebar_8.svg';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <SidebarContainer isOpen={isOpen}>
       <CloseIcon src={closeIcon} onClick={toggleSidebar} />
-      <Link to="/main">
+      <Link to='/main'>
         <LogoImage src={logo} />
       </Link>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink as={Link} to="/dept" onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/dept' onClick={toggleSidebar}>
             <SidebarLinkIcon src={one} />
             백화점
           </SidebarLink>
-          <SidebarLink onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/jobmoa' onClick={toggleSidebar}>
             <SidebarLinkIcon src={two} />
             잡모아
           </SidebarLink>
-          <SidebarLink onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/invest' onClick={toggleSidebar}>
             <SidebarLinkIcon src={three} />
             흰디의 내일
           </SidebarLink>
-          <SidebarLink as={Link} to="/knowledge" onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/knowledge' onClick={toggleSidebar}>
             <SidebarLinkIcon src={four} />
             젤뽀의 경제 교실
           </SidebarLink>
-          <SidebarLink as={Link} to="/quest" onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/quest' onClick={toggleSidebar}>
             <SidebarLinkIcon src={five} />
             퀘스트
           </SidebarLink>
-          <SidebarLink as={Link} to="/rank" onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/rank' onClick={toggleSidebar}>
             <SidebarLinkIcon src={six} />
             랭킹
           </SidebarLink>
-          <SidebarLink as={Link} to="/mypage" onClick={toggleSidebar}>
+          <SidebarLink as={Link} to='/account' onClick={toggleSidebar}>
             <SidebarLinkIcon src={seven} />
-            마이페이지
+            통장
+          </SidebarLink>
+          <SidebarLink as={Link} to='/closet-entry' onClick={toggleSidebar}>
+            <SidebarLinkIcon src={eight} />
+            흰디 꾸미기
           </SidebarLink>
         </SidebarMenu>
       </SidebarWrapper>
