@@ -13,16 +13,18 @@ import { ItemContainer, ItemImage, ItemBrand, ItemName } from './styled';
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
+ * 2024.09.01   임원정        아이템 id 사용하도록 수정
  * </pre>
  */
 
 const ClothItem = ({ item, onClick }) => {
   const selectedItems = useRecoilValue(selectedItemsState);
-  const isSelected = selectedItems.includes(item.imgUrl);
+  const isSelected = selectedItems.includes(item.clothId);
 
   const handleClick = () => {
     const clothesData = {
-      url: item.imgUrl,
+      id: item.clothId,
+      image: item.image,
       type: item.type,
     };
     onClick(clothesData);
@@ -30,7 +32,7 @@ const ClothItem = ({ item, onClick }) => {
 
   return (
     <ItemContainer onClick={handleClick} isSelected={isSelected}>
-      <ItemImage src={item.imgUrl} alt={item.name} />
+      <ItemImage src={item.image} alt={item.name} />
       <ItemBrand>{`[${item.brand}]`}</ItemBrand>
       <ItemName>{`${item.name}`}</ItemName>
     </ItemContainer>

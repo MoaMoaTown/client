@@ -15,7 +15,6 @@ import {
   ProfileModal,
 } from '../../components';
 import back from '../../assets/images/back.svg';
-import face1 from '../../assets/images/heendy_face1.png';
 import heendy from '../../assets/images/heendy_body.png';
 import { updateProfile } from '../../apis/closetApi';
 import html2canvas from 'html2canvas';
@@ -31,13 +30,12 @@ import html2canvas from 'html2canvas';
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
  * 2024.08.31   임원정        캔버스에 선택한 옷 올리기 추가
- * 2024.09.01   임원정        프로필 업데이트 수정
+ * 2024.09.01   임원정        프로필 업데이트, handleSelectItem 메소드 수정
  * </pre>
  */
 
 const Closet = () => {
   const [clothes, setClothes] = useState([]);
-  const [face, setFace] = useState(face1);
   const [selectedType, setSelectedType] = useRecoilState(selectedTypeState);
   const [selectedItems, setSelectedItems] = useRecoilState(selectedItemsState);
   const [selectedFace, setSelectedFace] = useRecoilState(selectedFaceState);
@@ -52,25 +50,27 @@ const Closet = () => {
     } else {
       const existingIndex = clothes.findIndex((c) => c.type === itemData.type);
       if (existingIndex !== -1) {
-        if (clothes[existingIndex].url === itemData.url) {
+        if (clothes[existingIndex].id === itemData.id) {
           const updatedClothes = clothes.filter(
             (_, index) => index !== existingIndex
           );
           setClothes(updatedClothes);
-          setSelectedItems((prev) => prev.filter((id) => id !== itemData.url));
+          setSelectedItems((prev) => prev.filter((id) => id !== itemData.id));
         } else {
           const updatedClothes = [...clothes];
           updatedClothes[existingIndex] = itemData;
           setClothes(updatedClothes);
           setSelectedItems((prev) => [
-            ...prev.filter((id) => id !== clothes[existingIndex].url),
-            itemData.url,
+            ...prev.filter((id) => id !== clothes[existingIndex].id),
+            itemData.id,
           ]);
         }
       } else {
         setClothes([...clothes, itemData]);
-        setSelectedItems((prev) => [...prev, itemData.url]);
+        setSelectedItems((prev) => [...prev, itemData.id]);
       }
+
+      console.log(selectedItems);
     }
   };
 

@@ -69,8 +69,8 @@ const Login = () => {
 
   return (
     <Container>
-      <BackgroundImage src={ph} alt="heendy" />
-      <Logo src={logo} alt="logo" />
+      <BackgroundImage src={ph} alt='heendy' />
+      <Logo src={logo} alt='logo' />
       <Title>모아모아 타운 입장하기</Title>
       <Description>
         {`모아모아 타운에 들어가기 위해서는
@@ -78,16 +78,16 @@ const Login = () => {
       </Description>
       <Form>
         <Input
-          placeholder="아이디를 입력해주세요."
+          placeholder='아이디를 입력해주세요.'
           onChange={(e) => debouncedSetUserId(e.target.value)}
         />
         <Input
-          placeholder="비밀번호를 입력해주세요."
+          placeholder='비밀번호를 입력해주세요.'
           onChange={(e) => debouncedSetPassword(e.target.value)}
-          type="password"
+          type='password'
         />
         <Button
-          variant="loginBtn"
+          variant='loginBtn'
           disabled={isButtonDisabled}
           onClick={handleSignUp}
         >

@@ -50,7 +50,7 @@ const Canvas = forwardRef(({ heendy, face, clothes }, ref) => {
         .forEach((item) => {
           const clothesImg = new Image();
           clothesImg.crossOrigin = 'anonymous';
-          clothesImg.src = item.url;
+          clothesImg.src = item.image;
           clothesImg.onload = () => {
             const clothesWidth = bodyWidth * 0.48;
             const clothesHeight =
@@ -73,7 +73,7 @@ const Canvas = forwardRef(({ heendy, face, clothes }, ref) => {
         .forEach((item) => {
           const clothesImg = new Image();
           clothesImg.crossOrigin = 'anonymous';
-          clothesImg.src = item.url;
+          clothesImg.src = item.image;
           clothesImg.onload = () => {
             const clothesWidth = bodyWidth * 0.55;
             const clothesHeight =
