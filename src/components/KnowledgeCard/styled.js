@@ -16,21 +16,23 @@ export const TopWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 5%;
+  height: 10%;
 `;
 
 export const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  height: 85%;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5%;
-  width: 90%;
+  padding: 0% 5%;
+  width: 90;
   background-color: ${colors.background_gray};
+  height: 10%;
   flex-shrink: 0;
 `;
 
@@ -46,6 +48,11 @@ export const HeaderDate = styled.span`
   font-weight: 700;
   text-align: center;
   flex: 1;
+`;
+
+export const ScrollableArea = styled.div`
+  overflow-y: auto;
+  flex-grow: 1;
 `;
 
 export const ItemWrapper = styled.div`
@@ -82,3 +89,8 @@ export const InfoText = styled.span`
 `;
 
 export const Image = styled.img``;
+
+export const LoadMoreTrigger = styled.div`
+  height: 1dvh;
+  visibility: hidden;
+`;
