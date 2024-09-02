@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchBalance } from '../../apis/memberApi';
-import { Sidebar } from '../index';
+import { Sidebar, NotiModal } from '../index';
 import {
   Container,
   LeftWrapper,
@@ -20,6 +20,7 @@ import menu from '../../assets/images/hamburger_menu.svg';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isNotiModalOpen, setIsNotiModalOpen] = useState(false);
   const {
     data: balance = '',
     isLoading,
@@ -30,6 +31,10 @@ const Header = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const toggleNotiModal = () => {
+    setIsNotiModalOpen(!isNotiModalOpen);
+  };
+
   return (
     <Container>
       <LeftWrapper>
@@ -37,13 +42,14 @@ const Header = () => {
         <BalanceText>{balance}</BalanceText>
       </LeftWrapper>
       <RightWrapper>
-        <NotiImage src={noti} />
-        <Link to="/mypage">
+        <NotiImage src={noti} onClick={toggleNotiModal} />
+        <Link to='/mypage'>
           <MypageImage src={mypage} />
         </Link>
         <MenuImage src={menu} onClick={toggleSidebar} />
       </RightWrapper>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <NotiModal isOpen={isNotiModalOpen} toggleNotiModal={toggleNotiModal} />
     </Container>
   );
 };

@@ -50,3 +50,5 @@ export { default as QuestCard } from './QuestCard';
 export { default as Model3D } from './Model3D';
 // 타운 정보 컴포넌트
 export { default as TownInfo } from './TownInfo';
+// 알림 내역 모달
+export { default as NotiModal } from './NotiModal';

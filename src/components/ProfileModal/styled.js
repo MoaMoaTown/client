@@ -27,7 +27,7 @@ export const Container = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding: 20px;
+  padding: 4dvw;
 `;
 
 export const TitleText = styled.h2`
