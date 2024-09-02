@@ -5,21 +5,24 @@ import {
   Button,
   JobList,
   CommentModal,
+  InfoModal, // InfoModal 추가
 } from '../../components';
 import { Container, ContentWrapper, Title, JobListContainer } from './styled';
 import { applyJob } from '../../apis/jobApi';
 
 const JobMoa = () => {
-  const [selectedJob, setSelectedJob] = useState(null); // 선택된 직업 정보
-  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false); // 코멘트 모달 상태
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // InfoModal 상태 추가
+  const [infoMessage, setInfoMessage] = useState(''); // InfoModal에 표시할 메시지
 
   const handleJobClick = (job) => {
-    setSelectedJob(job); // 직업 클릭 시 선택된 직업 설정
+    setSelectedJob(job);
   };
 
   const handleApply = () => {
     if (selectedJob) {
-      setIsCommentModalOpen(true); // 직업이 선택된 경우 코멘트 모달 열기
+      setIsCommentModalOpen(true);
     } else {
       alert('먼저 직업을 선택해주세요.');
     }
@@ -32,16 +35,22 @@ const JobMoa = () => {
           jobId: selectedJob.jobId,
           comments: comment,
         });
-        alert(response.message); // 요청 결과 메시지를 사용자에게 표시
-        setIsCommentModalOpen(false); // 신청 후 모달 닫기
+        setInfoMessage(response.message); // 요청 결과 메시지를 상태에 저장
       } catch (error) {
-        alert('신청 실패: ' + error.message);
+        setInfoMessage('신청 실패: ' + error.message);
+      } finally {
+        setIsCommentModalOpen(false); // 코멘트 모달 닫기
+        setIsInfoModalOpen(true); // InfoModal 열기
       }
     }
   };
 
   const handleCloseCommentModal = () => {
-    setIsCommentModalOpen(false); // 모달 닫기
+    setIsCommentModalOpen(false);
+  };
+
+  const handleCloseInfoModal = () => {
+    setIsInfoModalOpen(false);
   };
 
   return (
@@ -59,10 +68,16 @@ const JobMoa = () => {
       </Button>
       <CommentModal
         isOpen={isCommentModalOpen}
-        jobName={selectedJob?.name} // 선택된 직업의 이름 전달
-        jobDescription={selectedJob?.description} // 선택된 직업의 설명 전달
-        onConfirm={handleConfirmComment} // 코멘트 제출 시 호출
-        onClose={handleCloseCommentModal} // 모달 닫기
+        jobName={selectedJob?.name} // 선택한 직업 이름 전달
+        jobDescription={selectedJob?.description} // 선택한 직업 설명 전달
+        onConfirm={handleConfirmComment}
+        onClose={handleCloseCommentModal}
+      />
+      <InfoModal
+        isOpen={isInfoModalOpen}
+        title='신청 결과'
+        message={infoMessage} // 서버에서 받은 메시지를 표시
+        onConfirm={handleCloseInfoModal}
       />
     </Container>
   );
