@@ -50,3 +50,7 @@ export { default as QuestCard } from './QuestCard';
 export { default as Model3D } from './Model3D';
 // 타운 정보 컴포넌트
 export { default as TownInfo } from './TownInfo';
+// 직업 리스트
+export { default as JobList } from './JobList';
+// 역할 신청 모달
+export { default as CommentModal } from './CommentModal';
