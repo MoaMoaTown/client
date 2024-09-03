@@ -6,10 +6,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 84dvw;
   height: 92dvh;
   padding: 4dvh 8dvw;
+  gap: 3dvh;
 `;
 
 export const ClosetTitle = styled.div`

@@ -64,7 +64,7 @@ const PassbookDetail = () => {
           fetchNextPage();
         }
       },
-      { threshold: 1.0 }
+      { threshold: 0.1 }
     );
 
     if (loadMoreRef.current) {
@@ -78,14 +78,6 @@ const PassbookDetail = () => {
     };
   }, [hasNextPage, fetchNextPage]);
 
-  if (isLoading) {
-    return (
-      <Container>
-        <Loading text={'계좌 내역 불러오는 중...'} />
-      </Container>
-    );
-  }
-
   const transactions = data ? data.pages.flat() : [];
 
   return (
@@ -93,15 +85,19 @@ const PassbookDetail = () => {
       <PassbookImage src={passbook} />
       <TitleText>나의 통장</TitleText>
       <ContentWrapper>
-        {transactions.map((transaction) => (
-          <TransactionItem key={transaction.accountId}>
-            <TransactionDate>{transaction.tradeDate}</TransactionDate>
-            <TransactionDescription>
-              {getTransactionDescription(transaction.type)}
-            </TransactionDescription>
-            <TransactionAmount>{transaction.moa}</TransactionAmount>
-          </TransactionItem>
-        ))}
+        {isLoading ? (
+          <Loading text={'계좌 내역 불러오는 중...'} />
+        ) : (
+          transactions.map((transaction) => (
+            <TransactionItem key={transaction.accountId}>
+              <TransactionDate>{transaction.tradeDate}</TransactionDate>
+              <TransactionDescription>
+                {getTransactionDescription(transaction.type)}
+              </TransactionDescription>
+              <TransactionAmount>{transaction.moa}</TransactionAmount>
+            </TransactionItem>
+          ))
+        )}
         <LoadMoreTrigger ref={loadMoreRef} />
       </ContentWrapper>
       <BalanceText>{balance} MOA</BalanceText>

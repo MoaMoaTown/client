@@ -10,6 +10,7 @@ import { loginState, loginInfo } from '../../store/atoms';
 import logo from '../../assets/images/logo.png';
 import ph from '../../assets/images/prone_heendy.svg';
 import {
+  OuterContainer,
   Container,
   BackgroundImage,
   Logo,
@@ -68,33 +69,35 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <BackgroundImage src={ph} alt='heendy' />
-      <Logo src={logo} alt='logo' />
-      <Title>모아모아 타운 입장하기</Title>
-      <Description>
-        {`모아모아 타운에 들어가기 위해서는
+    <OuterContainer>
+      <Container>
+        <BackgroundImage src={ph} alt='heendy' />
+        <Logo src={logo} alt='logo' />
+        <Title>모아모아 타운 입장하기</Title>
+        <Description>
+          {`모아모아 타운에 들어가기 위해서는
         로그인이 필요해요.`}
-      </Description>
-      <Form>
-        <Input
-          placeholder='아이디를 입력해주세요.'
-          onChange={(e) => debouncedSetUserId(e.target.value)}
-        />
-        <Input
-          placeholder='비밀번호를 입력해주세요.'
-          onChange={(e) => debouncedSetPassword(e.target.value)}
-          type='password'
-        />
-        <Button
-          variant='loginBtn'
-          disabled={isButtonDisabled}
-          onClick={handleSignUp}
-        >
-          로그인
-        </Button>
-      </Form>
-    </Container>
+        </Description>
+        <Form>
+          <Input
+            placeholder='아이디를 입력해주세요.'
+            onChange={(e) => debouncedSetUserId(e.target.value)}
+          />
+          <Input
+            placeholder='비밀번호를 입력해주세요.'
+            onChange={(e) => debouncedSetPassword(e.target.value)}
+            type='password'
+          />
+          <Button
+            variant='loginBtn'
+            disabled={isButtonDisabled}
+            onClick={handleSignUp}
+          >
+            로그인
+          </Button>
+        </Form>
+      </Container>
+    </OuterContainer>
   );
 };
 

@@ -6,7 +6,7 @@ export const StyledInput = styled.input`
   height: 8dvh;
   font-size: 1rem;
   border: 1px solid ${colors.gray};
-  border-radius: 8px;
+  border-radius: 10px;
   outline: none;
   box-sizing: border-box;
   color: ${colors.dark_gray};
@@ -17,5 +17,11 @@ export const StyledInput = styled.input`
 
   &:focus {
     border-color: black;
+  }
+  @media (min-width: 1024px) {
+    width: 12vw;
+    height: 7vh;
+    font-size: 0.8rem;
+    padding-left: 1.5vw;
   }
 `;

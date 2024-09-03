@@ -49,3 +49,8 @@ export const fetchTownInfo = async () => {
   const response = await axiosInstance.get('/member/town');
   return response.data;
 };
+
+export const logout = async () => {
+  const response = await axiosInstance.post('/member/logout');
+  return response.data;
+};

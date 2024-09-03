@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+
 import Onboarding from './pages/Onboarding';
 import Main from './pages/Main';
 import SignUp from './pages/SignUp';
@@ -38,6 +40,8 @@ import AdminMain from './pages/AdminMain';
  * 2024.09.01   이주현        Quest 추가
  * 2024.09.01   임원정        Closet 추가
  * 2024.09.02   임재성        JobMoa 추가
+ * 2024.09.03   이주현        ProtectedRoute 추가
+ * 2024.09.03   임원정        AdminMain 추가
  * </pre>
  */
 
@@ -45,23 +49,56 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/*누구나 접근 가능*/}
         <Route path='/' element={<Onboarding />} />
-        <Route path='/main' element={<Main />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/join-town' element={<JoinTown />} />
-        <Route path='/mypage' element={<Mypage />} />
-        <Route path='/dept' element={<Dept />} />
-        <Route path='/rank' element={<Ranking />} />
-        <Route path='/knowledge' element={<Knowledge />} />
-        <Route path='/account' element={<Account />} />
-        <Route path='/closet-entry' element={<ClosetEntry />} />
-        <Route path='/closet' element={<Closet />} />
         <Route path='/select-role' element={<SelectRole />} />
-        <Route path='/invest' element={<Invest />} />
-        <Route path='/quest' element={<Quest />} />
-        <Route path='/jobmoa' element={<JobMoa />} />
-        <Route path='/admin' element={<AdminMain />} />
+
+        {/*로그인한 사용자만 접근 가능*/}
+        <Route
+          path='/join-town'
+          element={<ProtectedRoute element={<JoinTown />} />}
+        />
+        <Route path='/main' element={<ProtectedRoute element={<Main />} />} />
+        <Route
+          path='/mypage'
+          element={<ProtectedRoute element={<Mypage />} />}
+        />
+        <Route path='/dept' element={<ProtectedRoute element={<Dept />} />} />
+        <Route
+          path='/rank'
+          element={<ProtectedRoute element={<Ranking />} />}
+        />
+        <Route
+          path='/knowledge'
+          element={<ProtectedRoute element={<Knowledge />} />}
+        />
+        <Route
+          path='/account'
+          element={<ProtectedRoute element={<Account />} />}
+        />
+        <Route
+          path='/closet-entry'
+          element={<ProtectedRoute element={<ClosetEntry />} />}
+        />
+        <Route
+          path='/closet'
+          element={<ProtectedRoute element={<Closet />} />}
+        />
+        <Route
+          path='/invest'
+          element={<ProtectedRoute element={<Invest />} />}
+        />
+        <Route path='/quest' element={<ProtectedRoute element={<Quest />} />} />
+        <Route
+          path='/jobmoa'
+          element={<ProtectedRoute element={<JobMoa />} />}
+        />
+        <Route
+          path='/admin'
+          element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}
+        />
       </Routes>
     </BrowserRouter>
   );

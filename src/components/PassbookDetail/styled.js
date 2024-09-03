@@ -3,7 +3,7 @@ import { colors } from '../../styles/colors';
 
 export const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: 96.5%;
   height: auto;
 `;
 
@@ -66,5 +66,4 @@ export const TransactionAmount = styled.div`
 
 export const LoadMoreTrigger = styled.div`
   height: 1dvh;
-  visibility: hidden;
 `;

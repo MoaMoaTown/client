@@ -12,6 +12,7 @@ import {
   StatIcon,
   StatText,
   RankBadge,
+  BadgeWrapper,
 } from './styled';
 import peopleIcon from '../../assets/images/people.svg';
 import moaIcon from '../../assets/images/main_moa.svg';
@@ -29,7 +30,9 @@ const TownInfo = () => {
   return (
     <TownInfoContainer>
       <InfoBox>
-        <RankBadge>{getRank(townInfo.totalTax)}</RankBadge>
+        <BadgeWrapper>
+          <RankBadge>{getRank(townInfo.totalTax)}</RankBadge>
+        </BadgeWrapper>
         <InfoWrapper>
           <TownName>{townInfo.name}</TownName>
           <TownDescription>{townInfo.description}</TownDescription>
@@ -37,11 +40,11 @@ const TownInfo = () => {
       </InfoBox>
       <StatsBox>
         <StatItem>
-          <StatIcon src={peopleIcon} alt="Total Members" />
+          <StatIcon src={peopleIcon} alt='Total Members' />
           <StatText>{townInfo.totalMembers}</StatText>
         </StatItem>
         <StatItem>
-          <StatIcon src={moaIcon} alt="Total Tax" />
+          <StatIcon src={moaIcon} alt='Total Tax' />
           <StatText>{townInfo.totalTax}</StatText>
         </StatItem>
       </StatsBox>
