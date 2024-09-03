@@ -63,7 +63,7 @@ export const EmptyMsg = styled.p`
 `;
 
 export const ActionButton = styled.button`
-  background-color: ${({ color }) => color};
+  background-color: ${colors.table_orange};
   width: 3vw;
   height: 1.6vw;
   color: white;

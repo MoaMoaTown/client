@@ -34,7 +34,9 @@ const NotiModal = ({ isOpen, toggleNotiModal }) => {
     data: notifications = [],
     isLoading,
     isError,
-  } = useQuery('notifications', fetchNotifications);
+  } = useQuery('notifications', fetchNotifications, {
+    enabled: isOpen,
+  });
 
   if (!isOpen) return null;
 

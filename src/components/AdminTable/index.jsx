@@ -51,7 +51,7 @@ const AdminTable = ({ headers, data, emptyMessage }) => {
                       {cell.type === 'text' ? (
                         cell.value
                       ) : cell.type === 'button' ? (
-                        <ActionButton color={cell.color} onClick={cell.onClick}>
+                        <ActionButton onClick={cell.onClick}>
                           {cell.value}
                         </ActionButton>
                       ) : null}

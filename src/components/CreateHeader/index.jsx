@@ -15,16 +15,11 @@ import { Button, AdminModal } from '../index';
  * </pre>
  */
 
-const CreateHeader = ({ title }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleCreate = () => {
-    setIsModalOpen(true);
-  };
-
+const CreateHeader = ({ title, onCreate }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <Button variant='createBtn' onClick={handleCreate}>
+      <Button variant='createBtn' onClick={onCreate}>
         만들기
       </Button>
       <AdminModal></AdminModal>

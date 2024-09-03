@@ -35,6 +35,20 @@ export const ModalContent = styled.div`
   width: 90%;
   height: 90%;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.4vw;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colors.dark_gray};
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${colors.background_gray};
+  }
+
   @media (min-width: 1024px) {
     padding: 2vh 2vw;
   }
