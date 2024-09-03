@@ -22,7 +22,7 @@ const QuestStatus = () => {
     fetchQuestStatusList
   );
 
-  const headers = ['No', '퀘스트', '수행인'];
+  const headers = ['No', '퀘스트', '선정 현황'];
   const tableData = questStatus.map((quest, index) => ({
     no: index + 1,
     title: quest.title,
