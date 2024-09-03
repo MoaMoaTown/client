@@ -19,7 +19,6 @@ import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 import JobMoa from './pages/JobMoa';
 import AdminMain from './pages/AdminMain';
-import AdminMain from './pages/AdminMain';
 
 /**
  * 라우터
@@ -40,10 +39,8 @@ import AdminMain from './pages/AdminMain';
  * 2024.08.30   임원정        ClosetEntry 추가
  * 2024.09.01   이주현        Quest 추가
  * 2024.09.01   임원정        Closet 추가
- * 2024.09.01   임원정        Closet 추가
  * 2024.09.02   임재성        JobMoa 추가
  * 2024.09.03   이주현        ProtectedRoute 추가
- * 2024.09.03   임원정        AdminMain 추가
  * 2024.09.03   임원정        AdminMain 추가
  * </pre>
  */
