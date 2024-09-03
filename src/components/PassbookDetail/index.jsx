@@ -64,7 +64,7 @@ const PassbookDetail = () => {
           fetchNextPage();
         }
       },
-      { threshold: 1.0 }
+      { threshold: 0.1 }
     );
 
     if (loadMoreRef.current) {
