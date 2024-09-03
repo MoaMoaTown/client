@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { logout } from '../../apis/memberApi';
 import { createTown } from '../../apis/townApi';
@@ -25,6 +25,19 @@ import { Button, TownCodeModal } from '../../components';
 import useDebouncedState from '../../hooks/useDebouncedState';
 import logo from '../../assets/images/logo.png';
 import moa from '../../assets/images/moa.svg';
+
+/**
+ * 타운 만들기 페이지
+ * @author 임원정
+ * @since 2024.09.03
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.03 	임원정        최초 생성
+ * </pre>
+ */
 
 const MakeTown = () => {
   const user = useRecoilValue(loginInfo);

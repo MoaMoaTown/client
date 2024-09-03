@@ -9,7 +9,20 @@ import {
   TownCodeText,
 } from './styled';
 
-const InfoModal = ({ isOpen, townCode, onClose }) => {
+/**
+ * 타운 코드 표시 모달
+ * @author 임원정
+ * @since 2024.09.03
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.03 	임원정        최초 생성
+ * </pre>
+ */
+
+const TownCodeModal = ({ isOpen, townCode, onClose }) => {
   if (!isOpen) return null;
 
   return (
@@ -28,4 +41,4 @@ const InfoModal = ({ isOpen, townCode, onClose }) => {
   );
 };
 
-export default InfoModal;
+export default TownCodeModal;
