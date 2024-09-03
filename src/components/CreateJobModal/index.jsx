@@ -17,6 +17,19 @@ import {
 import moaIcon from '../../assets/images/moa.svg';
 import closeIcon from '../../assets/images/close.svg';
 
+/**
+ * 역할 만들기 모달
+ * @author 임원정
+ * @since 2024.09.04
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.04 	임원정        최초 생성
+ * </pre>
+ */
+
 const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
   const [name, debouncedSetName] = useDebouncedState('');
   const [description, debouncedSetDescription] = useDebouncedState('');
