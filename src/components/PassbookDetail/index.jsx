@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { useInfiniteQuery } from 'react-query';
-import { fetchAccount } from '../../apis/memberApi';
+import { useQuery, useInfiniteQuery } from 'react-query';
+import { fetchAccount, fetchBalance } from '../../apis/memberApi';
 import {
   Container,
   PassbookImage,
@@ -14,6 +14,7 @@ import {
   LoadMoreTrigger,
 } from './styled';
 import passbook from '../../assets/images/longpassbook.svg';
+import Loading from '../Loading';
 
 const PassbookDetail = () => {
   const loadMoreRef = useRef();
@@ -28,6 +29,8 @@ const PassbookDetail = () => {
         },
       }
     );
+
+  const { data: balance = '' } = useQuery('balance', fetchBalance);
 
   const getTransactionDescription = (type) => {
     switch (type) {
@@ -76,7 +79,11 @@ const PassbookDetail = () => {
   }, [hasNextPage, fetchNextPage]);
 
   if (isLoading) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container>
+        <Loading text={'계좌 내역 불러오는 중...'} />
+      </Container>
+    );
   }
 
   const transactions = data ? data.pages.flat() : [];
@@ -97,9 +104,7 @@ const PassbookDetail = () => {
         ))}
         <LoadMoreTrigger ref={loadMoreRef} />
       </ContentWrapper>
-      <BalanceText>
-        {transactions.reduce((sum, t) => sum + t.moa, 0)} MOA
-      </BalanceText>
+      <BalanceText>{balance} MOA</BalanceText>
     </Container>
   );
 };

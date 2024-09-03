@@ -61,7 +61,7 @@ export const StatIcon = styled.img`
 
 export const StatText = styled.span`
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   color: ${colors.dark_gray};
 `;
 
