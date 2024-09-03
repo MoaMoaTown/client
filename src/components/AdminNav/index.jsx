@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import {
   Container,
   MenuWrapper,
@@ -11,6 +10,19 @@ import {
   TownInfoWrapper,
   TownInfo,
 } from './styled';
+
+/**
+ * 관리자 메뉴 바
+ * @author 임원정
+ * @since 2024.09.03
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.03 	임원정        최초 생성
+ * </pre>
+ */
 
 const AdminNav = ({ townInfo }) => {
   return (

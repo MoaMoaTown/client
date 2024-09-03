@@ -48,7 +48,7 @@ export const Table = styled.table`
   thead {
     position: sticky;
     top: 0;
-    background-color: rgba(202, 119, 0, 0.7);
+    background-color: #d59233;
     z-index: 1;
   }
 

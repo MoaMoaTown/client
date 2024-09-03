@@ -54,6 +54,7 @@ const Router = () => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/select-role' element={<SelectRole />} />
+        <Route path='/select-role' element={<SelectRole />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         <Route
@@ -95,12 +96,11 @@ const Router = () => {
           path='/jobmoa'
           element={<ProtectedRoute element={<JobMoa />} />}
         />
-
-        {/*시장 권한 접근 가능*/}
-        <Route
+        {/* <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}
-        />
+        /> */}
+        <Route path='/admin' element={<AdminMain />} />
       </Routes>
     </BrowserRouter>
   );

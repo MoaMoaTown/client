@@ -35,7 +35,6 @@ export const MenuLink = styled.li`
   margin-bottom: 2vh;
   font-size: 1rem;
   cursor: pointer;
-  color: ${colors.dark_gray};
   &:hover {
     color: white;
   }
@@ -55,6 +54,5 @@ export const TownInfo = styled.p`
   display: flex;
   align-items: center;
   font-size: 1rem;
-  color: ${colors.dark_gray};
   margin-bottom: 2vh;
 `;

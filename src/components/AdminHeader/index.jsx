@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { loginInfo } from '../../store/atoms';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { logout } from '../../apis/memberApi';
+import { loginState, loginInfo } from '../../store/atoms';
 import {
   Container,
   LeftWrapper,
@@ -12,18 +15,46 @@ import {
   Logout,
 } from './styled';
 import { NotiModal } from '../index';
-import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import noti from '../../assets/images/noti.svg';
 
+/**
+ * 관리자 페이지 헤더
+ * @author 임원정
+ * @since 2024.09.03
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.03 	임원정        최초 생성
+ * </pre>
+ */
+
 const AdminHeader = () => {
   const user = useRecoilValue(loginInfo);
+  const navigate = useNavigate();
+  const setLoginState = useSetRecoilState(loginState);
+  const setLoginInfo = useSetRecoilState(loginInfo);
   const [isNotiModalOpen, setIsNotiModalOpen] = useState(false);
 
   const toggleNotiModal = () => {
     setIsNotiModalOpen(!isNotiModalOpen);
   };
-  const handleLogout = () => {};
+  const mutation = useMutation(logout, {
+    onSuccess: () => {
+      setLoginState({ isLogin: false });
+      setLoginInfo({});
+      navigate('/login');
+    },
+    onError: (error) => {
+      console.error('로그아웃 실패:', error);
+    },
+  });
+
+  const handleLogout = () => {
+    mutation.mutate();
+  };
   return (
     <Container>
       <LeftWrapper>
