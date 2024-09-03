@@ -66,5 +66,4 @@ export const TransactionAmount = styled.div`
 
 export const LoadMoreTrigger = styled.div`
   height: 1dvh;
-  visibility: hidden;
 `;
