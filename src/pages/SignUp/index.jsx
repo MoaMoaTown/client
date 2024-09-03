@@ -24,7 +24,7 @@ const SignUp = () => {
     () => signUp(nickname, loginId, password, role),
     {
       onSuccess: () => {
-        navigate('login');
+        navigate('/login');
       },
       onError: (error) => {
         console.error('회원가입 실패:', error);

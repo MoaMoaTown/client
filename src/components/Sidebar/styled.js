@@ -60,6 +60,16 @@ export const SidebarLinkIcon = styled.img`
   margin-right: 2dvw;
 `;
 
+export const LogoutText = styled.p`
+  position: absolute;
+  bottom: 10dvh;
+  left: 5dvw;
+  text-align: left;
+  font-size: 1rem;
+  color: ${colors.gray};
+  text-decoration: underline;
+`;
+
 export const CopyrightText = styled.p`
   position: absolute;
   bottom: 5dvh;

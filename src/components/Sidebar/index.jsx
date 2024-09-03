@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { useMutation } from 'react-query';
+import { logout } from '../../apis/memberApi';
+import { loginState, loginInfo } from '../../store/atoms';
 import {
   SidebarContainer,
   CloseIcon,
@@ -9,6 +13,7 @@ import {
   SidebarLink,
   SidebarLinkIcon,
   CopyrightText,
+  LogoutText,
 } from './styled';
 import logo from '../../assets/images/logo.png';
 import closeIcon from '../../assets/images/close.svg';
@@ -22,6 +27,24 @@ import seven from '../../assets/images/sidebar_7.svg';
 import eight from '../../assets/images/sidebar_8.svg';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const navigate = useNavigate();
+  const setLoginState = useSetRecoilState(loginState);
+  const setLoginInfo = useSetRecoilState(loginInfo);
+
+  const mutation = useMutation(logout, {
+    onSuccess: () => {
+      setLoginState({ isLogin: false });
+      setLoginInfo({});
+      navigate('/login');
+    },
+    onError: (error) => {
+      console.error('로그아웃 실패:', error);
+    },
+  });
+
+  const handleLogout = () => {
+    mutation.mutate();
+  };
   return (
     <SidebarContainer isOpen={isOpen}>
       <CloseIcon src={closeIcon} onClick={toggleSidebar} />
@@ -64,6 +87,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </SidebarLink>
         </SidebarMenu>
       </SidebarWrapper>
+      <LogoutText onClick={handleLogout}>로그아웃</LogoutText>
       <CopyrightText>{`© 2024 The More.\nAll rights reserved.`}</CopyrightText>
     </SidebarContainer>
   );
