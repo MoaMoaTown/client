@@ -24,7 +24,7 @@ const SignUp = () => {
     () => signUp(nickname, loginId, password, role),
     {
       onSuccess: () => {
-        navigate('/');
+        navigate('login');
       },
       onError: (error) => {
         console.error('회원가입 실패:', error);
@@ -40,7 +40,7 @@ const SignUp = () => {
 
   return (
     <Container>
-      <Logo src={logo} alt="logo" />
+      <Logo src={logo} alt='logo' />
       <Title>모아모아 타운 입장하기</Title>
       <Description>
         {`모아모아 타운에 들어가기 위해서는
@@ -48,25 +48,25 @@ const SignUp = () => {
       </Description>
       <Form>
         <Input
-          placeholder="닉네임을 입력해주세요."
+          placeholder='닉네임을 입력해주세요.'
           onChange={(e) => debouncedSetNickname(e.target.value)}
         />
         <Input
-          placeholder="아이디를 입력해주세요."
+          placeholder='아이디를 입력해주세요.'
           onChange={(e) => debouncedSetUserId(e.target.value)}
         />
         <Input
-          placeholder="비밀번호를 입력해주세요."
+          placeholder='비밀번호를 입력해주세요.'
           onChange={(e) => debouncedSetPassword(e.target.value)}
-          type="password"
+          type='password'
         />
         <Input
-          placeholder="비밀번호를 재입력해주세요."
+          placeholder='비밀번호를 재입력해주세요.'
           onChange={(e) => debouncedSetConfirmPassword(e.target.value)}
-          type="password"
+          type='password'
         />
         <Button
-          variant="signupBtn"
+          variant='signupBtn'
           disabled={isButtonDisabled}
           onClick={handleSignUp}
         >
