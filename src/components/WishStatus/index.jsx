@@ -23,14 +23,21 @@ const WishStatus = () => {
   );
 
   const headers = ['No', '위시 상품', '신청인'];
-  const tableData = wishRequests.map((wishRequest, index) => ({
-    no: index + 1,
-    name: wishRequest.wishName,
-    nickName: wishRequest.nickName,
-  }));
+  const tableData = wishRequests
+    ? wishRequests.map((wishRequest, index) => ({
+        no: index + 1,
+        name: wishRequest.wishName,
+        nickName: wishRequest.nickName,
+      }))
+    : [];
 
   return (
-    <StatusTable title='위시 요청 현황' headers={headers} data={tableData} />
+    <StatusTable
+      title='위시 요청 현황'
+      headers={headers}
+      data={tableData}
+      emptyMessage='위시 요청 내역이 없습니다.'
+    />
   );
 };
 

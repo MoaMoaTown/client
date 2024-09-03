@@ -8,4 +8,5 @@ export const colors = {
   light_orange: '#F9C74F',
   intermediate_color: '#F8961E',
   purple: '#C76EFD',
+  table_orange: '#D59233',
 };

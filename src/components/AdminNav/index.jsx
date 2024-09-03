@@ -28,7 +28,9 @@ const AdminNav = ({ townInfo }) => {
   return (
     <Container>
       <TownInfoWrapper>
-        <Title>{townInfo.name}</Title>
+        <Link to='/admin'>
+          <Title>{townInfo.name}</Title>
+        </Link>
         <Menu>
           <TownInfo>{townInfo.description}</TownInfo>
           <TownInfo>타운 코드 : {townInfo.townCode}</TownInfo>
@@ -37,10 +39,10 @@ const AdminNav = ({ townInfo }) => {
       <MenuWrapper>
         <Title>역할</Title>
         <Menu>
-          <MenuLink as={Link} to=''>
+          <MenuLink as={Link} to='/admin/job'>
             역할 관리
           </MenuLink>
-          <MenuLink as={Link} to=''>
+          <MenuLink as={Link} to='/admin/job-request'>
             역할 신청 내역
           </MenuLink>
         </Menu>

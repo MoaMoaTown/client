@@ -70,3 +70,5 @@ export { default as WishStatus } from './WishStatus';
 export { default as QuestStatus } from './QuestStatus';
 // 현황 테이블
 export { default as StatusTable } from './StatusTable';
+// 관리자 페이지 테이블
+export { default as AdminTable } from './AdminTable';

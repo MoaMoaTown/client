@@ -30,7 +30,12 @@ const QuestStatus = () => {
   }));
 
   return (
-    <StatusTable title='퀘스트 수행 현황' headers={headers} data={tableData} />
+    <StatusTable
+      title='퀘스트 수행 현황'
+      headers={headers}
+      data={tableData}
+      emptyMessage='퀘스트 수행 내역이 없습니다.'
+    />
   );
 };
 
