@@ -111,13 +111,13 @@ export default function Model3D() {
       logoRef.current.rotation.set(0, Math.PI / 3.4, 0);
     }
 
-    cloudRef1.current.position.set(-2, 1.4, -2);
+    cloudRef1.current.position.set(-2, 2.0, -2);
     cloudRef1.current.rotation.set(0, Math.PI / 4, 0);
 
-    cloudRef2.current.position.set(-0.2, 1.8, 2);
+    cloudRef2.current.position.set(-0.8, 2.4, 1);
     cloudRef2.current.rotation.set(0, Math.PI / 2, 0);
 
-    cloudRef3.current.position.set(2, 1.7, -1);
+    cloudRef3.current.position.set(1, 2.3, -1);
     cloudRef3.current.rotation.set(0, Math.PI / 6, 0);
   };
 
@@ -139,7 +139,7 @@ export default function Model3D() {
           background:
             'linear-gradient(180deg, rgba(202, 119, 0, 0.3), rgba(30, 157, 139, 0.3))',
         }}
-        camera={{ position: [20, 10, 15], fov: 13 }}
+        camera={{ position: [20, 6, 15], fov: 20 }}
       >
         <ambientLight intensity={0.5} />
         <directionalLight
@@ -187,7 +187,7 @@ export default function Model3D() {
         <Model
           url={cloudModel3}
           refProp={cloudRef3}
-          scale={new THREE.Vector3(0.2, 0.2, 0.2)}
+          scale={new THREE.Vector3(0.15, 0.15, 0.15)}
           brightness={0.8}
           onLoad={(scene) => handleModelLoad(scene, 'Cloud 3')}
         />

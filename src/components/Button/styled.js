@@ -43,7 +43,7 @@ const buttonStyles = {
     background-color: ${colors.green};
     color: white;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     text-align: center;
     font-weight: bold;
@@ -52,6 +52,11 @@ const buttonStyles = {
       background-color: ${colors.gray};
       cursor: not-allowed;
       color: white;
+    }
+    @media (min-width: 1024px) {
+      width: 8vw;
+      height: 5vh;
+      font-size: 1rem;
     }
   `,
   joinBtn: css`
