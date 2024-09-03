@@ -24,6 +24,10 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  @media (min-width: 1024px) {
+    width: 30vw;
+    height: 60vh;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -31,6 +35,9 @@ export const ModalContent = styled.div`
   width: 90%;
   height: 90%;
   overflow-y: auto;
+  @media (min-width: 1024px) {
+    padding: 2vh 2vw;
+  }
 `;
 
 export const Title = styled.h2`
@@ -39,6 +46,10 @@ export const Title = styled.h2`
   font-weight: bold;
   text-align: center;
   margin-right: 20dvw;
+  @media (min-width: 1024px) {
+    font-size: 1.4rem;
+    margin-right: 7vw;
+  }
 `;
 
 export const Table = styled.table`
@@ -58,6 +69,9 @@ export const Cell = styled.td`
   font-size: 0.8rem;
   text-align: left;
   vertical-align: middle;
+  @media (min-width: 1024px) {
+    padding: 0.8vw;
+  }
 `;
 
 export const Thead = styled.th`
@@ -67,12 +81,19 @@ export const Thead = styled.th`
   border-bottom: 1px solid #ddd;
   font-weight: bold;
   vertical-align: middle;
+  @media (min-width: 1024px) {
+    font-size: 1rem;
+    padding: 0.8dvw;
+  }
 `;
 
 export const CloseIcon = styled.img`
   width: 7dvw;
   height: auto;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    width: 2vw;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -80,4 +101,7 @@ export const Wrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 1dvw;
+  @media (min-width: 1024px) {
+    padding: 1vh 1vw;
+  }
 `;
