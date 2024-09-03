@@ -95,6 +95,8 @@ const Router = () => {
           path='/jobmoa'
           element={<ProtectedRoute element={<JobMoa />} />}
         />
+
+        {/*시장 권한 접근 가능*/}
         <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}
