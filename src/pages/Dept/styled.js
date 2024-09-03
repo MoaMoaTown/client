@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
 import dept_back from '../../assets/images/dept_back.svg';
-
+import bg_green from '../../assets/images/bg_green.svg';
 export const Container = styled.div`
   background: ${colors.background_gray};
   display: flex;
@@ -22,20 +22,20 @@ export const DeptTitle = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 90%;
-  padding: 5% 5%;
+  padding: 10% 5%;
   height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-image: url(${dept_back});
+  background-image: url(${bg_green});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
 
 export const ClothButtonStyled = styled.div`
-  height: 84%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

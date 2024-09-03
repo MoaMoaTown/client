@@ -4,7 +4,7 @@ import { colors } from '../../styles/colors';
 export const Container = styled.div`
   width: 90%;
   height: 18dvh;
-  padding: 2dvh 5%;
+  padding: 2.13vh 5%;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -15,7 +15,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   &:hover {
-    background-color: ${colors.gray};
+    background-color: ${colors.super_light_green};
   }
 
   &:active {
@@ -39,32 +39,35 @@ export const InfoWrapper = styled.div`
   text-align: left;
   margin-left: 16px;
   flex: 3;
+  overflow: hidden; /* 넘치는 내용을 숨기기 */
 `;
 
 export const Brand = styled.div`
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem; /* 글씨 크기 키움 */
+  white-space: nowrap; /* 한 줄로 표시 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분을 생략 표시 */
 `;
 
 export const Name = styled.div`
-  width: 100%;
+  width: 100%; /* 부모 요소에 맞게 확장 */
   margin-top: 4px;
-  font-size: 0.8em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1.1rem; /* 글씨 크기 키움 */
+  white-space: nowrap; /* 한 줄로 표시 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분을 생략 표시 */
 `;
 
 export const Price = styled.div`
   margin-top: 4px;
-  font-size: 0.9em;
+  font-size: 1.3rem;
   display: flex;
   align-items: center; /* 텍스트와 이미지를 수평으로 정렬 */
 `;
 
 export const MoaImage = styled.img`
   width: 8dvw; /* 작게 설정 */
-  // height: 4dvh; /* 작게 설정 */
   margin-left: 4px; /* 텍스트와 이미지 사이의 간격 */
 `;
 

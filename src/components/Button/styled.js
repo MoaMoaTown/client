@@ -72,11 +72,11 @@ const buttonStyles = {
     }
   `,
   buyBtn: css`
-    width: 100%;
-    height: 5dvh;
+    width: 90%;
+    height: 6dvh;
     background-color: ${colors.green};
     color: white;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;

@@ -4,7 +4,9 @@ import { colors } from '../../styles/colors';
 export const StyledWishButton = styled.button`
   width: 62dvw;
   height: 8dvh;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1.1dvh 5%;
   border-radius: 8px;
   outline: none;
   box-sizing: border-box;
@@ -16,7 +18,7 @@ export const StyledWishButton = styled.button`
   justify-content: space-between; /* 양 끝으로 정렬 */
 
   &:hover {
-    background-color: ${colors.gray};
+    background-color: ${colors.super_light_green};
   }
 
   &:active {
