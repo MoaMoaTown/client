@@ -50,6 +50,7 @@ const Router = () => {
         <Route path='/' element={<Onboarding />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/select-role' element={<SelectRole />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         <Route
@@ -81,10 +82,6 @@ const Router = () => {
         <Route
           path='/closet'
           element={<ProtectedRoute element={<Closet />} />}
-        />
-        <Route
-          path='/select-role'
-          element={<ProtectedRoute element={<SelectRole />} />}
         />
         <Route
           path='/invest'

@@ -15,7 +15,8 @@ export const InfoBox = styled.div`
   border-radius: 10px;
   padding: 2dvh 2dvw;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 2dvw;
   align-items: center;
 `;
 
@@ -46,6 +47,7 @@ export const TownDescription = styled.p`
 export const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 3;
 `;
 
 export const StatItem = styled.div`
@@ -77,4 +79,11 @@ export const RankBadge = styled.div`
   padding: 2dvw 2dvw;
   border-radius: 5px;
   border: 2px solid ${colors.orange};
+`;
+
+export const BadgeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 `;
