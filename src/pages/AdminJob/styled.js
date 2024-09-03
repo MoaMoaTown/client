@@ -13,7 +13,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 `;
 
-export const Wrapper = styled.div`
+export const BodyWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -39,4 +39,5 @@ export const Title = styled.div`
   text-align: center;
   font-weight: bold;
   margin-top: 2vw;
+  margin-bottom: 1vw;
 `;

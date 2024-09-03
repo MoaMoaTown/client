@@ -74,3 +74,7 @@ export { default as StatusTable } from './StatusTable';
 export { default as TownCodeModal } from './TownCodeModal';
 // 관리자 페이지 테이블
 export { default as AdminTable } from './AdminTable';
+// 관리자 페이지 모달
+export { default as AdminModal } from './AdminModal';
+// 관리자 페이지 생성 헤더
+export { default as CreateHeader } from './CreateHeader';

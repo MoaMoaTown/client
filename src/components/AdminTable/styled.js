@@ -16,8 +16,8 @@ export const TableWrapper = styled.div`
   width: 80%;
   max-height: 25vh;
   position: relative;
-  margin-top: 1.6vw;
-  margin-bottom: 2vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 `;
 
 export const Table = styled.table`
@@ -27,7 +27,8 @@ export const Table = styled.table`
 `;
 
 export const Cell = styled.td`
-  padding: 0.8dvw;
+  height: 2vw;
+  padding: 0.8vh 0.8dvw;
   border-bottom: 1px solid ${colors.dark_gray};
   font-size: 1rem;
   text-align: ${({ align }) => align};
@@ -53,17 +54,24 @@ export const EmptyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const EmptyMsg = styled.p`
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 8vh;
 `;
 
-export const EmptyImg = styled.img`
-  width: 8vw;
-  height: auto;
-  margin-top: 4vh;
+export const ActionButton = styled.button`
+  background-color: ${({ color }) => color};
+  width: 3vw;
+  height: 1.6vw;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  &:hover {
+    background-color: ${colors.gray};
+  }
 `;

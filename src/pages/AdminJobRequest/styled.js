@@ -39,4 +39,5 @@ export const Title = styled.div`
   text-align: center;
   font-weight: bold;
   margin-top: 2vw;
+  margin-bottom: 1vw;
 `;

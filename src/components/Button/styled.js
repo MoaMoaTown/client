@@ -176,6 +176,12 @@ const buttonStyles = {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    @media (min-width: 1024px) {
+      width: 6vw;
+      height: 5vh;
+      padding: 1dvh 2dvw;
+      font-weight: bold;
+    }
   `,
   cancelBtn: css`
     padding: 1dvh 5dvw;
@@ -207,6 +213,17 @@ const buttonStyles = {
       cursor: not-allowed;
       color: white;
     }
+  `,
+  createBtn: css`
+    width: 4vw;
+    height: 4vh;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: ${colors.gray};
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
   `,
 };
 

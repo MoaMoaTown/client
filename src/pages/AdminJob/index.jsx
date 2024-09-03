@@ -2,8 +2,13 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { fetchTownInfo } from '../../apis/memberApi';
 import { getJobsByTownId } from '../../apis/jobApi';
-import { AdminHeader, AdminNav, AdminTable } from '../../components';
-import { Container, ContentWrapper, Wrapper, Title } from './styled';
+import {
+  AdminHeader,
+  AdminNav,
+  AdminTable,
+  CreateHeader,
+} from '../../components';
+import { Container, ContentWrapper, BodyWrapper, Title } from './styled';
 
 /**
  * 관리자 역할 관리 페이지
@@ -24,26 +29,27 @@ const AdminJob = () => {
 
   const headers = ['No', '역할', '설명', '급여'];
   const tableData = job.map((job, index) => ({
-    no: index + 1,
-    name: job.name,
-    description: job.description,
-    pay: job.pay,
+    no: { type: 'text', value: index + 1 },
+    name: { type: 'text', value: job.name },
+    description: { type: 'text', value: job.description },
+    pay: { type: 'text', value: job.pay + ' 모아' },
   }));
 
   return (
     <Container>
       <AdminHeader />
-      <Wrapper>
+      <BodyWrapper>
         <AdminNav townInfo={townInfo} />
         <ContentWrapper>
           <Title>역할 관리</Title>
+          <CreateHeader title='역할 목록' />
           <AdminTable
             headers={headers}
             data={tableData}
             emptyMessage='역할이 없습니다.'
           />
         </ContentWrapper>
-      </Wrapper>
+      </BodyWrapper>
     </Container>
   );
 };

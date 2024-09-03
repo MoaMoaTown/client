@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
-  Title,
   TableWrapper,
   Table,
   Thead,
@@ -10,10 +9,23 @@ import {
   Cell,
   EmptyWrapper,
   EmptyMsg,
-  EmptyImg,
+  ActionButton,
 } from './styled';
 
-const AdminTable = ({ headers, data, emptyMessage, emptyImage }) => {
+/**
+ * 관리자 페이지 테이블 컴포넌트
+ * @author 임원정
+ * @since 2024.09.03
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.03 	임원정        최초 생성
+ * </pre>
+ */
+
+const AdminTable = ({ headers, data, emptyMessage }) => {
   return (
     <Container>
       {data.length > 0 ? (
@@ -36,7 +48,13 @@ const AdminTable = ({ headers, data, emptyMessage, emptyImage }) => {
                         cellIndex === 1 || cellIndex === 2 ? 'left' : 'center'
                       }
                     >
-                      {cell}
+                      {cell.type === 'text' ? (
+                        cell.value
+                      ) : cell.type === 'button' ? (
+                        <ActionButton color={cell.color} onClick={cell.onClick}>
+                          {cell.value}
+                        </ActionButton>
+                      ) : null}
                     </Cell>
                   ))}
                 </tr>
@@ -47,7 +65,6 @@ const AdminTable = ({ headers, data, emptyMessage, emptyImage }) => {
       ) : (
         <EmptyWrapper>
           <EmptyMsg>{emptyMessage}</EmptyMsg>
-          {emptyImage && <EmptyImg src={emptyImage} alt='Empty' />}
         </EmptyWrapper>
       )}
     </Container>
@@ -55,16 +72,9 @@ const AdminTable = ({ headers, data, emptyMessage, emptyImage }) => {
 };
 
 AdminTable.propTypes = {
-  title: PropTypes.string.isRequired,
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyMessage: PropTypes.string,
-  emptyImage: PropTypes.string,
-};
-
-AdminTable.defaultProps = {
-  emptyMessage: '데이터가 없습니다.',
-  emptyImage: null,
 };
 
 export default AdminTable;
