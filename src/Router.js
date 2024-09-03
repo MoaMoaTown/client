@@ -18,6 +18,7 @@ import Closet from './pages/Closet';
 import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 import JobMoa from './pages/JobMoa';
+import AdminMain from './pages/AdminMain';
 
 /**
  * 라우터
@@ -37,8 +38,10 @@ import JobMoa from './pages/JobMoa';
  * 2024.08.30   이주현        Knowledge, Account, SelectRole 추가
  * 2024.08.30   임원정        ClosetEntry 추가
  * 2024.09.01   이주현        Quest 추가
+ * 2024.09.01   임원정        Closet 추가
  * 2024.09.02   임재성        JobMoa 추가
  * 2024.09.03   이주현        ProtectedRoute 추가
+ * 2024.09.03   임원정        AdminMain 추가
  * </pre>
  */
 
@@ -50,6 +53,7 @@ const Router = () => {
         <Route path='/' element={<Onboarding />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/select-role' element={<SelectRole />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         <Route
@@ -83,10 +87,6 @@ const Router = () => {
           element={<ProtectedRoute element={<Closet />} />}
         />
         <Route
-          path='/select-role'
-          element={<ProtectedRoute element={<SelectRole />} />}
-        />
-        <Route
           path='/invest'
           element={<ProtectedRoute element={<Invest />} />}
         />
@@ -95,12 +95,11 @@ const Router = () => {
           path='/jobmoa'
           element={<ProtectedRoute element={<JobMoa />} />}
         />
-
-        {/*시장 권한만 접근 가능*/}
         {/* <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}
         /> */}
+        <Route path='/admin' element={<AdminMain />} />
       </Routes>
     </BrowserRouter>
   );

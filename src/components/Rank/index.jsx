@@ -12,6 +12,7 @@ import {
   ModalImage,
 } from './styled';
 import moa from '../../assets/images/moa.svg';
+import heendy from '../../assets/images/default_heendy.png';
 
 const Rank = ({ ordinal, profile, nickname, balance, isCurrentUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,12 +25,14 @@ const Rank = ({ ordinal, profile, nickname, balance, isCurrentUser }) => {
     setIsModalOpen(false);
   };
 
+  const profileSrc = profile || heendy;
+
   return (
     <>
       <Container isCurrentUser={isCurrentUser}>
         <LeftWrapper>
           <Ordinal ordinal={ordinal} />
-          <Profile src={profile} onClick={handleImageClick} />
+          <Profile src={profileSrc} onClick={handleImageClick} />
           <Nickname>{nickname}</Nickname>
         </LeftWrapper>
         <RightWrapper>
@@ -39,7 +42,7 @@ const Rank = ({ ordinal, profile, nickname, balance, isCurrentUser }) => {
       </Container>
       {isModalOpen && (
         <Modal onClick={handleCloseModal}>
-          <ModalImage src={profile} />
+          <ModalImage src={profileSrc} />
         </Modal>
       )}
     </>
