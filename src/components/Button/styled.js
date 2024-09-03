@@ -185,6 +185,28 @@ const buttonStyles = {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    @media (min-width: 1024px) {
+      width: 6vw;
+      height: 5vh;
+      padding: 1dvh 2dvw;
+      font-weight: bold;
+    }
+  `,
+  makeTownBtn: css`
+    width: 12dvw;
+    height: 5dvh;
+    background-color: ${colors.green};
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    &:disabled {
+      background-color: ${colors.gray};
+      cursor: not-allowed;
+      color: white;
+    }
   `,
 };
 
