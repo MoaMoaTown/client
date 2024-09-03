@@ -56,3 +56,17 @@ export { default as NotiModal } from './NotiModal';
 export { default as JobList } from './JobList';
 // 역할 신청 모달
 export { default as CommentModal } from './CommentModal';
+// 시장 페이지 헤더
+export { default as AdminHeader } from './AdminHeader';
+// 시장 페이지 내비게이션 메뉴
+export { default as AdminNav } from './AdminNav';
+// 타운 세금 현황
+export { default as TownTaxStatus } from './TownTaxStatus';
+// 역할 요청 현황
+export { default as JobStatus } from './JobStatus';
+// 위시 요청 현황
+export { default as WishStatus } from './WishStatus';
+// 퀘스트 현황
+export { default as QuestStatus } from './QuestStatus';
+// 현황 테이블
+export { default as StatusTable } from './StatusTable';

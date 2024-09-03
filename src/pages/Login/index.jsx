@@ -44,7 +44,7 @@ const Login = () => {
       if (role === 1) {
         // role이 1이면 관리자 페이지로 리디렉션
         if (hasTownId) {
-          //navigate('/admin-main');
+          navigate('/admin');
         } else {
           //navigate('/admin-maketown');
         }
