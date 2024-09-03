@@ -1,9 +1,12 @@
 import { axiosInstance } from './index';
 
-export const clothesList = async () => {
-  const response = await axiosInstance.get('/clothes/list', {});
+export const fetchClothesList = async ({ page }) => {
+  const response = await axiosInstance.get('/clothes/list', {
+    params: { page, size: 3 },
+  });
   return response.data;
 };
+
 export const purchaseClothes = async (clothId) => {
   console.log('서버로 전송할 clothId:', clothId); // 서버로 전송하기 전 로그 출력
   const response = await axiosInstance.post('/clothes/purchase', clothId, {
@@ -14,9 +17,10 @@ export const purchaseClothes = async (clothId) => {
   return response.data;
 };
 
-// 위시리스트를 가져오는 API 호출
-export const getWishlist = async () => {
-  const response = await axiosInstance.get('/wish/wishlist', {});
+export const fetchWishlist = async ({ page }) => {
+  const response = await axiosInstance.get('/wish/wishlist', {
+    params: { page, size: 5 },
+  });
   return response.data;
 };
 

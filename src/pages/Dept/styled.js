@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
-import dept_back from '../../assets/images/dept_back.svg';
+import bg_green from '../../assets/images/bg_green.svg';
 
 export const Container = styled.div`
   background: ${colors.background_gray};
@@ -22,20 +22,20 @@ export const DeptTitle = styled.div`
 
 export const ContentWrapper = styled.div`
   width: 90%;
-  padding: 5% 5%;
+  padding: 10% 5%;
   height: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-image: url(${dept_back});
+  background-image: url(${bg_green});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 `;
 
 export const ClothButtonStyled = styled.div`
-  height: 84%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ export const ToggleWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.white};
-  border-radius: 20px;
+  border-radius: 200px;
   padding: 5px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -61,7 +61,7 @@ export const ToggleContainer = styled.div`
   width: 100%;
   position: relative;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 15px;
 `;
 
 export const ActiveBackground = styled.div`
@@ -71,23 +71,25 @@ export const ActiveBackground = styled.div`
   width: 50%;
   height: 100%;
   background-color: ${colors.green};
-  border-radius: 20px;
+  border-radius: 200px;
   transition: left 0.5s ease;
-  z-index: 1; /* 배경색이 아래에 위치하게 설정 */
+  z-index: 1;
 `;
 
 export const ToggleButton = styled.button`
   flex: 1;
-  background-color: transparent; /* 배경을 투명하게 설정 */
-  color: ${(props) => (props.active ? colors.white : colors.black)};
+  background-color: transparent;
+  color: ${(props) => (props.active ? colors.white : colors.gray)};
+  font-size: 1.3rem;
+  font-weight: bold;
   border: none;
   padding: 10px 20px;
   margin: 0;
-  border-radius: 20px;
+  border-radius: 15px;
   cursor: pointer;
   transition: color 0.3s ease;
-  z-index: 2; /* 버튼의 텍스트가 배경색 위에 오도록 설정 */
-  position: relative; /* z-index를 적용하기 위해 position 설정 */
+  z-index: 2;
+  position: relative;
 
   &:hover {
     color: ${(props) => (props.active ? colors.white : colors.black)};
@@ -103,4 +105,107 @@ export const MoaImage = styled.img`
   width: 8dvw;
   height: 8dvh;
   margin-left: 5px;
+`;
+
+// 추가된 모달 관련 스타일
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const ModalContent = styled.div`
+  background: ${colors.white};
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 60%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+`;
+
+export const ModalImage = styled.img`
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 20px;
+`;
+
+export const ModalBrand = styled.div`
+  font-weight: bold;
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  margin-top: -1dvh;
+`;
+
+export const ModalName = styled.div`
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+`;
+
+export const ModalPriceWrapper = styled.div`
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -4dvh;
+  margin-left: -4dvw;
+`;
+
+// export const ModalButtonWrapper = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 20px;
+// `;
+export const ModalButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center; /* 버튼들을 왼쪽 정렬 */
+  margin-top: 20px;
+
+  button {
+    margin-right: 20px; /* 버튼 간의 간격을 설정 (마지막 버튼은 제외하려면 nth-child 등을 사용) */
+  }
+
+  button:last-child {
+    margin-right: 0; /* 마지막 버튼은 간격 제거 */
+  }
+`;
+
+export const CloseButton = styled.button`
+  background-color: ${colors.gray};
+  color: ${colors.white};
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${colors.light_green};
+  }
+`;
+
+export const MoaImageinModal = styled.img`
+  width: 12dvw; /* 원하는 크기로 조정 */
+  height: 8dvh;
+  margin-right: 1dvw; /* 가격과 이미지 사이의 간격 */
+`;
+
+export const LoadMoreTrigger = styled.div`
+  border: 1px solid transparent;
+`;
+
+export const WishWrapWrap = styled.div`
+  margin-bottom: 40px;
 `;

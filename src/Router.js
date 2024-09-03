@@ -19,6 +19,7 @@ import SelectRole from './pages/SelectRole';
 import Quest from './pages/Quest';
 import JobMoa from './pages/JobMoa';
 import AdminMain from './pages/AdminMain';
+import MakeTown from './pages/MakeTown';
 import AdminJob from './pages/AdminJob';
 import AdminJobRequest from './pages/AdminJobRequest';
 
@@ -43,7 +44,7 @@ import AdminJobRequest from './pages/AdminJobRequest';
  * 2024.09.01   임원정        Closet 추가
  * 2024.09.02   임재성        JobMoa 추가
  * 2024.09.03   이주현        ProtectedRoute 추가
- * 2024.09.03   임원정        AdminMain 추가
+ * 2024.09.03   임원정        AdminMain, MakeTown 추가
  * </pre>
  */
 
@@ -56,6 +57,7 @@ const Router = () => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/select-role' element={<SelectRole />} />
+        <Route path='/make-town' element={<MakeTown />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         <Route
@@ -97,6 +99,8 @@ const Router = () => {
           path='/jobmoa'
           element={<ProtectedRoute element={<JobMoa />} />}
         />
+
+        {/*시장 권한만 접근 가능*/}
         <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}

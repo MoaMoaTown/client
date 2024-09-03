@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
+import { useNavigate } from 'react-router-dom';
 import { Loading } from '../index';
 import landModel from '../../assets/glb/land.glb';
 import cloudModel1 from '../../assets/glb/cloud1.glb';
@@ -16,35 +17,45 @@ import characterModel from '../../assets/glb/heendy_with_closet.glb';
 import jellyModel from '../../assets/glb/jelly.glb';
 import logoModel from '../../assets/glb/logo.glb';
 
-const Model = React.memo(({ url, refProp, scale, brightness, onLoad }) => {
-  const { scene: loadedScene } = useGLTF(url);
+const Model = React.memo(
+  ({ url, refProp, scale, brightness, onLoad, onClick }) => {
+    const { scene: loadedScene } = useGLTF(url);
 
-  useEffect(() => {
-    if (loadedScene && brightness) {
-      loadedScene.traverse((child) => {
-        if (child.isMesh && child.material) {
-          child.material.color = new THREE.Color(1, 1, 1);
-          child.material.emissive = new THREE.Color(
-            brightness,
-            brightness,
-            brightness
-          );
-          child.material.emissiveIntensity = 1;
-        }
-      });
-    }
+    useEffect(() => {
+      if (loadedScene && brightness) {
+        loadedScene.traverse((child) => {
+          if (child.isMesh && child.material) {
+            child.material.color = new THREE.Color(1, 1, 1);
+            child.material.emissive = new THREE.Color(
+              brightness,
+              brightness,
+              brightness
+            );
+            child.material.emissiveIntensity = 1;
+          }
+        });
+      }
 
-    if (onLoad) {
-      onLoad(loadedScene);
-    }
-  }, [loadedScene, brightness, onLoad]);
+      if (onLoad) {
+        onLoad(loadedScene);
+      }
+    }, [loadedScene, brightness, onLoad]);
 
-  return <primitive ref={refProp} object={loadedScene} scale={scale} />;
-});
+    return (
+      <primitive
+        ref={refProp}
+        object={loadedScene}
+        scale={scale}
+        onClick={onClick}
+      />
+    );
+  }
+);
 
 export default function Model3D() {
   const [loading, setLoading] = useState(true);
   const [loadedModels, setLoadedModels] = useState(0);
+  const navigate = useNavigate();
   const landRef = useRef();
   const departmentRef = useRef();
   const boardRef = useRef();
@@ -58,6 +69,35 @@ export default function Model3D() {
   const cloudRef1 = useRef();
   const cloudRef2 = useRef();
   const cloudRef3 = useRef();
+
+  const handleModelClick = (modelName) => {
+    switch (modelName) {
+      case 'Department':
+        navigate('/dept');
+        break;
+      case 'Quest':
+        navigate('/quest');
+        break;
+      case 'Ranking':
+        navigate('/rank');
+        break;
+      case 'Jobmoa':
+        navigate('/jobmoa');
+        break;
+      case 'Invest':
+        navigate('/invest');
+        break;
+      case 'Closet':
+        navigate('/closet-entry');
+        break;
+      case 'Knowledge':
+        navigate('/knowledge');
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const handleModelLoad = (loadedScene, name) => {
     setLoadedModels((prev) => prev + 1);
@@ -117,7 +157,7 @@ export default function Model3D() {
     cloudRef2.current.position.set(-0.8, 2.4, 1);
     cloudRef2.current.rotation.set(0, Math.PI / 2, 0);
 
-    cloudRef3.current.position.set(1, 2.3, -1);
+    cloudRef3.current.position.set(1, 2.5, -1);
     cloudRef3.current.rotation.set(0, Math.PI / 6, 0);
   };
 
@@ -196,41 +236,48 @@ export default function Model3D() {
           refProp={departmentRef}
           scale={new THREE.Vector3(0.07, 0.07, 0.04)}
           onLoad={(scene) => handleModelLoad(scene, 'Department')}
+          onClick={() => handleModelClick('Department')}
         />
         <Model
           url={boardModel}
           refProp={boardRef}
           scale={new THREE.Vector3(0.15, 0.15, 0.15)}
           onLoad={(scene) => handleModelLoad(scene, 'Board')}
+          onClick={() => handleModelClick('Quest')}
         />
         <Model
           url={fountainModel}
           refProp={fountainRef}
           scale={new THREE.Vector3(0.1, 0.1, 0.1)}
           onLoad={(scene) => handleModelLoad(scene, 'Fountain')}
+          onClick={() => handleModelClick('Ranking')}
         />
         <Model
           url={jobMoaModel}
           refProp={jobMoaRef}
           scale={new THREE.Vector3(0.15, 0.15, 0.15)}
           onLoad={(scene) => handleModelLoad(scene, 'Job Moa')}
+          onClick={() => handleModelClick('Jobmoa')}
         />
         <Model
           url={investModel}
           refProp={investRef}
-          onLoad={(scene) => handleModelLoad(scene, 'Bank')}
+          onLoad={(scene) => handleModelLoad(scene, 'Invest')}
+          onClick={() => handleModelClick('Invest')}
         />
         <Model
           url={characterModel}
           refProp={characterRef}
           scale={new THREE.Vector3(0.2, 0.2, 0.2)}
           onLoad={(scene) => handleModelLoad(scene, 'Character')}
+          onClick={() => handleModelClick('Closet')}
         />
         <Model
           url={jellyModel}
           refProp={jellyRef}
           scale={new THREE.Vector3(0.5, 0.5, 0.5)}
           onLoad={(scene) => handleModelLoad(scene, 'Jelly')}
+          onClick={() => handleModelClick('Knowledge')}
         />
         <Model
           url={logoModel}

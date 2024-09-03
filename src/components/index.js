@@ -70,5 +70,7 @@ export { default as WishStatus } from './WishStatus';
 export { default as QuestStatus } from './QuestStatus';
 // 현황 테이블
 export { default as StatusTable } from './StatusTable';
+// 타운 코드 모달
+export { default as TownCodeModal } from './TownCodeModal';
 // 관리자 페이지 테이블
 export { default as AdminTable } from './AdminTable';

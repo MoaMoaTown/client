@@ -47,7 +47,7 @@ const Login = () => {
         if (hasTownId) {
           navigate('/admin');
         } else {
-          //navigate('/admin-maketown');
+          navigate('/make-town');
         }
       } else if (role === 0) {
         if (hasTownId) {
