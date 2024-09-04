@@ -27,16 +27,18 @@ export const fetchTax = async () => {
   return response.data;
 };
 
-export const fetchJobRequests = async () => {
-  const response = await axiosInstance.get(`/town/job/requests`);
+export const fetchJobRequests = async (page = 1, size = 10) => {
+  const response = await axiosInstance.get(`/town/job/requests`, {
+    params: { page, size },
+  });
   return response.data;
 };
 
-export const createJob = async (jobData) => {
+export const createJob = async ({ name, description, pay }) => {
   const response = await axiosInstance.post(`/town/job/create`, {
-    name: jobData.name,
-    description: jobData.description,
-    pay: jobData.pay,
+    name,
+    description,
+    pay,
   });
   return response.data;
 };
@@ -51,13 +53,21 @@ export const createQuest = async (requestDTO) => {
   return response.data;
 };
 
-export const fetchQuestStatusList = async () => {
-  const response = await axiosInstance.get(`/town/quest/status`);
+export const fetchQuestStatusList = async (page = 1, size = 10) => {
+  const response = await axiosInstance.get(`/town/quest/status`, {
+    params: { page, size },
+  });
   return response.data;
 };
 
-export const fetchMemberQuestRequests = async (questId) => {
-  const response = await axiosInstance.get(`/town/quest/requests/${questId}`);
+export const fetchMemberQuestRequests = async (
+  questId,
+  page = 1,
+  size = 10
+) => {
+  const response = await axiosInstance.get(`/town/quest/requests/${questId}`, {
+    params: { page, size },
+  });
   return response.data;
 };
 
@@ -92,7 +102,9 @@ export const completeWishItem = async (memberWishId) => {
   return response.data;
 };
 
-export const fetchMemberWishRequests = async () => {
-  const response = await axiosInstance.get(`/town/wish/requests`);
+export const fetchMemberWishRequests = async (page = 1, size = 10) => {
+  const response = await axiosInstance.get(`/town/wish/requests`, {
+    params: { page, size },
+  });
   return response.data;
 };

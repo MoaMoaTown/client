@@ -75,3 +75,25 @@ export const ActionButton = styled.button`
     background-color: ${colors.gray};
   }
 `;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 3vh;
+`;
+
+export const PageButton = styled.button`
+  background-color: transparent;
+  color: ${({ active }) => (active ? 'black' : `${colors.dark_gray}`)};
+  border: none;
+  padding: 1vh 0vw;
+  margin: 0 0.5vw;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  text-decoration: ${({ active }) => (active ? 'underline' : 'none')};
+
+  &:hover {
+    color: black;
+  }
+`;

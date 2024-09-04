@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../index';
 import useDebouncedState from '../../hooks/useDebouncedState';
 import {
@@ -55,13 +55,11 @@ const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
         <ModalContent>
           <Label>역할 이름</Label>
           <Input
-            value={name}
             onChange={(e) => debouncedSetName(e.target.value)}
             placeholder='역할의 이름을 입력하세요'
           />
           <Label>설명</Label>
           <Input
-            value={description}
             onChange={(e) => debouncedSetDescription(e.target.value)}
             placeholder='설명을 입력하세요'
           />
@@ -70,7 +68,6 @@ const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
             <MoaImage src={moaIcon} alt='Moa Icon' />
             <PayInput
               type='number'
-              value={pay}
               onChange={(e) => debouncedSetPay(Number(e.target.value))}
               min='0'
               placeholder='급여를 입력하세요'

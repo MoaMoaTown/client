@@ -10,6 +10,8 @@ import {
   EmptyWrapper,
   EmptyMsg,
   ActionButton,
+  PaginationWrapper,
+  PageButton,
 } from './styled';
 
 /**
@@ -25,7 +27,30 @@ import {
  * </pre>
  */
 
-const AdminTable = ({ headers, data, emptyMessage }) => {
+const AdminTable = ({
+  headers,
+  data,
+  emptyMessage,
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
+  const renderPageButtons = () => {
+    const buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <PageButton
+          key={i}
+          onClick={() => onPageChange(i)}
+          active={i === currentPage}
+        >
+          {i}
+        </PageButton>
+      );
+    }
+    return buttons;
+  };
+
   return (
     <Container>
       {data.length > 0 ? (
@@ -61,6 +86,7 @@ const AdminTable = ({ headers, data, emptyMessage }) => {
               ))}
             </Tbody>
           </Table>
+          <PaginationWrapper>{renderPageButtons()}</PaginationWrapper>
         </TableWrapper>
       ) : (
         <EmptyWrapper>
@@ -69,12 +95,6 @@ const AdminTable = ({ headers, data, emptyMessage }) => {
       )}
     </Container>
   );
-};
-
-AdminTable.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  emptyMessage: PropTypes.string,
 };
 
 export default AdminTable;

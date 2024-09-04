@@ -16,6 +16,7 @@ import {
 } from '../../components';
 import back from '../../assets/images/back.svg';
 import heendy from '../../assets/images/heendy_body.png';
+import face1 from '../../assets/images/heendy_face1.png';
 import { updateProfile } from '../../apis/closetApi';
 import html2canvas from 'html2canvas';
 
@@ -69,8 +70,6 @@ const Closet = () => {
         setClothes([...clothes, itemData]);
         setSelectedItems((prev) => [...prev, itemData.id]);
       }
-
-      console.log(selectedItems);
     }
   };
 
@@ -86,6 +85,9 @@ const Closet = () => {
     setIsModalOpen(false);
     updateProfile(profileImage)
       .then((response) => {
+        setSelectedItems([]);
+        setSelectedType(0);
+        setSelectedFace(face1);
         navigate('/closet-entry');
       })
       .catch((error) => {

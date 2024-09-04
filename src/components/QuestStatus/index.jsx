@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchQuestStatusList } from '../../apis/townApi';
-import { StatusTable } from '../index';
+import { StatusTable, Loading } from '../index';
 
 /**
  * 퀘스트 현황 컴포넌트
@@ -17,10 +17,13 @@ import { StatusTable } from '../index';
  */
 
 const QuestStatus = () => {
-  const { data: questStatus = [] } = useQuery(
-    'questStatus',
-    fetchQuestStatusList
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(4);
+  const { data, isLoading } = useQuery(['questStatus', page, size], () =>
+    fetchQuestStatusList(page, size)
   );
+
+  const questStatus = data?.content || [];
 
   const headers = ['No', '퀘스트', '선정 현황'];
   const tableData = questStatus.map((quest, index) => ({
@@ -29,12 +32,17 @@ const QuestStatus = () => {
     status: `${quest.selectedCnt}/${quest.capacity}`,
   }));
 
+  if (isLoading) {
+    return <Loading text='데이터를 불러오는 중...' />;
+  }
+
   return (
     <StatusTable
       title='퀘스트 수행 현황'
       headers={headers}
       data={tableData}
       emptyMessage='퀘스트 수행 내역이 없습니다.'
+      goto='/admin/quest'
     />
   );
 };
