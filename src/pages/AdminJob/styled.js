@@ -13,7 +13,7 @@ import { colors } from '../../styles/colors';
 //   box-sizing: border-box;
 // `;
 
-// export const Wrapper = styled.div`
+// export const BodyWrapper = styled.div`
 //   width: 100%;
 //   height: 100%;
 //   display: flex;
@@ -25,9 +25,19 @@ import { colors } from '../../styles/colors';
 export const ContentWrapper = styled.div`
   width: 80%;
   height: 100%;
-  display: grid;
-  gap: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
   margin-left: 4vw;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  border-radius: 10px;
+`;
+
+export const Title = styled.div`
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 2vw;
+  margin-bottom: 1vw;
 `;

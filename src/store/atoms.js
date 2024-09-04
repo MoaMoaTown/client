@@ -44,3 +44,9 @@ export const selectedFaceState = atom({
   key: 'selectedFaceState',
   default: face1,
 });
+
+export const townInfoState = atom({
+  key: 'townInfoState',
+  default: {},
+  effects_UNSTABLE: [persistAtom],
+});

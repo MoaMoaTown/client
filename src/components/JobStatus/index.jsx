@@ -27,7 +27,12 @@ const JobStatus = () => {
   }));
 
   return (
-    <StatusTable title='역할 신청 현황' headers={headers} data={tableData} />
+    <StatusTable
+      title='역할 신청 현황'
+      headers={headers}
+      data={tableData}
+      emptyMessage='역할 신청 내역이 없습니다.'
+    />
   );
 };
 

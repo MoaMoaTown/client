@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
-  Title,
   TableWrapper,
   Table,
   Thead,
   Tbody,
   Cell,
-  EmptyMsg,
-  EmptyImg,
   EmptyWrapper,
+  EmptyMsg,
+  ActionButton,
 } from './styled';
-import empty from '../../assets/images/empty.png';
 
 /**
- * 현황 테이블 컴포넌트
+ * 관리자 페이지 테이블 컴포넌트
  * @author 임원정
  * @since 2024.09.03
  * @version 1.0
@@ -27,16 +25,10 @@ import empty from '../../assets/images/empty.png';
  * </pre>
  */
 
-const StatusTable = ({ title, headers, data, emptyMessage }) => {
+const AdminTable = ({ headers, data, emptyMessage }) => {
   return (
     <Container>
-      <Title>{title}</Title>
-      {data.length === 0 ? (
-        <EmptyWrapper>
-          <EmptyImg src={empty} />
-          <EmptyMsg>{emptyMessage}</EmptyMsg>
-        </EmptyWrapper>
-      ) : (
+      {data.length > 0 ? (
         <TableWrapper>
           <Table>
             <thead>
@@ -52,9 +44,17 @@ const StatusTable = ({ title, headers, data, emptyMessage }) => {
                   {Object.values(row).map((cell, cellIndex) => (
                     <Cell
                       key={cellIndex}
-                      align={cellIndex === 1 ? 'left' : 'center'}
+                      align={
+                        cellIndex === 1 || cellIndex === 2 ? 'left' : 'center'
+                      }
                     >
-                      {cell}
+                      {cell.type === 'text' ? (
+                        cell.value
+                      ) : cell.type === 'button' ? (
+                        <ActionButton onClick={cell.onClick}>
+                          {cell.value}
+                        </ActionButton>
+                      ) : null}
                     </Cell>
                   ))}
                 </tr>
@@ -62,16 +62,19 @@ const StatusTable = ({ title, headers, data, emptyMessage }) => {
             </Tbody>
           </Table>
         </TableWrapper>
+      ) : (
+        <EmptyWrapper>
+          <EmptyMsg>{emptyMessage}</EmptyMsg>
+        </EmptyWrapper>
       )}
     </Container>
   );
 };
 
-StatusTable.propTypes = {
-  title: PropTypes.string.isRequired,
+AdminTable.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   emptyMessage: PropTypes.string,
 };
 
-export default StatusTable;
+export default AdminTable;

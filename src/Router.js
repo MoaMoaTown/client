@@ -20,6 +20,8 @@ import Quest from './pages/Quest';
 import JobMoa from './pages/JobMoa';
 import AdminMain from './pages/AdminMain';
 import MakeTown from './pages/MakeTown';
+import AdminJob from './pages/AdminJob';
+import AdminJobRequest from './pages/AdminJobRequest';
 
 /**
  * 라우터
@@ -102,6 +104,16 @@ const Router = () => {
         <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}
+        />
+        <Route
+          path='/admin/job'
+          element={<ProtectedRoute element={<AdminJob />} requiredRole={1} />}
+        />
+        <Route
+          path='/admin/job-request'
+          element={
+            <ProtectedRoute element={<AdminJobRequest />} requiredRole={1} />
+          }
         />
       </Routes>
     </BrowserRouter>

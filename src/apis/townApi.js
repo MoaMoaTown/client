@@ -32,11 +32,11 @@ export const fetchJobRequests = async () => {
   return response.data;
 };
 
-export const createJob = async (name, description, pay) => {
+export const createJob = async (jobData) => {
   const response = await axiosInstance.post(`/town/job/create`, {
-    name,
-    description,
-    pay,
+    name: jobData.name,
+    description: jobData.description,
+    pay: jobData.pay,
   });
   return response.data;
 };

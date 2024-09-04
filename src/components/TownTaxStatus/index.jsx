@@ -1,4 +1,6 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { townInfoState } from '../../store/atoms';
 import {
   Container,
   HandsImage,
@@ -11,15 +13,17 @@ import {
 import hands from '../../assets/images/clappinghands.png';
 import moa from '../../assets/images/moa.svg';
 
-const TownTaxStatus = ({ townInfo }) => {
+const TownTaxStatus = () => {
+  const town = useRecoilValue(townInfoState);
+
   return (
     <Container>
-      <Title>{townInfo.name} 세금현황</Title>
+      <Title>{town.name} 세금현황</Title>
       <Text>지금까지 세금이 이만큼 모였어요!</Text>
       <HandsImage src={hands} />
       <TaxWrapper>
         <MoaImage src={moa} />
-        <TaxText>{townInfo.totalTax}</TaxText>
+        <TaxText>{town.totalTax}</TaxText>
       </TaxWrapper>
     </Container>
   );
