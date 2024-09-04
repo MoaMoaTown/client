@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Container,
   TableWrapper,
@@ -10,8 +9,6 @@ import {
   EmptyWrapper,
   EmptyMsg,
   ActionButton,
-  PaginationWrapper,
-  PageButton,
 } from './styled';
 
 /**
@@ -27,30 +24,7 @@ import {
  * </pre>
  */
 
-const AdminTable = ({
-  headers,
-  data,
-  emptyMessage,
-  currentPage,
-  totalPages,
-  onPageChange,
-}) => {
-  const renderPageButtons = () => {
-    const buttons = [];
-    for (let i = 1; i <= totalPages; i++) {
-      buttons.push(
-        <PageButton
-          key={i}
-          onClick={() => onPageChange(i)}
-          active={i === currentPage}
-        >
-          {i}
-        </PageButton>
-      );
-    }
-    return buttons;
-  };
-
+const AdminTable = ({ headers, data, emptyMessage, alignments = [] }) => {
   return (
     <Container>
       {data.length > 0 ? (
@@ -69,9 +43,7 @@ const AdminTable = ({
                   {Object.values(row).map((cell, cellIndex) => (
                     <Cell
                       key={cellIndex}
-                      align={
-                        cellIndex === 1 || cellIndex === 2 ? 'left' : 'center'
-                      }
+                      align={alignments[cellIndex] || 'center'}
                     >
                       {cell.type === 'text' ? (
                         cell.value
@@ -86,7 +58,6 @@ const AdminTable = ({
               ))}
             </Tbody>
           </Table>
-          <PaginationWrapper>{renderPageButtons()}</PaginationWrapper>
         </TableWrapper>
       ) : (
         <EmptyWrapper>

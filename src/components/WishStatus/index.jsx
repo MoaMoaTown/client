@@ -18,12 +18,12 @@ import { StatusTable, Loading } from '../index';
 
 const WishStatus = () => {
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(4);
+  const [size] = useState(4);
   const { data, isLoading } = useQuery(['wishRequests', page, size], () =>
     fetchMemberWishRequests(page, size)
   );
 
-  const wishRequests = data?.content || [];
+  const wishRequests = data || [];
 
   const headers = ['No', '위시 상품', '신청인'];
   const tableData = wishRequests.map((wishRequest, index) => ({

@@ -35,6 +35,7 @@ export const TitleText = styled.h2`
   color: black;
   font-weight: bold;
   text-align: center;
+  margin-top: 3vh;
   margin-bottom: 4vh;
 `;
 
