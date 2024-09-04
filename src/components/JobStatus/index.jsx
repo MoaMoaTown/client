@@ -23,7 +23,7 @@ const JobStatus = () => {
     fetchJobRequests(page, size)
   );
 
-  const jobrequests = data?.content || [];
+  const jobrequests = data || [];
 
   const headers = ['No', '역할', '신청인'];
   const tableData = jobrequests.map((jobrequest, index) => ({

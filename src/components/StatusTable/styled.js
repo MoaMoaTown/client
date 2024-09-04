@@ -25,31 +25,12 @@ export const TableWrapper = styled.div`
   position: relative;
   margin-top: 1.6vw;
   margin-bottom: 2vw;
-
-  &::-webkit-scrollbar {
-    width: 0.4vw;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${colors.dark_gray};
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: ${colors.background_gray};
-  }
 `;
 
 export const Table = styled.table`
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  thead {
-    position: sticky;
-    top: 0;
-    background-color: ${colors.table_orange};
-    z-index: 1;
-  }
 
   th:nth-child(1),
   td:nth-child(1) {
@@ -81,6 +62,7 @@ export const Thead = styled.th`
   padding: 0.8dvw;
   font-weight: bold;
   vertical-align: middle;
+  background-color: ${colors.table_orange};
 `;
 
 export const Tbody = styled.tbody`

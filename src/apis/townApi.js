@@ -97,8 +97,11 @@ export const completeMemberQuest = async (memberQuestId) => {
   return response.data;
 };
 
-export const createWishItem = async (requestDTO) => {
-  const response = await axiosInstance.post(`/town/wish/create`, requestDTO);
+export const createWishItem = async ({ wishName, price }) => {
+  const response = await axiosInstance.post(`/town/wish/create`, {
+    wishName,
+    price,
+  });
   return response.data;
 };
 
@@ -116,6 +119,20 @@ export const completeWishItem = async (memberWishId) => {
 
 export const fetchMemberWishRequests = async (page = 1, size = 10) => {
   const response = await axiosInstance.get(`/town/wish/requests`, {
+    params: { page, size },
+  });
+  return response.data;
+};
+
+export const fetchWishlist = async (page = 0, size = 5) => {
+  const response = await axiosInstance.get('/wish/wishlist', {
+    params: { page, size },
+  });
+  return response.data;
+};
+
+export const getJobsByTownId = async (page = 0, size = 5) => {
+  const response = await axiosInstance.get('/jobs/list', {
     params: { page, size },
   });
   return response.data;

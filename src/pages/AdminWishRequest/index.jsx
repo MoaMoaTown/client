@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import { fetchJobRequests, allowJobRequest } from '../../apis/townApi';
+import { fetchMemberWishRequests, completeWishItem } from '../../apis/townApi';
 import AdminLayout from '../../layouts/AdminLayout';
 import { AdminTable, AdminModal, Loading } from '../../components';
 import {
@@ -12,61 +12,62 @@ import {
 } from './styled';
 
 /**
- * 관리자 역할 신청 내역 페이지
+ * 관리자 위시 요청 내역 페이지
  * @author 임원정
- * @since 2024.09.03
+ * @since 2024.09.04
  * @version 1.0
  *
  * <pre>
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
- * 2024.09.03 	임원정        최초 생성
+ * 2024.09.04 	임원정        최초 생성
  * </pre>
  */
 
-const AdminJobRequest = () => {
+const AdminWishRequest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedJobRequestId, setSelectedJobRequestId] = useState(null);
+  const [selectedMemberWishId, setSelectedMemberWishId] = useState(null);
 
   const [page, setPage] = useState(1);
   const [size] = useState(10);
 
   const { data, isLoading, refetch } = useQuery(
-    ['jobRequests', page, size],
-    () => fetchJobRequests(page, size),
+    ['wishRequests', page, size],
+    () => fetchMemberWishRequests(page, size),
     { keepPreviousData: true }
   );
-  const jobRequests = data || [];
 
-  const headers = ['No', '역할', '코멘트', '신청인', '승인 여부'];
-  const tableData = jobRequests.map((jobrequest, index) => ({
+  const wishRequests = data || [];
+
+  const headers = ['No', '상품명', '신청인', '신청날짜', '사용 여부'];
+  const tableData = wishRequests.map((wishRequest, index) => ({
     no: { type: 'text', value: (page - 1) * size + index + 1 },
-    name: { type: 'text', value: jobrequest.name },
-    comments: { type: 'text', value: jobrequest.comments },
-    nickName: { type: 'text', value: jobrequest.nickName },
-    allowYN: {
-      type: jobrequest.allowYN === 'Y' ? 'text' : 'button',
-      value: jobrequest.allowYN === 'Y' ? '승인 완료' : '승인',
+    wishName: { type: 'text', value: wishRequest.wishName },
+    nickName: { type: 'text', value: wishRequest.nickName },
+    createdAt: { type: 'text', value: wishRequest.createdAt },
+    completeYN: {
+      type: wishRequest.completeYN === 'Y' ? 'text' : 'button',
+      value: wishRequest.completeYN === 'Y' ? '완료' : '사용',
       onClick: () => {
-        setSelectedJobRequestId(jobrequest.jobRequestId);
+        setSelectedMemberWishId(wishRequest.memberWishId);
         setIsModalOpen(true);
       },
     },
   }));
 
-  const mutation = useMutation(allowJobRequest, {
+  const mutation = useMutation(completeWishItem, {
     onSuccess: () => {
       refetch();
       setIsModalOpen(false);
     },
     onError: (error) => {
-      console.error('승인 실패:', error);
+      console.error('완료 처리 실패:', error);
     },
   });
 
   const handleConfirm = () => {
-    if (selectedJobRequestId) {
-      mutation.mutate(selectedJobRequestId);
+    if (selectedMemberWishId) {
+      mutation.mutate(selectedMemberWishId);
     }
   };
 
@@ -77,15 +78,15 @@ const AdminJobRequest = () => {
   return (
     <AdminLayout>
       <ContentWrapper>
-        <Title>역할 신청 내역</Title>
+        <Title>위시 요청 내역</Title>
         {isLoading ? (
           <Loading text='로딩 중...' />
         ) : (
           <AdminTable
             headers={headers}
             data={tableData}
-            emptyMessage='역할 신청 내역이 없습니다.'
-            alignments={['center', 'left', 'left', 'center']}
+            emptyMessage='위시 요청 내역이 없습니다.'
+            alignments={['center', 'left', 'center', 'center']}
           />
         )}
         <PaginationWrapper>
@@ -98,7 +99,7 @@ const AdminJobRequest = () => {
           <PageNumber>{page}</PageNumber>
           <PageButton
             onClick={() => setPage((prev) => prev + 1)}
-            disabled={jobRequests.length < size}
+            disabled={wishRequests.length < size}
           >
             다음
           </PageButton>
@@ -109,11 +110,11 @@ const AdminJobRequest = () => {
           isOpen={isModalOpen}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
-          title='승인하시겠습니까?'
+          title='위시 사용 완료 처리하시겠습니까?'
         />
       )}
     </AdminLayout>
   );
 };
 
-export default AdminJobRequest;
+export default AdminWishRequest;

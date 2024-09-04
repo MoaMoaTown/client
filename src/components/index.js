@@ -78,3 +78,7 @@ export { default as AdminTable } from './AdminTable';
 export { default as AdminModal } from './AdminModal';
 // 관리자 페이지 생성 헤더
 export { default as CreateHeader } from './CreateHeader';
+// 역할 만들기 모달
+export { default as CreateJobModal } from './CreateJobModal';
+// 위시상품 만들기 모달
+export { default as CreateWishModal } from './CreateWishModal';

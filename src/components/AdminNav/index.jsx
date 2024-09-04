@@ -48,10 +48,10 @@ const AdminNav = ({ townInfo }) => {
         </Menu>
         <Title>위시 상품</Title>
         <Menu>
-          <MenuLink as={Link} to=''>
+          <MenuLink as={Link} to='/admin/wish'>
             위시 상품 관리
           </MenuLink>
-          <MenuLink as={Link} to=''>
+          <MenuLink as={Link} to='/admin/wish-request'>
             위시 요청 내역
           </MenuLink>
         </Menu>
