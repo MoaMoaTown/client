@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import { fetchJobRequests, allowJobRequest } from '../../apis/townApi';
 import AdminLayout from '../../layouts/AdminLayout';
-import { AdminTable, AdminModal } from '../../components';
+import { AdminTable, AdminModal, Loading } from '../../components';
 import { ContentWrapper, Title } from './styled';
 
 /**
@@ -19,17 +19,23 @@ import { ContentWrapper, Title } from './styled';
  */
 
 const AdminJobRequest = () => {
-  const { data: jobrequests = [], refetch } = useQuery(
-    'jobrequests',
-    fetchJobRequests
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+
+  const { data, isLoading, refetch } = useQuery(
+    ['jobRequests', page, size],
+    () => fetchJobRequests(page, size)
   );
+
+  const jobrequests = data?.content || [];
+  const totalPages = data?.totalPages || 1; // 전체 페이지 수
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJobRequestId, setSelectedJobRequestId] = useState(null);
 
   const headers = ['No', '역할', '코멘트', '신청인', '승인 여부'];
   const tableData = jobrequests.map((jobrequest, index) => ({
-    no: { type: 'text', value: index + 1 },
+    no: { type: 'text', value: (page - 1) * size + index + 1 },
     name: { type: 'text', value: jobrequest.name },
     comments: { type: 'text', value: jobrequest.comments },
     nickName: { type: 'text', value: jobrequest.nickName },
@@ -67,11 +73,18 @@ const AdminJobRequest = () => {
     <AdminLayout>
       <ContentWrapper>
         <Title>역할 신청 내역</Title>
-        <AdminTable
-          headers={headers}
-          data={tableData}
-          emptyMessage='역할 신청 내역이 없습니다.'
-        />
+        {isLoading ? (
+          <Loading text='로딩 중...' />
+        ) : (
+          <AdminTable
+            headers={headers}
+            data={tableData}
+            emptyMessage='역할 신청 내역이 없습니다.'
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={(newPage) => setPage(newPage)}
+          />
+        )}
       </ContentWrapper>
       {isModalOpen && (
         <AdminModal

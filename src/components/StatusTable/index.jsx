@@ -11,8 +11,12 @@ import {
   EmptyMsg,
   EmptyImg,
   EmptyWrapper,
+  MoreIcon,
+  TitleWrapper,
 } from './styled';
 import empty from '../../assets/images/empty.png';
+import more from '../../assets/images/circle_right.svg';
+import { Link } from 'react-router-dom';
 
 /**
  * 현황 테이블 컴포넌트
@@ -27,10 +31,16 @@ import empty from '../../assets/images/empty.png';
  * </pre>
  */
 
-const StatusTable = ({ title, headers, data, emptyMessage }) => {
+const StatusTable = ({ title, headers, data, emptyMessage, goto }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      <TitleWrapper>
+        <Title>{title}</Title>
+        <Link to={goto}>
+          <MoreIcon src={more} />
+        </Link>
+      </TitleWrapper>
+
       {data.length === 0 ? (
         <EmptyWrapper>
           <EmptyImg src={empty} />

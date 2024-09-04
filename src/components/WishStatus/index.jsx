@@ -37,6 +37,7 @@ const WishStatus = () => {
       headers={headers}
       data={tableData}
       emptyMessage='위시 요청 내역이 없습니다.'
+      goto=''
     />
   );
 };

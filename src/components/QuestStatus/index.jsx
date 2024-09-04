@@ -35,6 +35,7 @@ const QuestStatus = () => {
       headers={headers}
       data={tableData}
       emptyMessage='퀘스트 수행 내역이 없습니다.'
+      goto=''
     />
   );
 };

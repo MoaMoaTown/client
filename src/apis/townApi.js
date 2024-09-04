@@ -27,8 +27,10 @@ export const fetchTax = async () => {
   return response.data;
 };
 
-export const fetchJobRequests = async () => {
-  const response = await axiosInstance.get(`/town/job/requests`);
+export const fetchJobRequests = async (page = 1, size = 10) => {
+  const response = await axiosInstance.get(`/town/job/requests`, {
+    params: { page, size },
+  });
   return response.data;
 };
 

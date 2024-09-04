@@ -16,7 +16,6 @@ export const Title = styled.div`
   font-size: 1.4rem;
   text-align: center;
   font-weight: bold;
-  margin-top: 2vw;
 `;
 
 export const TableWrapper = styled.div`
@@ -107,4 +106,20 @@ export const EmptyImg = styled.img`
   width: 8vw;
   height: auto;
   margin-top: 4vh;
+`;
+
+export const MoreIcon = styled.img`
+  width: 2dvw;
+  height: auto;
+  cursor: pointer;
+`;
+
+export const TitleWrapper = styled.div`
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vh;
+  gap: 1vw;
 `;
