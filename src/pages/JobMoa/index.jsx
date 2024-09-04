@@ -28,8 +28,12 @@ const JobMoa = () => {
       setInfoMessage(data.message);
       setIsInfoModalOpen(true);
     },
+
     onError: (error) => {
-      setInfoMessage(`신청 실패: ${error.message}`);
+      // 서버에서 받은 에러 메시지를 추출하여 InfoModal에 전달
+      const errorMessage =
+        error.message || '신청 실패: 알 수 없는 오류가 발생했습니다.';
+      setInfoMessage(`신청 실패: ${errorMessage}`);
       setIsInfoModalOpen(true);
     },
   });
@@ -42,7 +46,8 @@ const JobMoa = () => {
     if (selectedJob) {
       setIsCommentModalOpen(true);
     } else {
-      alert('먼저 직업을 선택해주세요.');
+      setInfoMessage('먼저 직업을 선택해주세요.');
+      setIsInfoModalOpen(true);
     }
   };
 

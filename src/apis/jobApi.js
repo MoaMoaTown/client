@@ -23,7 +23,10 @@ export const applyJob = async ({ jobId, comments }) => {
     });
     return response.data;
   } catch (error) {
-    console.error('직업 신청 중 오류 발생:', error);
-    throw error;
+    // 에러를 throw하여 useMutation의 onError로 전달
+    if (error.response && error.response.data && error.response.data.error) {
+      throw new Error(error.response.data.msg);
+    }
+    throw new Error('직업 신청 중 오류 발생');
   }
 };
