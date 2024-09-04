@@ -38,7 +38,7 @@ export const TitleText = styled.h2`
 `;
 
 export const DescriptionText = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: ${colors.dark_gray};
   margin-bottom: 20px;
 `;
@@ -47,7 +47,7 @@ export const TextArea = styled.textarea`
   width: 100%;
   height: 100px;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   border-radius: 5px;
   border: 1px solid ${colors.gray};
   resize: none;
@@ -78,5 +78,18 @@ export const Button = styled.button`
     background-color: ${colors.primary};
     color: white;
     border: none;
+  }
+`;
+
+export const PayText = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: -1dvh;
+  font-size: 1.2rem;
+  margin-bottom: 2dvh;
+  color: black;
+
+  img {
+    vertical-align: middle;
   }
 `;

@@ -225,6 +225,24 @@ const buttonStyles = {
     border-radius: 10px;
     cursor: pointer;
   `,
+  applyBtn: css`
+    width: 100%;
+    height: 7dvh;
+    background-color: ${colors.dark_green};
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0.1dvh;
+    margin-bottom: 0.8dvh;
+    &:disabled {
+      background-color: ${colors.gray};
+      cursor: not-allowed;
+      color: white;
+    }
+  `,
 };
 
 export const StyledButton = styled.button`

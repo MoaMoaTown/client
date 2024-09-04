@@ -1,28 +1,78 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import React, { useRef, useEffect } from 'react';
+import { useInfiniteQuery } from 'react-query';
 import { getJobsByTownId } from '../../apis/jobApi';
-import { StyledJobButton, PriceWrapper, MoaImage } from './styled';
+import {
+  StyledJobButton,
+  PriceWrapper,
+  MoaImage,
+  ListWrapper,
+  LoadMoreTrigger,
+  LoadingText,
+} from './styled';
 import moaImage from '../../assets/images/moa.svg';
 
 const JobList = ({ onClick, ...rest }) => {
-  const { data: jobs = [], isLoading } = useQuery('jobs', getJobsByTownId);
+  const loadMoreRef = useRef();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const fetchJobs = ({ pageParam = 0 }) =>
+    getJobsByTownId({ page: pageParam, size: 5 }); // 페이지 크기를 5로 설정
+
+  const {
+    data: jobData = { pages: [] },
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isFetchingNextPage,
+  } = useInfiniteQuery('jobs', fetchJobs, {
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === 5 ? allPages.length : undefined;
+    },
+  });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [hasNextPage, fetchNextPage]);
 
   return (
-    <div>
-      {jobs.map((job) => (
-        <StyledJobButton key={job.jobId} onClick={() => onClick(job)} {...rest}>
-          <span>{job.name}</span>
-          <PriceWrapper>
-            {job.pay}
-            <MoaImage src={moaImage} alt='Moa' />
-          </PriceWrapper>
-        </StyledJobButton>
+    <ListWrapper>
+      {isLoading && <LoadingText>Loading...</LoadingText>}
+      {jobData.pages.map((page, index) => (
+        <React.Fragment key={index}>
+          {page.map((job) => (
+            <StyledJobButton
+              key={job.jobId}
+              onClick={() => onClick(job)}
+              {...rest}
+            >
+              <span>{job.name}</span>
+              <PriceWrapper>
+                {job.pay}
+                <MoaImage src={moaImage} alt='Moa' />
+              </PriceWrapper>
+            </StyledJobButton>
+          ))}
+        </React.Fragment>
       ))}
-    </div>
+      <LoadMoreTrigger ref={loadMoreRef} />
+      {isFetchingNextPage && <LoadingText>Loading more jobs...</LoadingText>}
+    </ListWrapper>
   );
 };
 
