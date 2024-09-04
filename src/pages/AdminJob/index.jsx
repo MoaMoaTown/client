@@ -21,6 +21,8 @@ import CreateJobModal from '../../components/CreateJobModal';
  */
 
 const AdminJob = () => {
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(4);
   const { data: job = [], refetch } = useQuery('job', getJobsByTownId);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
