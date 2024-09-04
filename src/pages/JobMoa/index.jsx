@@ -81,7 +81,7 @@ const JobMoa = () => {
           <JobList onClick={handleJobClick} />
         </JobListContainer>
       </ContentWrapper>
-      <Button variant='buyBtn' onClick={handleApply}>
+      <Button variant='applyBtn' onClick={handleApply}>
         신청하기
       </Button>
       <CommentModal
