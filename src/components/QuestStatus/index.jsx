@@ -17,13 +17,13 @@ import { StatusTable, Loading } from '../index';
  */
 
 const QuestStatus = () => {
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(4);
+  const [page] = useState(1);
+  const [size] = useState(4);
   const { data, isLoading } = useQuery(['questStatus', page, size], () =>
     fetchQuestStatusList(page, size)
   );
 
-  const questStatus = data?.content || [];
+  const questStatus = data || [];
 
   const headers = ['No', '퀘스트', '선정 현황'];
   const tableData = questStatus.map((quest, index) => ({

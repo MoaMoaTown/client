@@ -18,7 +18,7 @@ import moaIcon from '../../assets/images/moa.svg';
 import closeIcon from '../../assets/images/close.svg';
 
 /**
- * 역할 만들기 모달
+ * 위시 상품 만들기 모달
  * @author 임원정
  * @since 2024.09.04
  * @version 1.0
@@ -30,18 +30,17 @@ import closeIcon from '../../assets/images/close.svg';
  * </pre>
  */
 
-const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
-  const [name, debouncedSetName] = useDebouncedState('');
-  const [description, debouncedSetDescription] = useDebouncedState('');
-  const [pay, debouncedSetPay] = useDebouncedState('');
+const CreateWishModal = ({ isOpen, onClose, onCreate }) => {
+  const [wishName, debouncedSetWishName] = useDebouncedState('');
+  const [price, debouncedSetPrice] = useDebouncedState('');
 
-  const isButtonDisabled = name === '' || description === '' || pay === '';
+  const isButtonDisabled = wishName === '' || price === '';
 
   if (!isOpen) return null;
 
   const handleCreate = () => {
     if (!isButtonDisabled) {
-      onCreate({ name, description, pay });
+      onCreate({ wishName, price });
     }
   };
 
@@ -49,28 +48,23 @@ const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
     <Overlay>
       <Container>
         <TitleWrapper>
-          <Title>역할 만들기</Title>
+          <Title>위시 상품 만들기</Title>
           <CloseIcon src={closeIcon} onClick={onClose} />
         </TitleWrapper>
         <ModalContent>
-          <Label>역할 이름</Label>
+          <Label>상품명</Label>
           <Input
-            onChange={(e) => debouncedSetName(e.target.value)}
-            placeholder='역할의 이름을 입력하세요'
+            onChange={(e) => debouncedSetWishName(e.target.value)}
+            placeholder='위시 상품의 이름을 입력하세요'
           />
-          <Label>설명</Label>
-          <Input
-            onChange={(e) => debouncedSetDescription(e.target.value)}
-            placeholder='설명을 입력하세요'
-          />
-          <Label>급여</Label>
+          <Label>가격</Label>
           <PayWrapper>
             <MoaImage src={moaIcon} alt='Moa Icon' />
             <PayInput
               type='number'
-              onChange={(e) => debouncedSetPay(Number(e.target.value))}
+              onChange={(e) => debouncedSetPrice(Number(e.target.value))}
               min='0'
-              placeholder='급여를 입력하세요'
+              placeholder='가격을 입력하세요'
             />
             <Button
               variant='makeTownBtn'
@@ -86,4 +80,4 @@ const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
   );
 };
 
-export default CreateJobModal;
+export default CreateWishModal;

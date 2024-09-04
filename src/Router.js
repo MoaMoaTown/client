@@ -22,6 +22,8 @@ import AdminMain from './pages/AdminMain';
 import MakeTown from './pages/MakeTown';
 import AdminJob from './pages/AdminJob';
 import AdminJobRequest from './pages/AdminJobRequest';
+import AdminWish from './pages/AdminWish';
+import AdminWishRequest from './pages/AdminWishRequest';
 
 /**
  * 라우터
@@ -45,6 +47,7 @@ import AdminJobRequest from './pages/AdminJobRequest';
  * 2024.09.02   임재성        JobMoa 추가
  * 2024.09.03   이주현        ProtectedRoute 추가
  * 2024.09.03   임원정        AdminMain, MakeTown 추가
+ * 2024.09.04   임원정        AdminWish, AdminWishRequest 추가
  * </pre>
  */
 
@@ -113,6 +116,16 @@ const Router = () => {
           path='/admin/job-request'
           element={
             <ProtectedRoute element={<AdminJobRequest />} requiredRole={1} />
+          }
+        />
+        <Route
+          path='/admin/wish'
+          element={<ProtectedRoute element={<AdminWish />} requiredRole={1} />}
+        />
+        <Route
+          path='/admin/wish-request'
+          element={
+            <ProtectedRoute element={<AdminWishRequest />} requiredRole={1} />
           }
         />
       </Routes>

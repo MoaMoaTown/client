@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import { getJobsByTownId } from '../../apis/jobApi';
-import { createJob } from '../../apis/townApi';
+import { createJob, getJobsByTownId } from '../../apis/townApi';
 import AdminLayout from '../../layouts/AdminLayout';
-import { AdminTable, CreateHeader } from '../../components';
-import { ContentWrapper, Title } from './styled';
-import CreateJobModal from '../../components/CreateJobModal';
+import { AdminTable, CreateHeader, CreateJobModal } from '../../components';
+import {
+  ContentWrapper,
+  Title,
+  PaginationWrapper,
+  PageButton,
+  PageNumber,
+} from './styled';
 
 /**
  * 관리자 역할 관리 페이지
@@ -21,14 +25,20 @@ import CreateJobModal from '../../components/CreateJobModal';
  */
 
 const AdminJob = () => {
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(4);
-  const { data: job = [], refetch } = useQuery('job', getJobsByTownId);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [page, setPage] = useState(0);
+  const [size] = useState(10);
+  const { data, refetch, isLoading } = useQuery(
+    ['job', page, size],
+    () => getJobsByTownId(page, size),
+    { keepPreviousData: true }
+  );
+  const jobs = data || [];
+
   const headers = ['No', '역할', '설명', '급여'];
-  const tableData = job.map((job, index) => ({
-    no: { type: 'text', value: index + 1 },
+  const tableData = jobs.map((job, index) => ({
+    no: { type: 'text', value: page * size + index + 1 },
     name: { type: 'text', value: job.name },
     description: { type: 'text', value: job.description },
     pay: { type: 'text', value: job.pay + ' 모아' },
@@ -57,7 +67,23 @@ const AdminJob = () => {
           headers={headers}
           data={tableData}
           emptyMessage='역할이 없습니다.'
+          alignments={['center', 'left', 'left', 'center']}
         />
+        <PaginationWrapper>
+          <PageButton
+            onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+            disabled={page === 0}
+          >
+            이전
+          </PageButton>
+          <PageNumber>{page + 1}</PageNumber>
+          <PageButton
+            onClick={() => setPage((prev) => prev + 1)}
+            disabled={jobs.length < size}
+          >
+            다음
+          </PageButton>
+        </PaginationWrapper>
       </ContentWrapper>
       {isModalOpen && (
         <CreateJobModal
