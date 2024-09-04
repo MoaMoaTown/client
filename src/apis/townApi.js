@@ -48,8 +48,20 @@ export const allowJobRequest = async (jobRequestId) => {
   return response.data;
 };
 
-export const createQuest = async (requestDTO) => {
-  const response = await axiosInstance.post(`/town/quest/create`, requestDTO);
+export const createQuest = async ({
+  title,
+  description,
+  reward,
+  capacity,
+  deadline,
+}) => {
+  const response = await axiosInstance.post(`/town/quest/create`, {
+    title,
+    description,
+    reward,
+    capacity,
+    deadline,
+  });
   return response.data;
 };
 
