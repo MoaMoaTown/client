@@ -1,10 +1,14 @@
 import { axiosInstance } from './index';
 
-// JOB 목록을 가져오는 API 호출 (타운 ID는 세션에서 자동으로 처리)
-export const getJobsByTownId = async () => {
+export const getJobsByTownId = async ({ page = 0, size = 5 }) => {
   try {
-    const response = await axiosInstance.get('/jobs/list');
-    return response.data;
+    const response = await axiosInstance.get('/jobs/list', {
+      params: {
+        page, // 페이지 번호
+        size, // 페이지 크기
+      },
+    });
+    return response.data; // 직업 목록 데이터 반환
   } catch (error) {
     console.error('JOB 목록을 가져오는 중 오류 발생:', error);
     throw error;

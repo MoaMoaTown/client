@@ -7,7 +7,13 @@ import {
   CommentModal,
   InfoModal,
 } from '../../components';
-import { Container, ContentWrapper, Title, JobListContainer } from './styled';
+import {
+  Container,
+  ContentWrapper,
+  Title,
+  JobListContainer,
+  Description,
+} from './styled';
 import { useMutation } from 'react-query';
 import { applyJob } from '../../apis/jobApi';
 
@@ -62,7 +68,9 @@ const JobMoa = () => {
     <Container>
       <Header />
       <Title>잡모아</Title>
-      <TownInfo />
+      <Description>
+        {`잡모아는 역할을 신청할 수 있는 곳이에요.\n역할을 잘 수행하면 모아를 받을 수 있어요.`}
+      </Description>
       <ContentWrapper>
         <JobListContainer>
           <JobList onClick={handleJobClick} />
@@ -75,6 +83,7 @@ const JobMoa = () => {
         isOpen={isCommentModalOpen}
         jobName={selectedJob?.name}
         jobDescription={selectedJob?.description}
+        jobPay={selectedJob?.pay}
         onConfirm={handleConfirmComment}
         onClose={handleCloseCommentModal}
       />
