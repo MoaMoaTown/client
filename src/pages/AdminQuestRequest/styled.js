@@ -24,13 +24,13 @@ export const BackButton = styled.button`
 `;
 
 export const TitleWrapper = styled.div`
-  width: 50%;
+  width: 60%;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin: 2vw 0vw;
-  gap: 28%;
+  gap: 32%;
 `;
 
 export const Title = styled.div`
