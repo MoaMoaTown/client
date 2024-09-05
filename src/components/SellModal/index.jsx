@@ -11,6 +11,7 @@ import {
   TotalPrice,
   MoaImage,
   SellButtonContainer,
+  QuantityLabel,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
@@ -84,7 +85,7 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
           <QuantityInputWrapper>
             <span>개수: </span>
             <QuantityContainer>
-              <span>{quantity}</span>
+              <QuantityLabel>{quantity}</QuantityLabel>
               <div>
                 <ArrowButton className='up' onClick={handleIncrement} />
                 <ArrowButton className='down' onClick={handleDecrement} />
