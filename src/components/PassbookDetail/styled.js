@@ -3,7 +3,7 @@ import { colors } from '../../styles/colors';
 
 export const Container = styled.div`
   position: relative;
-  width: 96.5%;
+  width: 100%;
   height: auto;
 `;
 

@@ -17,6 +17,7 @@ import {
   Title,
   Description,
   Form,
+  SignUpText,
 } from './styled';
 
 const Login = () => {
@@ -67,6 +68,10 @@ const Login = () => {
     }
   };
 
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+
   return (
     <OuterContainer>
       <Container>
@@ -95,6 +100,7 @@ const Login = () => {
             로그인
           </Button>
         </Form>
+        <SignUpText onClick={handleSignUpClick}>회원가입</SignUpText>
       </Container>
     </OuterContainer>
   );
