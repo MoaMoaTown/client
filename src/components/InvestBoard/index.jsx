@@ -191,7 +191,8 @@ const EmptyBoard = () => {
               <AverageItem>
                 <AverageLabel>평단가</AverageLabel>
                 <AverageValue>
-                  <MoaImage src={moaImage} alt='Moa' /> {leftAverage.average}
+                  {/* <MoaImage src={moaImage} alt='Moa' /> {leftAverage.average} */}
+                  <MoaImage src={moaImage} alt='Moa' /> 101
                 </AverageValue>
               </AverageItem>
               <AverageItem>
@@ -211,7 +212,8 @@ const EmptyBoard = () => {
               <AverageItem>
                 <AverageLabel>평단가</AverageLabel>
                 <AverageValue>
-                  <MoaImage src={moaImage} alt='Moa' /> {rightAverage.average}
+                  {/* <MoaImage src={moaImage} alt='Moa' /> {rightAverage.average} */}
+                  <MoaImage src={moaImage} alt='Moa' /> 40000
                 </AverageValue>
               </AverageItem>
               <AverageItem>

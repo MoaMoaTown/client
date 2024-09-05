@@ -129,7 +129,7 @@ export const AverageItem = styled.div`
   width: 100%;
   margin-bottom: 0px;
   font-size: 0.9rem;
-  font-weight: bold;
+  // font-weight: bold;
 `;
 
 export const AverageLabel = styled.div`
