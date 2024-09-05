@@ -29,10 +29,23 @@ import {
 } from './styled';
 import back from '../../assets/images/back.svg';
 
+/**
+ * 관리자 퀘스트 신청 내역 조회 페이지
+ * @author 임원정
+ * @since 2024.09.05
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.05 	임원정        최초 생성
+ * </pre>
+ */
+
 const AdminQuestRequest = () => {
   const { questId } = useParams();
   const [page, setPage] = useState(1);
-  const [size] = useState(5);
+  const [size] = useState(10);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [modalContent, setModalContent] = useState('');
@@ -46,7 +59,7 @@ const AdminQuestRequest = () => {
   );
   const questRequests = data || [];
 
-  /* 퀘스트 신청 내역 조회 */
+  /* 퀘스트 담당자 선정 */
   const selectMutation = useMutation(selectMemberQuestRequest, {
     onSuccess: () => {
       refetch();
@@ -57,6 +70,7 @@ const AdminQuestRequest = () => {
     },
   });
 
+  /* 퀘스트 완료 처리 */
   const completeMutation = useMutation(completeMemberQuest, {
     onSuccess: () => {
       refetch();
@@ -72,7 +86,7 @@ const AdminQuestRequest = () => {
     if (request.status === 1) {
       setModalContent('퀘스트 담당자로 선정하시겠습니까?');
     } else if (request.status === 2) {
-      setModalContent('퀘스트를 완료처리하시겠습니까?');
+      setModalContent('퀘스트를 완료 처리하시겠습니까?');
     }
     setIsModalOpen(true);
   };
@@ -112,7 +126,7 @@ const AdminQuestRequest = () => {
                     <thead>
                       <tr>
                         <Thead>No</Thead>
-                        <Thead>요청인</Thead>
+                        <Thead>닉네임</Thead>
                         <Thead>상태</Thead>
                       </tr>
                     </thead>

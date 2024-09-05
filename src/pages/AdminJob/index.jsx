@@ -99,7 +99,6 @@ const AdminJob = () => {
           isOpen={isModalOpen}
           onCreate={handleCreate}
           onClose={() => setIsModalOpen(false)}
-          title='역할 만들기'
         ></CreateJobModal>
       )}
     </AdminLayout>

@@ -75,6 +75,7 @@ const AdminQuest = () => {
   const handleRowClick = (rowData) => {
     navigate(`/admin/quest/${rowData.questId}`);
   };
+
   return (
     <AdminLayout>
       <ContentWrapper>
@@ -113,7 +114,6 @@ const AdminQuest = () => {
           isOpen={isModalOpen}
           onCreate={handleCreate}
           onClose={() => setIsModalOpen(false)}
-          title='역할 만들기'
         ></CreateQuestModal>
       )}
     </AdminLayout>

@@ -20,6 +20,19 @@ import {
   PageNumber,
 } from './styled';
 
+/**
+ * 관리자 위시 상품 관리 페이지
+ * @author 임원정
+ * @since 2024.09.04
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.04 	임원정        최초 생성
+ * </pre>
+ */
+
 const AdminWish = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateeModalOpen] = useState(false);
@@ -128,7 +141,6 @@ const AdminWish = () => {
           isOpen={isCreateModalOpen}
           onCreate={handleCreate}
           onClose={() => setIsCreateeModalOpen(false)}
-          title='위시 상품 만들기'
         ></CreateWishModal>
       )}
     </AdminLayout>
