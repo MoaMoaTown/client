@@ -36,7 +36,7 @@ export const Container = styled.div`
 
 export const BackgroundImage = styled.img`
   position: absolute;
-  top: -5dvw;
+  top: -3dvw;
   right: 10dvw;
   width: 60dvw;
   height: auto;
@@ -44,7 +44,7 @@ export const BackgroundImage = styled.img`
   @media (min-width: 1024px) {
     width: 60%;
     right: 10%;
-    top: -2%;
+    top: 0%;
     object-fit: contain;
   }
 `;
@@ -94,5 +94,15 @@ export const Form = styled.div`
   @media (min-width: 1024px) {
     width: 100%;
     gap: 2.5vh;
+  }
+`;
+
+export const SignUpText = styled.p`
+  margin-top: 2dvh;
+  font-size: 1rem;
+  color: ${colors.gray};
+  text-decoration: underline;
+  @media (min-width: 1024px) {
+    font-size: 0.8rem;
   }
 `;
