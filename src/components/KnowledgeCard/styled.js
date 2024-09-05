@@ -84,7 +84,7 @@ export const DateText = styled.span`
 export const InfoText = styled.span`
   width: 50%;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   white-space: pre-wrap;
 `;
 
