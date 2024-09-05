@@ -199,10 +199,9 @@ export default function Model3D() {
             (logoRef.current?.position.y || 0) + 0.4,
             (logoRef.current?.position.z || 0) + 0.8,
           ]}
-          intensity={0.1}
+          intensity={1}
           angle={1}
           penumbra={1}
-          castShadow={false}
           target={logoRef.current}
         />
         <Model

@@ -24,6 +24,7 @@ export const Container = styled.div`
   width: 100dvw;
   height: 75dvh;
   position: relative;
+  overflow: hidden;
   @media (min-width: 1024px) {
     width: 23vw;
     height: 70vh;
@@ -35,7 +36,7 @@ export const Container = styled.div`
 
 export const BackgroundImage = styled.img`
   position: absolute;
-  top: 0;
+  top: -5dvw;
   right: 10dvw;
   width: 60dvw;
   height: auto;

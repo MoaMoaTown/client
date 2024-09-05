@@ -31,10 +31,10 @@ export const BalanceText = styled.span`
 
 export const ContentWrapper = styled.div`
   position: absolute;
-  top: 25%;
+  top: 28%;
   left: 0;
   right: 0;
-  bottom: 11%;
+  bottom: 15%;
   overflow-y: auto;
 `;
 
