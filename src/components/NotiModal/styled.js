@@ -62,7 +62,7 @@ export const Title = styled.h2`
   margin-right: 20dvw;
   @media (min-width: 1024px) {
     font-size: 1.4rem;
-    margin-right: 7vw;
+    margin-right: 8vw;
   }
 `;
 

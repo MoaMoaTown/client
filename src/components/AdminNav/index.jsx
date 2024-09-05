@@ -57,7 +57,7 @@ const AdminNav = ({ townInfo }) => {
         </Menu>
         <Title>퀘스트</Title>
         <Menu>
-          <MenuLink as={Link} to=''>
+          <MenuLink as={Link} to='/admin/quest'>
             퀘스트 관리
           </MenuLink>
         </Menu>

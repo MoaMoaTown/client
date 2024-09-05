@@ -72,11 +72,7 @@ export const fetchQuestStatusList = async (page = 1, size = 10) => {
   return response.data;
 };
 
-export const fetchMemberQuestRequests = async (
-  questId,
-  page = 1,
-  size = 10
-) => {
+export const fetchMemberQuestRequests = async (questId, page = 1, size = 5) => {
   const response = await axiosInstance.get(`/town/quest/requests/${questId}`, {
     params: { page, size },
   });

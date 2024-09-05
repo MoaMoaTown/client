@@ -68,25 +68,55 @@ export const Input = styled.input`
   outline: none;
 `;
 
-export const PayWrapper = styled.div`
+export const CapacityWrapper = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   justify-content: space-between;
   margin-bottom: 2vh;
 `;
 
-export const MoaImage = styled.img`
-  width: 3vw;
-  height: 3vw;
+export const RewardWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  margin-bottom: 2vh;
 `;
 
-export const PayInput = styled.input`
-  width: 40%;
+export const ThirdWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+`;
+
+export const MoaImage = styled.img`
+  width: 2vw;
+  height: 2vw;
+`;
+
+export const NumberInput = styled.input`
+  width: 70%;
   height: 1vw;
   padding: 1vw;
   font-size: 1rem;
   border-radius: 30px;
   border: 1px solid ${colors.gray};
   outline: none;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
+`;
+
+export const NumberWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

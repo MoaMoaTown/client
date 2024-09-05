@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { fetchQuestStatusList, createQuest } from '../../apis/townApi';
 import AdminLayout from '../../layouts/AdminLayout';
 import {
-  AdminTable,
-  AdminModal,
+  QuestTable,
   Loading,
   CreateHeader,
-  JobStatus,
+  CreateQuestModal,
 } from '../../components';
 import {
   ContentWrapper,
@@ -30,12 +30,12 @@ import {
  * </pre>
  */
 
-const AdminWishRequest = () => {
-  const [isCreateModalOpen, setIsModalOpen] = useState(false);
-  const [selectedQuestId, setSelectedQuestId] = useState(null);
+const AdminQuest = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [page, setPage] = useState(1);
   const [size] = useState(10);
+  const navigate = useNavigate();
 
   const { data, isLoading, refetch } = useQuery(
     ['questStatusList', page, size],
@@ -51,10 +51,12 @@ const AdminWishRequest = () => {
     title: questStatus.title,
     reward: questStatus.reward,
     deadline: questStatus.deadline,
-    requstCnt: questStatus.requstCnt,
+    requestCnt: questStatus.requestCnt,
     status: questStatus.selectedCnt + '/' + questStatus.capacity,
+    questId: questStatus.questId,
   }));
 
+  /* 퀘스트 만들기 */
   const mutation = useMutation(createQuest, {
     onSuccess: () => {
       refetch();
@@ -69,16 +71,10 @@ const AdminWishRequest = () => {
     mutation.mutate({ title, description, reward, capacity, deadline });
   };
 
-  const handleConfirm = () => {
-    if (selectedQuestId) {
-      mutation.mutate(selectedQuestId);
-    }
+  /* 신청 내역 보기 */
+  const handleRowClick = (rowData) => {
+    navigate(`/admin/quest/${rowData.questId}`);
   };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <AdminLayout>
       <ContentWrapper>
@@ -90,7 +86,11 @@ const AdminWishRequest = () => {
         {isLoading ? (
           <Loading text='로딩 중...' />
         ) : (
-          <AdminTable headers={headers} data={tableData} />
+          <QuestTable
+            headers={headers}
+            data={tableData}
+            onRowClick={handleRowClick}
+          />
         )}
         <PaginationWrapper>
           <PageButton
@@ -108,16 +108,16 @@ const AdminWishRequest = () => {
           </PageButton>
         </PaginationWrapper>
       </ContentWrapper>
-      {/* {isModalOpen && (
-        <AdminModal
+      {isModalOpen && (
+        <CreateQuestModal
           isOpen={isModalOpen}
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
-          title='위시 사용 완료 처리하시겠습니까?'
-        />
-      )} */}
+          onCreate={handleCreate}
+          onClose={() => setIsModalOpen(false)}
+          title='역할 만들기'
+        ></CreateQuestModal>
+      )}
     </AdminLayout>
   );
 };
 
-export default AdminWishRequest;
+export default AdminQuest;

@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import { createJob, getJobsByTownId } from '../../apis/townApi';
 import AdminLayout from '../../layouts/AdminLayout';
-import { AdminTable, CreateHeader, CreateJobModal } from '../../components';
+import {
+  AdminTable,
+  CreateHeader,
+  CreateJobModal,
+  Loading,
+} from '../../components';
 import {
   ContentWrapper,
   Title,
@@ -63,12 +68,16 @@ const AdminJob = () => {
       <ContentWrapper>
         <Title>역할 관리</Title>
         <CreateHeader title='역할 목록' onCreate={() => setIsModalOpen(true)} />
-        <AdminTable
-          headers={headers}
-          data={tableData}
-          emptyMessage='역할이 없습니다.'
-          alignments={['center', 'left', 'left', 'center']}
-        />
+        {isLoading ? (
+          <Loading text='로딩 중...' />
+        ) : (
+          <AdminTable
+            headers={headers}
+            data={tableData}
+            emptyMessage='역할이 없습니다.'
+            alignments={['center', 'left', 'left', 'center']}
+          />
+        )}
         <PaginationWrapper>
           <PageButton
             onClick={() => setPage((prev) => Math.max(prev - 1, 0))}

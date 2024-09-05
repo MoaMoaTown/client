@@ -9,8 +9,8 @@ import {
   Label,
   Input,
   MoaImage,
-  PayWrapper,
-  PayInput,
+  PriceWrapper,
+  PriceInput,
   CloseIcon,
   TitleWrapper,
 } from './styled';
@@ -58,13 +58,13 @@ const CreateWishModal = ({ isOpen, onClose, onCreate }) => {
             placeholder='위시 상품의 이름을 입력하세요'
           />
           <Label>가격</Label>
-          <PayWrapper>
+          <PriceWrapper>
             <MoaImage src={moaIcon} alt='Moa Icon' />
-            <PayInput
+            <PriceInput
               type='number'
               onChange={(e) => debouncedSetPrice(Number(e.target.value))}
               min='0'
-              placeholder='가격을 입력하세요'
+              placeholder='가격'
             />
             <Button
               variant='makeTownBtn'
@@ -73,7 +73,7 @@ const CreateWishModal = ({ isOpen, onClose, onCreate }) => {
             >
               만들기
             </Button>
-          </PayWrapper>
+          </PriceWrapper>
         </ModalContent>
       </Container>
     </Overlay>

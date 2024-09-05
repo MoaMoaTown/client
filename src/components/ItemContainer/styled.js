@@ -8,7 +8,8 @@ export const ContainerWrapper = styled.div`
   gap: 3dvw;
   margin-top: 3dvh;
   padding: 1dvh 1dvw;
-  overflow-x: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   justify-content: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
   align-items: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
   height: ${({ isLoading }) => (isLoading ? '50dvh' : 'auto')};

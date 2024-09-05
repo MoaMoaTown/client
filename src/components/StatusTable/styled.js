@@ -16,6 +16,7 @@ export const Title = styled.div`
   font-size: 1.4rem;
   text-align: center;
   font-weight: bold;
+  margin-left: 35%;
 `;
 
 export const TableWrapper = styled.div`
@@ -101,7 +102,7 @@ export const TitleWrapper = styled.div`
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 3vh;
   gap: 1vw;
 `;

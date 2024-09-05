@@ -23,20 +23,7 @@ import {
  * </pre>
  */
 
-const ClickableTable = ({ headers, data }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRowData, setSelectedRowData] = useState(null);
-
-  const handleRowClick = (rowData) => {
-    setSelectedRowData(rowData);
-    setIsModalOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsModalOpen(false);
-    setSelectedRowData(null);
-  };
-
+const QuestTable = ({ headers, data, onRowClick }) => {
   return (
     <Container>
       {data.length > 0 ? (
@@ -54,29 +41,25 @@ const ClickableTable = ({ headers, data }) => {
                 {data.map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    onClick={() => handleRowClick(row)}
+                    onClick={() => onRowClick(row)}
                     style={{ cursor: 'pointer' }}
                   >
-                    {Object.values(row).map((cell, cellIndex) => (
-                      <Cell
-                        key={cellIndex}
-                        align={cellIndex === 1 ? 'left' : 'center'}
-                      >
-                        {cell.type === 'text' ? cell.value : null}
-                      </Cell>
-                    ))}
+                    {Object.values(row).map(
+                      (cell, cellIndex) =>
+                        cellIndex !== Object.values(row).length - 1 && ( // questId는 제외하고 렌더링
+                          <Cell
+                            key={cellIndex}
+                            align={cellIndex === 1 ? 'left' : 'center'}
+                          >
+                            {cell}
+                          </Cell>
+                        )
+                    )}
                   </tr>
                 ))}
               </Tbody>
             </Table>
           </TableWrapper>
-
-          {/* 모달이 열려있을 경우 모달을 렌더링 */}
-          {/* {isModalOpen && (
-            <Modal isOpen={isModalOpen} onClose={handleClose}>
-
-            </Modal>
-          )} */}
         </>
       ) : (
         <EmptyWrapper>
@@ -87,4 +70,4 @@ const ClickableTable = ({ headers, data }) => {
   );
 };
 
-export default ClickableTable;
+export default QuestTable;
