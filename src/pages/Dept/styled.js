@@ -11,7 +11,7 @@ export const Container = styled.div`
   width: 84dvw;
   height: 92dvh;
   padding: 4dvh 8dvw;
-  gap: 3.4dvh;
+  gap: 3dvh;
 `;
 
 export const DeptTitle = styled.div`

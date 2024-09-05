@@ -56,7 +56,7 @@ export const QuantityInputWrapper = styled.div`
 `;
 
 export const QuantityLabel = styled.span`
-  margin-left: -10px; /* '개수' 텍스트를 왼쪽으로 더 이동 */
+  margin-left: 30px; /* '개수' 텍스트를 왼쪽으로 더 이동 */
 `;
 
 export const QuantityContainer = styled.div`
@@ -79,6 +79,7 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 4dvw;
 
   &.up {
     background-image: url(${ChevronUp});

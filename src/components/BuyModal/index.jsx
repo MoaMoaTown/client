@@ -15,7 +15,7 @@ import {
   YesterdayPriceWrapper,
 } from './styled';
 import { Button, InfoModal } from '../index';
-import hdyImage from '../../assets/images/hdy.png';
+import hdyImage from '../../assets/images/hdHello.svg';
 import moaImage from '../../assets/images/moa.svg';
 import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi';
 import { fetchBalance } from '../../apis/memberApi';
