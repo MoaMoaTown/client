@@ -17,6 +17,7 @@ export const BackButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0vh 1vw;
   img {
     width: 1.6vw;
     height: 1.6vw;
@@ -24,19 +25,19 @@ export const BackButton = styled.button`
 `;
 
 export const TitleWrapper = styled.div`
-  width: 50%;
+  width: 60%;
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 2vw 0vw;
-  gap: 28%;
 `;
 
 export const Title = styled.div`
   font-size: 1.6rem;
   text-align: center;
   font-weight: bold;
+  margin-right: 3.6vw;
 `;
 
 export const Description = styled.p`
