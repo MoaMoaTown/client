@@ -82,3 +82,7 @@ export { default as CreateHeader } from './CreateHeader';
 export { default as CreateJobModal } from './CreateJobModal';
 // 위시상품 만들기 모달
 export { default as CreateWishModal } from './CreateWishModal';
+// 퀘스트 테이블 컴포넌트
+export { default as QuestTable } from './QuestTable';
+// 퀘스트 만들기 모달
+export { default as CreateQuestModal } from './CreateQuestModal';

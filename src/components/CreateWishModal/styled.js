@@ -16,7 +16,8 @@ export const Overlay = styled.div`
 
 export const Container = styled.div`
   width: 28vw;
-  height: 36vh;
+  height: auto;
+  padding: 4vh 0.5vw;
   background-color: ${colors.background_gray};
   border-radius: 8px;
   display: flex;
@@ -67,7 +68,7 @@ export const Input = styled.input`
   outline: none;
 `;
 
-export const PayWrapper = styled.div`
+export const PriceWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,7 +80,7 @@ export const MoaImage = styled.img`
   height: 3vw;
 `;
 
-export const PayInput = styled.input`
+export const PriceInput = styled.input`
   width: 40%;
   height: 1vw;
   padding: 1vw;

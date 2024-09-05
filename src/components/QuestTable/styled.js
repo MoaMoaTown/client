@@ -12,45 +12,22 @@ export const Container = styled.div`
   border-radius: 8px;
 `;
 
-export const Title = styled.div`
-  font-size: 1.4rem;
-  text-align: center;
-  font-weight: bold;
-  margin-left: 35%;
-`;
-
 export const TableWrapper = styled.div`
   width: 80%;
   max-height: 25vh;
-  overflow-y: auto;
   position: relative;
-  margin-top: 1.6vw;
-  margin-bottom: 2vw;
+  margin-top: 2vh;
 `;
 
 export const Table = styled.table`
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   border-collapse: collapse;
-
-  th:nth-child(1),
-  td:nth-child(1) {
-    width: 25%;
-  }
-
-  th:nth-child(2),
-  td:nth-child(2) {
-    width: 50%;
-  }
-
-  th:nth-child(3),
-  td:nth-child(3) {
-    width: 25%;
-  }
 `;
 
 export const Cell = styled.td`
-  padding: 0.8dvw;
+  height: 2vw;
+  padding: 0.8vh 0.8dvw;
   border-bottom: 1px solid ${colors.dark_gray};
   font-size: 1rem;
   text-align: ${({ align }) => align};
@@ -76,33 +53,24 @@ export const EmptyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const EmptyMsg = styled.p`
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 8vh;
 `;
 
-export const EmptyImg = styled.img`
-  width: 8vw;
-  height: auto;
-  margin-top: 4vh;
-`;
-
-export const MoreIcon = styled.img`
-  width: 2dvw;
-  height: auto;
+export const ActionButton = styled.button`
+  background-color: ${colors.table_orange};
+  width: 3vw;
+  height: 1.6vw;
+  color: white;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
-`;
-
-export const TitleWrapper = styled.div`
-  width: 80%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 3vh;
-  gap: 1vw;
+  font-size: 1rem;
+  &:hover {
+    background-color: ${colors.gray};
+  }
 `;

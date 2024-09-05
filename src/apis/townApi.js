@@ -48,8 +48,20 @@ export const allowJobRequest = async (jobRequestId) => {
   return response.data;
 };
 
-export const createQuest = async (requestDTO) => {
-  const response = await axiosInstance.post(`/town/quest/create`, requestDTO);
+export const createQuest = async ({
+  title,
+  description,
+  reward,
+  capacity,
+  deadline,
+}) => {
+  const response = await axiosInstance.post(`/town/quest/create`, {
+    title,
+    description,
+    reward,
+    capacity,
+    deadline,
+  });
   return response.data;
 };
 
@@ -60,11 +72,7 @@ export const fetchQuestStatusList = async (page = 1, size = 10) => {
   return response.data;
 };
 
-export const fetchMemberQuestRequests = async (
-  questId,
-  page = 1,
-  size = 10
-) => {
+export const fetchMemberQuestRequests = async (questId, page = 1, size = 5) => {
   const response = await axiosInstance.get(`/town/quest/requests/${questId}`, {
     params: { page, size },
   });
