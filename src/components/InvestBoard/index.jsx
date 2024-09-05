@@ -95,12 +95,15 @@ const EmptyBoard = () => {
   };
 
   const handleSectionClick = (data) => {
+    const selectedImage = data.type === 0 ? weight : walk;
+
     setModalContent({
-      title: `어제 흰디의 ${getTypeText(data.type)}`,
+      title: `${getTypeText(data.type)} 예측하기`,
       price: data.price,
       hint: data.hint,
       currentMoa: 1000,
       typeId: data.type,
+      image: selectedImage, // 선택된 이미지를 추가
     });
     setIsModalOpen(true);
   };
@@ -136,7 +139,7 @@ const EmptyBoard = () => {
   return (
     <Container>
       <TopWrapper>
-        <TopSectionTop onClick={() => handleSectionClick(leftData)}>
+        <TopSectionTop>
           <QuestionImage src={question} alt='question Image' />
           <HdyImage src={hdyImage} alt='Main Image' />
           <PriceTypeWrapper>
@@ -159,7 +162,7 @@ const EmptyBoard = () => {
           <HintContent>{leftData.hint || 'No Data'}</HintContent>
         </TopSectionTop>
         <TopSectionBottom>
-          <BuySectionBox>
+          <BuySectionBox onClick={() => handleSectionClick(leftData)}>
             <PriceTypeItem>
               <InvestItemImage src={weight} alt='weight Image' />
               <TypeText>오늘 {getTypeText(leftData.type)}</TypeText>
@@ -169,7 +172,7 @@ const EmptyBoard = () => {
               <BuyBotton>구매하기</BuyBotton>
             </PriceTypeItem>
           </BuySectionBox>
-          <BuySectionBox>
+          <BuySectionBox onClick={() => handleSectionClick(rightData)}>
             <PriceTypeItem>
               <InvestItemImage src={walk} alt='walk Image' />
               <TypeText>오늘 {getTypeText(rightData.type)}</TypeText>
@@ -191,8 +194,7 @@ const EmptyBoard = () => {
               <AverageItem>
                 <AverageLabel>평단가</AverageLabel>
                 <AverageValue>
-                  {/* <MoaImage src={moaImage} alt='Moa' /> {leftAverage.average} */}
-                  <MoaImage src={moaImage} alt='Moa' /> 101
+                  <MoaImage src={moaImage} alt='Moa' /> {leftAverage.average}
                 </AverageValue>
               </AverageItem>
               <AverageItem>
@@ -212,8 +214,7 @@ const EmptyBoard = () => {
               <AverageItem>
                 <AverageLabel>평단가</AverageLabel>
                 <AverageValue>
-                  {/* <MoaImage src={moaImage} alt='Moa' /> {rightAverage.average} */}
-                  <MoaImage src={moaImage} alt='Moa' /> 40000
+                  <MoaImage src={moaImage} alt='Moa' /> {rightAverage.average}
                 </AverageValue>
               </AverageItem>
               <AverageItem>
@@ -233,6 +234,7 @@ const EmptyBoard = () => {
         price={modalContent.price}
         hint={modalContent.hint}
         currentMoa={modalContent.currentMoa}
+        image={modalContent.image} // 선택된 이미지를 전달
         typeId={modalContent.typeId}
         onConfirm={handleCloseModal}
         onClose={handleCloseModal}
