@@ -43,6 +43,7 @@ import weight from '../../assets/images/weight.png';
 import question from '../../assets/images/question.svg';
 import BuyModal from '../BuyModal';
 import SellModal from '../SellModal';
+import Loading from '../Loading'; // 로딩 컴포넌트 임포트
 
 const EmptyBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -80,9 +81,12 @@ const EmptyBoard = () => {
   };
 
   if (isTodayLoading || isAverageLoading) {
-    return <Container>Loading...</Container>;
+    return (
+      <Container>
+        <Loading text='로딩 중...' />
+      </Container>
+    );
   }
-
   const getTypeText = (type) => {
     switch (type) {
       case 0:
@@ -142,23 +146,9 @@ const EmptyBoard = () => {
         <TopSectionTop>
           <QuestionImage src={question} alt='question Image' />
           <HdyImage src={hdyImage} alt='Main Image' />
-          <PriceTypeWrapper>
-            {/* <PriceTypeItem>
-              <TypeText>{getTypeText(leftData.type)}</TypeText>
-              <PriceWrapper>
-                <MoaImage src={moaImage} alt='Moa Image' />
-                <Balance>{leftData.price || 'N/A'}</Balance>
-              </PriceWrapper>
-            </PriceTypeItem> */}
-            {/* <PriceTypeItem>
-              <TypeText>{getTypeText(rightData.type)}</TypeText>
-              <PriceWrapper>
-                <MoaImage src={m  oaImage} alt='Moa Image' />
-                <Balance>{rightData.price || 'N/A'}</Balance>
-              </PriceWrapper>
-            </PriceTypeItem> */}
-          </PriceTypeWrapper>
+          <PriceTypeWrapper></PriceTypeWrapper>
           <HintTitle>힌트</HintTitle>
+
           <HintContent>{leftData.hint || 'No Data'}</HintContent>
         </TopSectionTop>
         <TopSectionBottom>

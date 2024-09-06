@@ -10,6 +10,7 @@ import {
   LoadingText,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
+import Loading from '../Loading'; // 로딩 컴포넌트 임포트
 
 const JobList = ({ onClick, ...rest }) => {
   const loadMoreRef = useRef();
@@ -52,7 +53,7 @@ const JobList = ({ onClick, ...rest }) => {
 
   return (
     <ListWrapper>
-      {isLoading && <LoadingText>Loading...</LoadingText>}
+      {isLoading && <Loading />}
       {jobData.pages.map((page, index) => (
         <React.Fragment key={index}>
           {page.map((job) => (
