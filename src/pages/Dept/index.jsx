@@ -70,27 +70,6 @@ const Dept = () => {
     fetchClothesList({ page: pageParam });
   const fetchWishes = ({ pageParam = 0 }) => fetchWishlist({ page: pageParam });
 
-  // const {
-  //   data: clothesData,
-  //   fetchNextPage: fetchNextClothes,
-  //   hasNextPage: hasMoreClothes,
-  // } = useInfiniteQuery('clothesList', fetchClothes, {
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     return lastPage.length === 3 ? allPages.length : undefined;
-  //   },
-  //   enabled: !showWishlist, // 의류 상품을 볼 때만 실행
-  // });
-
-  // const {
-  //   data: wishlistData,
-  //   fetchNextPage: fetchNextWishlist,
-  //   hasNextPage: hasMoreWishlist,
-  // } = useInfiniteQuery('wishlist', fetchWishes, {
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     return lastPage.length === 5 ? allPages.length : undefined;
-  //   },
-  //   enabled: showWishlist, // 위시리스트를 볼 때만 실행
-  // });
   const {
     data: clothesData,
     fetchNextPage: fetchNextClothes,
@@ -240,6 +219,14 @@ const Dept = () => {
     fetchNextClothes,
   ]);
 
+  if (isClothesLoading || isWishlistLoading) {
+    return (
+      <Container>
+        <Loading text='로딩 중...' />
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <Header />
@@ -263,35 +250,6 @@ const Dept = () => {
         </ToggleContainer>
       </ToggleWrapper>
 
-      {/* <ContentWrapper>
-        <ClothButtonStyled>
-          {showWishlist
-            ? wishlistData?.pages.map((page) =>
-                page.map((wishItem) => (
-                  <WishButton
-                    key={wishItem.wishId}
-                    price={wishItem.price}
-                    onClick={() => handleWishClick(wishItem)}
-                  >
-                    {wishItem.name}
-                  </WishButton>
-                ))
-              )
-            : clothesData?.pages.map((page) =>
-                page.map((cloth) => (
-                  <ClothButton
-                    key={cloth.clothId}
-                    imgUrl={cloth.imgUrl}
-                    name={cloth.name}
-                    brand={cloth.brand}
-                    price={cloth.price}
-                    onClick={() => handleClothClick(cloth)}
-                  />
-                ))
-              )}
-          <LoadMoreTrigger ref={loadMoreRef} />
-        </ClothButtonStyled>
-      </ContentWrapper> */}
       <ContentWrapper>
         {showWishlist ? (
           <WishButtonStyled>
