@@ -4,15 +4,26 @@ import { loginState } from '../../store/atoms';
 import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
 import { NotiToast } from '../index';
 
+/**
+ * 알림 연결 컴포넌트
+ * @author 임원정
+ * @since 2024.09.06
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.06  	임원정        최초 생성
+ * </pre>
+ */
+
 const NotiComponent = () => {
   const [notification, setNotification] = useState([]);
   const [toastOpen, setToastOpen] = useState([]);
-  const [eventSource, setEventSource] = useState(null);
   const login = useRecoilValue(loginState);
 
   useEffect(() => {
     if (login.isLogin) {
-      console.log('구독 시도');
       const EventSource = NativeEventSource || EventSourcePolyfill;
       const source = new EventSource(
         `http://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
@@ -25,16 +36,14 @@ const NotiComponent = () => {
 
       source.onmessage = (e) => {
         console.log(e.data);
-        // if (e.type === 'message' && e.data.startsWith('{')) {
         setNotification(e.data);
-        setToastOpen(true); // 알림을 띄워주는 state
-        // }
+        setToastOpen(true);
       };
 
       source.addEventListener('error', function (e) {
         if (e) {
           console.log(e);
-          source.close(); // 에러가 발생시 닫아줌
+          source.close();
         }
       });
     }

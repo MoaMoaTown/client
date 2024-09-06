@@ -12,7 +12,6 @@ function AppContent() {
   const login = useRecoilValue(loginState);
   return (
     <>
-      {/* 로그인된 상태일 때만 알림 구독 */}
       {login.isLogin && <NotiComponent />}
       <Router />
     </>
