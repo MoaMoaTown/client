@@ -44,11 +44,12 @@ export const JobListContainer = styled.div`
 `;
 
 export const Description = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
-  text-align: center;
   white-space: pre-line;
   color: ${colors.dark_gray};
   line-height: 1.5;
-  // margin-top: -1dvh;
-  // margin-bottom: 1dvh;
+  height: 7dvh;
 `;
