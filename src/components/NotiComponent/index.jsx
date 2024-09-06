@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '../../store/atoms';
 import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
+import { NotiToast } from '../index';
 
 const NotiComponent = () => {
-  const [notifications, setNotifications] = useState([]);
-  const [alertOpen, setAlertOpen] = useState([]);
+  const [notification, setNotification] = useState([]);
+  const [toastOpen, setToastOpen] = useState([]);
   const [eventSource, setEventSource] = useState(null);
   const login = useRecoilValue(loginState);
 
@@ -14,7 +15,7 @@ const NotiComponent = () => {
       console.log('구독 시도');
       const EventSource = NativeEventSource || EventSourcePolyfill;
       const source = new EventSource(
-        'http://localhost:8080/notification/subscribe',
+        `http://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
         { withCredentials: true }
       );
 
@@ -23,10 +24,11 @@ const NotiComponent = () => {
       };
 
       source.onmessage = (e) => {
-        if (e.type === 'message' && e.data.startsWith('{')) {
-          setNotifications((prev) => [JSON.parse(e.data)]);
-          setAlertOpen(true); // 알림을 띄워주는 state
-        }
+        console.log(e.data);
+        // if (e.type === 'message' && e.data.startsWith('{')) {
+        setNotification(e.data);
+        setToastOpen(true); // 알림을 띄워주는 state
+        // }
       };
 
       source.addEventListener('error', function (e) {
@@ -37,16 +39,10 @@ const NotiComponent = () => {
       });
     }
   }, [login.isLogin]);
-
   return (
-    <div>
-      <h2>실시간 알림</h2>
-      <ul>
-        {notifications.map((notification, index) => (
-          <li key={index}>{notification}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {toastOpen && <NotiToast setToast={setToastOpen} text={notification} />}
+    </>
   );
 };
 

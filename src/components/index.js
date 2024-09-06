@@ -88,3 +88,5 @@ export { default as QuestTable } from './QuestTable';
 export { default as CreateQuestModal } from './CreateQuestModal';
 // 알림 컴포넌트
 export { default as NotiComponent } from './NotiComponent';
+// 알림 토스트
+export { default as NotiToast } from './NotiToast';
