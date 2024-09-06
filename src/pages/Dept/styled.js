@@ -45,6 +45,16 @@ export const ClothButtonStyled = styled.div`
   gap: 1.6dvh;
   overflow-y: auto;
 `;
+export const WishButtonStyled = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2dvh;
+  overflow-y: auto;
+`;
 
 export const ToggleWrapper = styled.div`
   display: flex;

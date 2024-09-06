@@ -30,6 +30,7 @@ import {
   MoaImageinModal,
   LoadMoreTrigger,
   WishWrapWrap,
+  WishButtonStyled,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import {
@@ -292,36 +293,37 @@ const Dept = () => {
         </ClothButtonStyled>
       </ContentWrapper> */}
       <ContentWrapper>
-        <ClothButtonStyled>
-          {showWishlist
-            ? wishlistData?.pages.map((page) =>
-                page.map((wishItem) => (
-                  <WishButton
-                    key={wishItem.wishId}
-                    price={wishItem.price}
-                    onClick={() => handleWishClick(wishItem)}
-                  >
-                    {wishItem.name}
-                  </WishButton>
-                ))
-              )
-            : clothesData?.pages.map((page) =>
-                page.map((cloth) => (
-                  <ClothButton
-                    key={cloth.clothId}
-                    imgUrl={cloth.imgUrl}
-                    name={cloth.name}
-                    brand={cloth.brand}
-                    price={cloth.price}
-                    onClick={() => handleClothClick(cloth)}
-                  />
-                ))
-              )}
-          <LoadMoreTrigger ref={loadMoreRef} />
-          {/* {(isFetchingNextClothes || isFetchingNextWishlist) && ( // 무한 스크롤 로딩 상태
-            <Loading text={'더 불러오는 중...'} page />
-          )} */}
-        </ClothButtonStyled>
+        {showWishlist ? (
+          <WishButtonStyled>
+            {wishlistData?.pages.map((page) =>
+              page.map((wishItem) => (
+                <WishButton
+                  key={wishItem.wishId}
+                  price={wishItem.price}
+                  onClick={() => handleWishClick(wishItem)}
+                >
+                  {wishItem.name}
+                </WishButton>
+              ))
+            )}
+          </WishButtonStyled>
+        ) : (
+          <ClothButtonStyled>
+            {clothesData?.pages.map((page) =>
+              page.map((cloth) => (
+                <ClothButton
+                  key={cloth.clothId}
+                  imgUrl={cloth.imgUrl}
+                  name={cloth.name}
+                  brand={cloth.brand}
+                  price={cloth.price}
+                  onClick={() => handleClothClick(cloth)}
+                />
+              ))
+            )}
+          </ClothButtonStyled>
+        )}
+        <LoadMoreTrigger ref={loadMoreRef} />
       </ContentWrapper>
 
       <Button variant='buyBtn' onClick={handlePurchaseClick}>
