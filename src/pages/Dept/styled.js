@@ -42,7 +42,7 @@ export const ClothButtonStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 1.6dvh;
   overflow-y: auto;
 `;
 
@@ -55,14 +55,16 @@ export const ToggleWrapper = styled.div`
   padding: 5px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  // border: 1px solid red;
 `;
 
 export const ToggleContainer = styled.div`
   display: flex;
   width: 100%;
   position: relative;
-  height: 50px;
+  height: 5dvh;
   border-radius: 15px;
+  // border: 1px solid blue;
 `;
 
 export const ActiveBackground = styled.div`
@@ -87,6 +89,9 @@ export const ToggleButton = styled.button`
   padding: 10px 20px;
   margin: 0;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: color 0.3s ease;
   z-index: 2;
