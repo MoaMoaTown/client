@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
+import ReactGA from 'react-ga4';
+
 import {
   Header,
   Button,
@@ -144,6 +146,21 @@ const Dept = () => {
 
   const handlePurchaseClick = () => {
     if (selectedItem) {
+      // 구매를 시도한 상품 정보 전송
+      ReactGA.event({
+        items: [
+          {
+            id: selectedItem.clothId || selectedItem.wishId,
+            name: selectedItem.name,
+            category: 'Cloth', // 카테고리 명 변경 가능
+            action: 'Product Viewed',
+            brand: selectedItem.brand,
+            price: selectedItem.price,
+            quantity: 1,
+          },
+        ],
+      });
+
       setIsPurchaseModalOpen(true);
     } else {
       setPurchaseMessage('구매할 아이템이 선택되지 않았습니다.');
@@ -153,6 +170,18 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
+      // 실제 구매 이벤트 전송
+      ReactGA.event({
+        category: 'Cloth',
+        action: 'Purchase',
+        name: selectedItem.name,
+        brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        transaction_id: selectedItem.clothId || selectedItem.wishId,
+      });
+
+      // 구매 처리
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
         isWish: isWishSelected,
