@@ -52,10 +52,9 @@ export const ToggleWrapper = styled.div`
   align-items: center;
   background-color: ${colors.white};
   border-radius: 200px;
-  padding: 5px;
+  padding: 1dvh 2.5%;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  // border: 1px solid red;
+  width: 95%;
 `;
 
 export const ToggleContainer = styled.div`
@@ -63,8 +62,6 @@ export const ToggleContainer = styled.div`
   width: 100%;
   position: relative;
   height: 5dvh;
-  border-radius: 15px;
-  // border: 1px solid blue;
 `;
 
 export const ActiveBackground = styled.div`
@@ -74,7 +71,7 @@ export const ActiveBackground = styled.div`
   width: 50%;
   height: 100%;
   background-color: ${colors.green};
-  border-radius: 200px;
+  border-radius: 50px;
   transition: left 0.5s ease;
   z-index: 1;
 `;
