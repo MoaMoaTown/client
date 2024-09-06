@@ -17,6 +17,7 @@ import {
   Title,
   Description,
   Form,
+  SignUpText,
 } from './styled';
 
 const Login = () => {
@@ -43,7 +44,6 @@ const Login = () => {
       });
 
       if (role === 1) {
-        // role이 1이면 관리자 페이지로 리디렉션
         if (hasTownId) {
           navigate('/admin');
         } else {
@@ -66,6 +66,10 @@ const Login = () => {
     if (!isButtonDisabled) {
       mutation.mutate();
     }
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
   };
 
   return (
@@ -96,6 +100,7 @@ const Login = () => {
             로그인
           </Button>
         </Form>
+        <SignUpText onClick={handleSignUpClick}>회원가입</SignUpText>
       </Container>
     </OuterContainer>
   );

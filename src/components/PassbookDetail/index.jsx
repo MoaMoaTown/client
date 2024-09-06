@@ -25,7 +25,7 @@ const PassbookDetail = () => {
       ({ pageParam = 1 }) => fetchAccount({ page: pageParam }),
       {
         getNextPageParam: (lastPage, allPages) => {
-          return lastPage.length === 5 ? allPages.length + 1 : undefined;
+          return lastPage.length === 4 ? allPages.length + 1 : undefined;
         },
       }
     );

@@ -49,16 +49,16 @@ const CommentModal = ({
             <img src={moaImage} alt='Moa' />
           </PayText>{' '}
           <TextArea
-            placeholder='간단한 포부를 입력해주세요'
+            placeholder='간단한 포부를 입력해주세요!'
             value={comment}
             onChange={handleCommentChange}
           />
           <ButtonContainer>
-            <Button variant='confirmBtn' onClick={handleConfirm}>
-              신청하기
-            </Button>
             <Button variant='cancelBtn' onClick={onClose}>
               취소
+            </Button>
+            <Button variant='confirmBtn' onClick={handleConfirm}>
+              신청하기
             </Button>
           </ButtonContainer>
         </ModalContent>

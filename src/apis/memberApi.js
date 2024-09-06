@@ -28,7 +28,7 @@ export const fetchRanks = async () => {
   return response.data;
 };
 
-export const fetchAccount = async ({ page = 1, size = 5 }) => {
+export const fetchAccount = async ({ page = 1, size = 4 }) => {
   const response = await axiosInstance.get('/member/account', {
     params: { page, size },
   });

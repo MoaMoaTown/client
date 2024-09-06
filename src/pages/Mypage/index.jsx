@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Header, JobInfo, Passbook } from '../../components';
 
 import { Container, ClosetTitle, ClosetImage } from './styled';
-import closet from '../../assets/images/closet.svg';
+import closet from '../../assets/images/closet.png';
 
 const Mypage = () => {
   return (
