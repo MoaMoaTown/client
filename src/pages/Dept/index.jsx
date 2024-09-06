@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { useInfiniteQuery, useMutation } from 'react-query';
+import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 import {
   Header,
   Button,
@@ -36,6 +36,7 @@ import {
   fetchWishlist,
   purchaseWishItem,
 } from '../../apis/deptAPI';
+import { fetchBalance } from '../../apis/memberApi';
 
 const Dept = () => {
   const [showWishlist, setShowWishlist] = useState(false);
@@ -55,6 +56,9 @@ const Dept = () => {
     // 클린업 함수에서 타이머 해제
     return () => clearTimeout(timer);
   }, []);
+
+  // const { refetch } = useQuery('balance', fetchBalance);
+  const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
 
   const observerRef = useRef();
   const loadMoreRef = useRef();
@@ -117,7 +121,7 @@ const Dept = () => {
       onSuccess: (data) => {
         setPurchaseMessage(data.message);
         setIsResultModalOpen(true);
-        // 구매 성공 후 추가 작업을 할 수 있습니다.
+        refetchBalance(); // 구매 성공 후 추가 작업을 할 수 있습니다.
       },
       onError: (error) => {
         const errorMessage = error.response?.data?.msg || '구매 실패';
