@@ -17,7 +17,7 @@ const AdminLayout = ({ children }) => {
   const [townInfo, setTownInfo] = useRecoilState(townInfoState);
 
   const { data, isLoading } = useQuery('townInfo', fetchTownInfo, {
-    enabled: !townInfo.name, // townInfo가 없을 때만 fetch 수행
+    enabled: !townInfo.name,
   });
 
   useEffect(() => {

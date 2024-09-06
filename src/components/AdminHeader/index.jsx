@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { logout } from '../../apis/memberApi';
-import { loginState, loginInfo } from '../../store/atoms';
+import { loginState, loginInfo, townInfoState } from '../../store/atoms';
 import {
   Container,
   LeftWrapper,
@@ -36,6 +36,7 @@ const AdminHeader = () => {
   const navigate = useNavigate();
   const setLoginState = useSetRecoilState(loginState);
   const setLoginInfo = useSetRecoilState(loginInfo);
+  const setTownInfo = useSetRecoilState(townInfoState);
   const [isNotiModalOpen, setIsNotiModalOpen] = useState(false);
 
   const toggleNotiModal = () => {
@@ -45,6 +46,7 @@ const AdminHeader = () => {
     onSuccess: () => {
       setLoginState({ isLogin: false });
       setLoginInfo({});
+      setTownInfo({});
       navigate('/login');
     },
     onError: (error) => {
