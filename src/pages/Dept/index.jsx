@@ -144,24 +144,6 @@ const Dept = () => {
     setIsWishSelected(true);
   };
 
-  // const handlePurchaseClick = () => {
-  //   if (selectedItem) {
-  //     setIsPurchaseModalOpen(true);
-  //   } else {
-  //     setPurchaseMessage('구매할 아이템이 선택되지 않았습니다.');
-  //     setIsResultModalOpen(true);
-  //   }
-  // };
-
-  // const confirmPurchase = () => {
-  //   if (selectedItem) {
-  //     purchaseMutation.mutate({
-  //       itemId: selectedItem.clothId || selectedItem.wishId,
-  //       isWish: isWishSelected,
-  //     });
-  //     setIsPurchaseModalOpen(false);
-  //   }
-  // };
   const handlePurchaseClick = () => {
     if (selectedItem) {
       // 구매를 시도한 상품 정보 전송
