@@ -42,6 +42,7 @@ export const ModalContent = styled.div`
 export const TitleText = styled.h2`
   font-size: 1.5rem;
   color: black;
+  font-weight: bold;
 `;
 
 export const QuantityInputWrapper = styled.div`
@@ -50,11 +51,22 @@ export const QuantityInputWrapper = styled.div`
   //   justify-content: space-between; /* '개수' 텍스트와 토글을 양쪽에 배치 */
   width: 100%; /* 전체 너비 사용 */
   font-size: 1.5rem;
-  font-weight: bold;
+  // font-weight: bold;
   margin-bottom: -10px;
   padding-left: 150px; /* 왼쪽 여백 추가 */
 `;
-
+export const PayInput = styled.input`
+  width: 5%;
+  height: 3dvh;
+  padding: 1dvw 7dvw;
+  font-size: 1rem;
+  background-color: ${colors.background_gray};
+  border-radius: 30px;
+  border: 1px solid ${colors.gray};
+  outline: none;
+  margin-right: -2dvw;
+  margin-left: 4dvw;
+`;
 export const QuantityLabel = styled.span`
   margin-left: 30px; /* '개수' 텍스트를 왼쪽으로 더 이동 */
 `;
@@ -97,7 +109,7 @@ export const ArrowButton = styled.button`
 
 export const TotalPrice = styled.div`
   font-size: 1.5rem;
-  font-weight: bold;
+  // font-weight: bold;
   color: ${colors.primary};
   display: flex;
   //   justify-content: space-between; /* '총액' 텍스트와 숫자를 양쪽에 배치 */
@@ -116,10 +128,16 @@ export const TotalAmount = styled.div`
   justify-content: flex-end; /* 숫자와 이미지 오른쪽 정렬 */
 `;
 
+export const TotalTitle = styled.div`
+  margin-right: 6dvw;
+`;
+
 export const MoaImage = styled.img`
-  width: 8dvw;
-  height: 8dvw;
-  margin-left: 5px;
+  width: 10dvw;
+  height: auto;
+  // margin-left: 1dvw;
+  // border: 1px solid red;
+  margin-top: -0.8dvh;
 `;
 
 export const SellButtonContainer = styled.div`

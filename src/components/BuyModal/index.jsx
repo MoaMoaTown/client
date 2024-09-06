@@ -22,11 +22,8 @@ import {
   YesterdayText,
   PayInput,
 } from './styled';
-import useDebouncedState from '../../hooks/useDebouncedState';
 import { Button, InfoModal } from '../index';
 import hdyImage from '../../assets/images/hdHello.svg';
-import weight from '../../assets/images/weight.png';
-import walk from '../../assets/images/walk.png';
 import moaImage from '../../assets/images/moa.svg';
 import {
   buyInvest,
@@ -44,11 +41,10 @@ const LargeInfoModal = ({
   onClose,
   image,
 }) => {
-  // const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
+  const [quantity, setQuantity] = useState('');
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
-  const [quantity, debouncedSetQuantity] = useDebouncedState('');
 
   const { data: yesterdayPriceData, isLoading: isLoadingYesterdayPrice } =
     useQuery(['yesterdayPrice', typeId], () => getYesterdayPrice(), {
@@ -57,8 +53,8 @@ const LargeInfoModal = ({
         data.find((item) => item.type === typeId)?.price || 'N/A',
     });
 
-  const { data: TodayPriceData, isLoading: isLoadingTodayPrice } = useQuery(
-    ['TodayPrice', typeId],
+  const { data: todayPriceData, isLoading: isLoadingTodayPrice } = useQuery(
+    ['todayPrice', typeId],
     () => getTodayPrice(),
     {
       enabled: isOpen,
@@ -88,27 +84,23 @@ const LargeInfoModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      // setQuantity(1);
+      setQuantity('');
       setTotalPrice(price);
     }
   }, [isOpen, price]);
 
+  useEffect(() => {
+    if (quantity === '') {
+      setTotalPrice(price);
+    } else {
+      setTotalPrice(quantity * price);
+    }
+  }, [quantity, price]);
+
   if (!isOpen) return null;
 
-  // const handleIncrement = () => {
-  //   setQuantity(quantity + 1);
-  //   setTotalPrice((quantity + 1) * price);
-  // };
-
-  // const handleDecrement = () => {
-  //   if (quantity > 1) {
-  //     setQuantity(quantity - 1);
-  //     setTotalPrice((quantity - 1) * price);
-  //   }
-  // };
-
   const handleBuy = () => {
-    buyMutation.mutate({ typeId, purchaseAmount: quantity });
+    buyMutation.mutate({ typeId, purchaseAmount: Number(quantity) });
   };
 
   const handleOverlayClick = (e) => {
@@ -127,35 +119,28 @@ const LargeInfoModal = ({
       <Container>
         <ModalContent>
           <TitleText>{title}</TitleText>
-          <HdyImage src={image} alt='Selected Image' />{' '}
-          {/* 전달받은 이미지 사용 */}
+          <HdyImage src={image} alt='Selected Image' />
           <YesterdayToday>
             <YesterdaySection>
               <YesterdayPriceWrapper>
                 <YesterdayText>어제</YesterdayText>
                 {isLoadingYesterdayPrice ? 'Loading...' : yesterdayPriceData}
-                {/* <MoaImage src={moaImage} alt='Moa Icon' /> */}
               </YesterdayPriceWrapper>
             </YesterdaySection>
             <TodaySection>
               <TodayPriceWrapper>
                 <YesterdayText>오늘</YesterdayText>
-                {isLoadingTodayPrice ? 'Loading...' : TodayPriceData}
-                {/* <MoaImage src={moaImage} alt='Moa Icon' /> */}
+                {isLoadingTodayPrice ? 'Loading...' : todayPriceData}
               </TodayPriceWrapper>
             </TodaySection>
           </YesterdayToday>
           <QuantityInputWrapper>
             <span>개수 </span>
             <QuantityContainer>
-              {/* <QuantityDisplay>{quantity}</QuantityDisplay>
-              <div>
-                <ArrowButton className='up' onClick={handleIncrement} />
-                <ArrowButton className='down' onClick={handleDecrement} />
-              </div> */}
               <PayInput
                 type='number'
-                onChange={(e) => debouncedSetQuantity(Number(e.target.value))}
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
                 min='0'
               />
             </QuantityContainer>

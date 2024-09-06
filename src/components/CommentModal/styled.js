@@ -46,7 +46,7 @@ export const TextArea = styled.textarea`
   width: 80%;
   height: 10dvh;
   padding: 3%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   border-radius: 5px;
   border: 1px solid ${colors.gray};
   resize: none;
