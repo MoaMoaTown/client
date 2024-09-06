@@ -98,7 +98,7 @@ const buttonStyles = {
     height: 7dvh;
     background-color: ${colors.green};
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;

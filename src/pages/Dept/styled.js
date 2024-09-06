@@ -45,6 +45,16 @@ export const ClothButtonStyled = styled.div`
   gap: 1.6dvh;
   overflow-y: auto;
 `;
+export const WishButtonStyled = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2dvh;
+  overflow-y: auto;
+`;
 
 export const ToggleWrapper = styled.div`
   display: flex;
@@ -185,12 +195,13 @@ export const ModalButtonWrapper = styled.div`
 
 export const CloseButton = styled.button`
   background-color: ${colors.gray};
+  // width: 30dvw;
   color: ${colors.white};
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   transition: background-color 0.3s ease;
 

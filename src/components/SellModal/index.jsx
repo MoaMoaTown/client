@@ -6,21 +6,21 @@ import {
   ModalContent,
   TitleText,
   QuantityInputWrapper,
-  QuantityContainer,
-  ArrowButton,
   TotalPrice,
   MoaImage,
   SellButtonContainer,
-  QuantityLabel,
+  PayInput,
+  TotalTitle,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
 import { sellInvest } from '../../apis/InvestApi'; // sellInvest API 호출
-import { fetchBalance } from '../../apis/memberApi'; // sellInvest API 호출
+import { fetchBalance } from '../../apis/memberApi'; // fetchBalance API 호출
+import useDebouncedState from '../../hooks/useDebouncedState';
 
 const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(price);
+  const [quantity, setQuantity] = useState(''); // 초기값 빈 문자열
+  const [totalPrice, setTotalPrice] = useState(0);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
@@ -42,27 +42,31 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setQuantity(1);
-      setTotalPrice(price);
+      setQuantity(''); // 수량 초기화
+      setTotalPrice(0); // 총액 초기화
     }
-  }, [isOpen, price]);
+  }, [isOpen]);
+
+  useEffect(() => {
+    const quantityNumber = Number(quantity);
+    setTotalPrice(quantityNumber * price); // 수량이 변경될 때마다 총액 업데이트
+  }, [quantity, price]);
 
   if (!isOpen) return null;
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-    setTotalPrice((quantity + 1) * price);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setTotalPrice((quantity - 1) * price);
+  const handleQuantityChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || /^[0-9\b]+$/.test(value)) {
+      // 빈 문자열 또는 숫자만 허용
+      setQuantity(value);
     }
   };
 
   const handleSell = () => {
-    sellMutation.mutate({ typeId, sellAmount: quantity });
+    const sellQuantity = Number(quantity);
+    if (sellQuantity > 0) {
+      sellMutation.mutate({ typeId, sellAmount: sellQuantity });
+    }
   };
 
   const handleCloseInfoModal = () => {
@@ -83,17 +87,17 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
         <ModalContent>
           <TitleText>{title}</TitleText>
           <QuantityInputWrapper>
-            <span>개수: </span>
-            <QuantityContainer>
-              <QuantityLabel>{quantity}</QuantityLabel>
-              <div>
-                <ArrowButton className='up' onClick={handleIncrement} />
-                <ArrowButton className='down' onClick={handleDecrement} />
-              </div>
-            </QuantityContainer>
+            <span>개수 </span>
+            <PayInput
+              type='number'
+              value={quantity}
+              onChange={handleQuantityChange}
+              min='0'
+            />
           </QuantityInputWrapper>
           <TotalPrice>
-            총액: {totalPrice}
+            <TotalTitle>총액</TotalTitle>
+            {totalPrice}
             <MoaImage src={moaImage} alt='Moa Icon' />
           </TotalPrice>
           <SellButtonContainer>

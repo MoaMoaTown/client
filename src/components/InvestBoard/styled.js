@@ -211,7 +211,8 @@ export const TypeText = styled.span`
   margin-bottom: 5px;
   font-weight: bold;
   // border: 1px solid red;
-  width: 18dvw;
+  width: 24dvw;
+  margin-left: 6dvw;
 `;
 export const BuyBotton = styled.div`
   font-size: 1rem;
