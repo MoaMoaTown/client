@@ -2,6 +2,19 @@ import React from 'react';
 import { Container, LoadingContainer, Circle, Info } from './styled';
 import { colors } from '../../styles/colors';
 
+/**
+ * 로딩 컴포넌트
+ * @author 이주현
+ * @since 2024.08.27
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.27  이주현      최초 생성
+ * </pre>
+ */
+
 const Loading = ({ text, page }) => {
   return (
     <Container page={page}>

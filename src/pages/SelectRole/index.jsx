@@ -16,6 +16,19 @@ import {
 import back from '../../assets/images/back.svg';
 import heendy from '../../assets/images/heendy.png';
 
+/**
+ * 회원 가입 전 역할 선택 페이지
+ * @author 이주현
+ * @since 2024.08.30
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.30  이주현      최초 생성
+ * </pre>
+ */
+
 const SelectRole = () => {
   const navigate = useNavigate();
 
@@ -30,7 +43,7 @@ const SelectRole = () => {
         <Ear left />
         <Ear right />
         <Card>
-          <CardImage src={heendy} alt="heendy" />
+          <CardImage src={heendy} alt='heendy' />
           <CardTextWrapper>
             <CardTitle>{`타운을 
             운영하고 관리해요.`}</CardTitle>
@@ -42,7 +55,7 @@ const SelectRole = () => {
         <Ear left />
         <Ear right />
         <Card>
-          <CardImage src={heendy} alt="heendy" />
+          <CardImage src={heendy} alt='heendy' />
           <CardTextWrapper>
             <CardTitle>타운 내 경제 활동에 참여하고 싶어요.</CardTitle>
             <CardDescription>시민 &gt;</CardDescription>

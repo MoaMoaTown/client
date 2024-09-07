@@ -14,6 +14,19 @@ import {
 import moa from '../../assets/images/moa.svg';
 import heendy from '../../assets/images/default_heendy.png';
 
+/**
+ * 랭킹 리스트 아이템 컴포넌트
+ * @author 이주현
+ * @since 2024.08.28
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.28  이주현      최초 생성
+ * </pre>
+ */
+
 const Rank = ({ ordinal, profile, nickname, balance, isCurrentUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

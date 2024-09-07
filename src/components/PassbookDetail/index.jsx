@@ -16,6 +16,19 @@ import {
 import passbook from '../../assets/images/longpassbook.svg';
 import Loading from '../Loading';
 
+/**
+ * 통장 상세 컴포넌트
+ * @author 이주현
+ * @since 2024.08.30
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.30  이주현      최초 생성
+ * </pre>
+ */
+
 const PassbookDetail = () => {
   const loadMoreRef = useRef();
 
