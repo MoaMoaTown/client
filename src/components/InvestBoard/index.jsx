@@ -6,11 +6,7 @@ import {
   TopWrapper,
   BottomWrapper,
   BottomSection,
-  Title,
-  Divider,
-  Section,
   SectionBox,
-  HintBubble,
   TypeText,
   PriceWrapper,
   MoaImage,
@@ -22,10 +18,8 @@ import {
   AverageValue,
   SellButton,
   TextLabel,
-  TopTitle,
   PriceTypeWrapper,
   PriceTypeItem,
-  InvestImage,
   QuestionImage,
   HintTitle,
   HintContent,
@@ -43,8 +37,19 @@ import weight from '../../assets/images/weight.png';
 import question from '../../assets/images/question.svg';
 import BuyModal from '../BuyModal';
 import SellModal from '../SellModal';
-import Loading from '../Loading'; // 로딩 컴포넌트 임포트
-
+import Loading from '../Loading';
+/**
+ * 투자 상황판 컴포넌트
+ * @author 임재성
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  	임재성        최초 생성
+ * </pre>
+ */
 const EmptyBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
@@ -107,7 +112,7 @@ const EmptyBoard = () => {
       hint: data.hint,
       currentMoa: 1000,
       typeId: data.type,
-      image: selectedImage, // 선택된 이미지를 추가
+      image: selectedImage,
     });
     setIsModalOpen(true);
   };
@@ -178,7 +183,6 @@ const EmptyBoard = () => {
         <TitleWithLines>나의 보유 투자 상품</TitleWithLines>
         <BottomSection>
           <SectionBox>
-            {/* <TextLabel>몸무게</TextLabel> */}
             <AverageWrapper>
               <TextLabel>몸무게</TextLabel>
               <AverageItem>
@@ -197,8 +201,6 @@ const EmptyBoard = () => {
             </SellButton>
           </SectionBox>
           <SectionBox>
-            {/* <InvestImage src={Shoes} alt='HDY' /> */}
-            {/* <TextLabel>걸음수</TextLabel> */}
             <AverageWrapper>
               <TextLabel>걸음수</TextLabel>
               <AverageItem>
@@ -224,7 +226,7 @@ const EmptyBoard = () => {
         price={modalContent.price}
         hint={modalContent.hint}
         currentMoa={modalContent.currentMoa}
-        image={modalContent.image} // 선택된 이미지를 전달
+        image={modalContent.image}
         typeId={modalContent.typeId}
         onConfirm={handleCloseModal}
         onClose={handleCloseModal}

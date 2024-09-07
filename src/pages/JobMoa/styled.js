@@ -38,18 +38,15 @@ export const JobListContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: ; /* 항목 사이의 간격을 설정 */
-  overflow-y: auto; /* 내부에서 스크롤이 가능하도록 설정 */
+  gap: ;
+  overflow-y: auto;
   height: 100%;
 `;
 
 export const Description = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1rem;
+  text-align: center;
   white-space: pre-line;
   color: ${colors.dark_gray};
   line-height: 1.5;
-  height: 7dvh;
 `;

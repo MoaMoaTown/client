@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Header,
-  TownInfo,
   Button,
   JobList,
   CommentModal,
@@ -16,7 +15,18 @@ import {
 } from './styled';
 import { useMutation } from 'react-query';
 import { applyJob } from '../../apis/jobApi';
-
+/**
+ * 잡모아 페이지 컴포넌트
+ * @author 임재성
+ * @since 2024.09.02
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.02  	임재성        최초 생성
+ * </pre>
+ */
 const JobMoa = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
@@ -30,7 +40,6 @@ const JobMoa = () => {
     },
 
     onError: (error) => {
-      // 서버에서 받은 에러 메시지를 추출하여 InfoModal에 전달
       const errorMessage =
         error.message || '신청 실패: 알 수 없는 오류가 발생했습니다.';
       setInfoMessage(`신청 실패: ${errorMessage}`);

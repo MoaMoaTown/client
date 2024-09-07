@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { colors } from '../../styles/colors';
-import bg from '../../assets/images/cupid.png';
 import ChevronUp from '../../assets/images/Chevron_Up.svg';
 import ChevronDown from '../../assets/images/Chevron_Down.svg';
 
@@ -48,12 +47,10 @@ export const TitleText = styled.h2`
 export const QuantityInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  //   justify-content: space-between; /* '개수' 텍스트와 토글을 양쪽에 배치 */
-  width: 100%; /* 전체 너비 사용 */
+  width: 100%;
   font-size: 1.5rem;
-  // font-weight: bold;
   margin-bottom: -10px;
-  padding-left: 150px; /* 왼쪽 여백 추가 */
+  padding-left: 150px;
 `;
 export const PayInput = styled.input`
   width: 5%;
@@ -68,17 +65,16 @@ export const PayInput = styled.input`
   margin-left: 4dvw;
 `;
 export const QuantityLabel = styled.span`
-  margin-left: 30px; /* '개수' 텍스트를 왼쪽으로 더 이동 */
+  margin-left: 30px;
 `;
 
 export const QuantityContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 10px; /* 오른쪽 정렬 */
+  margin-left: 10px;
   background-color: ${colors.background_gray};
   border-radius: 20px;
   padding: 2px;
-  //   width: 60px;
 `;
 
 export const ArrowButton = styled.button`
@@ -109,23 +105,21 @@ export const ArrowButton = styled.button`
 
 export const TotalPrice = styled.div`
   font-size: 1.5rem;
-  // font-weight: bold;
   color: ${colors.primary};
   display: flex;
-  //   justify-content: space-between; /* '총액' 텍스트와 숫자를 양쪽에 배치 */
   width: 100%;
   margin-top: 1dvh;
-  padding-left: 150px; /* 왼쪽 여백 추가 */
+  padding-left: 150px;
 `;
 
 export const TotalLabel = styled.span`
-  margin-left: -10px; /* '총액' 텍스트를 왼쪽으로 더 이동 */
+  margin-left: -10px;
 `;
 
 export const TotalAmount = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* 숫자와 이미지 오른쪽 정렬 */
+  justify-content: flex-end;
 `;
 
 export const TotalTitle = styled.div`
@@ -135,8 +129,6 @@ export const TotalTitle = styled.div`
 export const MoaImage = styled.img`
   width: 10dvw;
   height: auto;
-  // margin-left: 1dvw;
-  // border: 1px solid red;
   margin-top: -0.8dvh;
 `;
 

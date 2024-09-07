@@ -53,7 +53,6 @@ export const QuantityInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  // margin: 0dvh 4dvw; /* 간격을 절반으로 줄임 */
   font-size: 1.5rem;
   margin-top: 2dvh;
   width: 100%;
@@ -76,7 +75,6 @@ export const QuantityContainer = styled.div`
   width: 28dvw;
   height: 4dvh;
   align-items: center;
-  // background-color: ${colors.background_gray};
   border-radius: 20px;
   padding: 2px;
   // border: 1px solid blue;
@@ -86,8 +84,6 @@ export const QuantityContainer = styled.div`
 export const QuantityDisplay = styled.span`
   width: 20dvw;
   text-align: center;
-  // border: 1px solid green;
-  // margin-left: 6dvw;
 `;
 
 export const ArrowButton = styled.button`
@@ -100,7 +96,6 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 1px solid red;
   margin-left: 2px;
   margin-right: 1dvw;
 
@@ -115,7 +110,7 @@ export const ArrowButton = styled.button`
   background-repeat: no-repeat;
   background-size: contain;
   filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%)
-    contrast(100%); /* 검정색으로 변경 */
+    contrast(100%);
 `;
 
 export const TotalPrice = styled.div`
@@ -124,7 +119,6 @@ export const TotalPrice = styled.div`
   color: ${colors.primary};
   display: flex;
   align-items: center;
-  // border: 1px solid green;
   margin-left: 9dvw;
 `;
 
@@ -133,10 +127,8 @@ export const TotalPriceTitle = styled.div`
   height: auto;
   font-size: 1.5rem;
   text-align: left;
-  // border: 1px solid blue;
   display: flex;
   align-items: center;
-  // justify-content: center;
   margin-bottom: 2dvh;
   margin-left: 20dvw;
 `;
@@ -149,15 +141,14 @@ export const YesterdayToday = styled.div`
   width: 110%;
   height: 30%;
   align-items: center;
-  // border: 1px solid blue;
 
-  display: flex; /* 요소들을 가로로 나란히 배치 */
+  display: flex;
 `;
 
 export const YesterdayPriceWrapper = styled.div`
   font-size: 1.5rem;
   color: ${colors.orange};
-  margin: 0.75dvh 0; /* 간격을 절반으로 줄임 */
+  margin: 0.75dvh 0;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -166,19 +157,17 @@ export const YesterdayPriceWrapper = styled.div`
 export const YesterdaySection = styled.div`
   width: 40%;
   height: auto;
-  // border: 1px solid red;
 `;
 export const TodaySection = styled.div`
   width: 40%;
   height: auto;
-  // border: 1px solid red;
   align-items: center;
 `;
 
 export const TodayPriceWrapper = styled.div`
   font-size: 1.5rem;
   color: ${colors.orange};
-  margin: 0.75dvh 0; /* 간격을 절반으로 줄임 */
+  margin: 0.75dvh 0;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -213,6 +202,6 @@ export const YesterdayText = styled.div`
 
 export const TotalContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2열 */
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
 `;

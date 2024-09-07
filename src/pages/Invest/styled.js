@@ -6,7 +6,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: space-between;
   justify-content: flex-start;
   width: 84dvw;
   height: 92dvh;
@@ -29,7 +28,7 @@ export const Description = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-  display: flex; /* 요소들을 일렬로 배치 */
+  display: flex;
   align-items: center;
 `;
 export const Image = styled.img`

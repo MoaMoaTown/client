@@ -1,4 +1,16 @@
 import { axiosInstance } from './index';
+/**
+ * 백화점 관련 API
+ * @author 임재성
+ * @since 2024.08.30
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.30  	임재성        최초 생성
+ * </pre>
+ */
 
 export const fetchClothesList = async ({ page }) => {
   const response = await axiosInstance.get('/clothes/list', {
@@ -8,7 +20,6 @@ export const fetchClothesList = async ({ page }) => {
 };
 
 export const purchaseClothes = async (clothId) => {
-  console.log('서버로 전송할 clothId:', clothId); // 서버로 전송하기 전 로그 출력
   const response = await axiosInstance.post('/clothes/purchase', clothId, {
     headers: {
       'Content-Type': 'application/json',

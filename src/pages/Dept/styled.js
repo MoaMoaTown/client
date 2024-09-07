@@ -120,7 +120,6 @@ export const MoaImage = styled.img`
   margin-left: 5px;
 `;
 
-// 추가된 모달 관련 스타일
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -174,28 +173,22 @@ export const ModalPriceWrapper = styled.div`
   margin-left: -4dvw;
 `;
 
-// export const ModalButtonWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   margin-top: 20px;
-// `;
 export const ModalButtonWrapper = styled.div`
   display: flex;
-  justify-content: center; /* 버튼들을 왼쪽 정렬 */
+  justify-content: center;
   margin-top: 20px;
 
   button {
-    margin-right: 20px; /* 버튼 간의 간격을 설정 (마지막 버튼은 제외하려면 nth-child 등을 사용) */
+    margin-right: 20px;
   }
 
   button:last-child {
-    margin-right: 0; /* 마지막 버튼은 간격 제거 */
+    margin-right: 0;
   }
 `;
 
 export const CloseButton = styled.button`
   background-color: ${colors.gray};
-  // width: 30dvw;
   color: ${colors.white};
   border: none;
   padding: 10px 20px;
@@ -211,13 +204,14 @@ export const CloseButton = styled.button`
 `;
 
 export const MoaImageinModal = styled.img`
-  width: 12dvw; /* 원하는 크기로 조정 */
+  width: 12dvw;
   height: 8dvh;
-  margin-right: 1dvw; /* 가격과 이미지 사이의 간격 */
+  margin-right: 1dvw;
 `;
 
 export const LoadMoreTrigger = styled.div`
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+  border: 1px solid red;
 `;
 
 export const WishWrapWrap = styled.div`
