@@ -17,6 +17,19 @@ import {
 import peopleIcon from '../../assets/images/people.svg';
 import moaIcon from '../../assets/images/main_moa.svg';
 
+/**
+ * 타운 정보 안내 컴포넌트
+ * @author 이주현
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  이주현      최초 생성
+ * </pre>
+ */
+
 const TownInfo = () => {
   const { data: townInfo = {} } = useQuery('townInfo', fetchTownInfo);
 
