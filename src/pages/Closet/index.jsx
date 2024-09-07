@@ -95,6 +95,13 @@ const Closet = () => {
       });
   };
 
+  const handleBackButton = () => {
+    setSelectedItems([]);
+    setSelectedType(0);
+    setSelectedFace(face1);
+    navigate(-1);
+  };
+
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -102,7 +109,7 @@ const Closet = () => {
   return (
     <Container>
       <Wrapper>
-        <BackButton onClick={() => navigate(-1)}>
+        <BackButton onClick={handleBackButton}>
           <img src={back} alt='뒤로가기' />
         </BackButton>
         <Title>흰디 꾸미기</Title>

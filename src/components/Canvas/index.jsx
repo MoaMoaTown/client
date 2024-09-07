@@ -19,16 +19,19 @@ const Canvas = forwardRef(({ heendy, face, clothes }, ref) => {
     const canvas = ref.current;
     const ctx = canvas.getContext('2d');
 
+    const vw = window.innerWidth * 0.84;
+    const vh = window.innerWidth * 0.84;
+
     // 고해상도 설정
     const scaleFactor = 2;
-    const width = canvas.offsetWidth * scaleFactor;
-    const height = canvas.offsetHeight * scaleFactor;
+    const width = vw * scaleFactor;
+    const height = vh * scaleFactor;
 
     canvas.width = width;
     canvas.height = height;
 
-    canvas.style.width = `${canvas.offsetWidth}px`;
-    canvas.style.height = `${canvas.offsetHeight}px`;
+    canvas.style.width = `${vw}px`;
+    canvas.style.height = `${vh}px`;
 
     ctx.scale(scaleFactor, scaleFactor);
 
@@ -38,10 +41,10 @@ const Canvas = forwardRef(({ heendy, face, clothes }, ref) => {
     const bodyImg = new Image();
     bodyImg.src = heendy;
     bodyImg.onload = () => {
-      const bodyWidth = canvas.offsetWidth * 0.7;
+      const bodyWidth = vw * 0.7;
       const bodyHeight = bodyImg.height * (bodyWidth / bodyImg.width);
-      const bodyX = (canvas.offsetWidth - bodyWidth) / 2;
-      const bodyY = canvas.offsetHeight - bodyHeight;
+      const bodyX = (vw - bodyWidth) / 2;
+      const bodyY = vh - bodyHeight;
 
       ctx.drawImage(bodyImg, bodyX, bodyY, bodyWidth, bodyHeight);
 
@@ -94,9 +97,9 @@ const Canvas = forwardRef(({ heendy, face, clothes }, ref) => {
       const faceImg = new Image();
       faceImg.src = face;
       faceImg.onload = () => {
-        const faceWidth = canvas.offsetWidth * 0.3;
+        const faceWidth = vw * 0.3;
         const faceHeight = faceImg.height * (faceWidth / faceImg.width);
-        const faceX = (canvas.offsetWidth - faceWidth) / 2;
+        const faceX = (vw - faceWidth) / 2;
         const faceY = bodyY - faceHeight * 0.7;
 
         ctx.drawImage(faceImg, faceX, faceY, faceWidth, faceHeight);
