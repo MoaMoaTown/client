@@ -35,7 +35,6 @@ const NotiComponent = () => {
       };
 
       source.onmessage = (e) => {
-        console.log(e.data);
         setNotification(e.data);
         setToastOpen(true);
       };

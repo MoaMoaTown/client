@@ -13,11 +13,6 @@ import { axiosInstance } from './index';
  * </pre>
  */
 
-export const subscribe = async () => {
-  const response = await axiosInstance.get(`/notification/subscribe`);
-  return response.data;
-};
-
 export const fetchNotifications = async () => {
   const response = await axiosInstance.get('/notification/list');
   return response.data;

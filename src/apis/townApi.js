@@ -120,14 +120,14 @@ export const fetchMemberWishRequests = async (page = 1, size = 10) => {
   return response.data;
 };
 
-export const fetchWishlist = async (page = 0, size = 5) => {
+export const fetchWishlist = async (page = 0, size = 10) => {
   const response = await axiosInstance.get('/wish/wishlist', {
     params: { page, size },
   });
   return response.data;
 };
 
-export const getJobsByTownId = async (page = 0, size = 5) => {
+export const getJobsByTownId = async (page = 0, size = 10) => {
   const response = await axiosInstance.get('/jobs/list', {
     params: { page, size },
   });

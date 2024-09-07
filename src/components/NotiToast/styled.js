@@ -90,3 +90,13 @@ export const Title = styled.h2`
     font-size: 1.2rem;
   }
 `;
+
+export const Content = styled.p`
+  font-size: 1rem;
+  color: black;
+  text-align: left;
+  white-space: pre-wrap;
+  @media (min-width: 1024px) {
+    font-size: 1.2rem;
+  }
+`;

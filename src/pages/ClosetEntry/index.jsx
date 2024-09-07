@@ -1,21 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { loginInfo } from '../../store/atoms';
-import { Header, Button, Loading } from '../../components';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import { fetchProfile } from '../../apis/closetApi';
-import {
-  Container,
-  Title,
-  ProfileImage,
-  SubTitle,
-  Username,
-  PawWrapper,
-  Paw,
-} from './styled';
 import heendy from '../../assets/images/default_heendy.png';
 import paw from '../../assets/images/paw.png';
+import { Button, Header, Loading } from '../../components';
+import { loginInfo } from '../../store/atoms';
+import {
+  Container,
+  Paw,
+  PawWrapper,
+  ProfileImage,
+  SubTitle,
+  Title,
+  Username,
+} from './styled';
 
 /**
  * 옷장 진입 페이지
@@ -27,7 +27,7 @@ import paw from '../../assets/images/paw.png';
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
- * 2024.09.07   임원정        프로필 이미지 생성 전 기본 이미지 적용
+ * 2024.09.07   임원정        프로필 이미지 생성 전 기본 이미지 적용 및 디자인 수정
  * </pre>
  */
 
@@ -65,7 +65,7 @@ const ClosetEntry = () => {
       </PawWrapper>
       <Username>{user.nickname}</Username>
       <Button variant='entryBtn' onClick={handleEntry}>
-        흰디 꾸미러 가기
+        흰디 꾸미기
       </Button>
     </Container>
   );

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Container,
-  TableWrapper,
-  Table,
-  Thead,
-  Tbody,
   Cell,
-  EmptyWrapper,
+  Container,
   EmptyMsg,
+  EmptyWrapper,
+  Table,
+  TableWrapper,
+  Tbody,
+  Thead,
 } from './styled';
 
 /**
@@ -46,7 +46,7 @@ const QuestTable = ({ headers, data, onRowClick }) => {
                   >
                     {Object.values(row).map(
                       (cell, cellIndex) =>
-                        cellIndex !== Object.values(row).length - 1 && ( // questId는 제외하고 렌더링
+                        cellIndex !== Object.values(row).length - 1 && (
                           <Cell
                             key={cellIndex}
                             align={cellIndex === 1 ? 'left' : 'center'}

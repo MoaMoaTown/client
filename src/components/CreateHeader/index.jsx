@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { AdminModal, Button } from '../index';
 import { Container, Title } from './styled';
-import { Button, AdminModal } from '../index';
 
 /**
  * 관리자 페이지 만들기 헤더
