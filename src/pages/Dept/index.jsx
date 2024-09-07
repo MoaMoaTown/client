@@ -40,7 +40,18 @@ import {
   purchaseWishItem,
 } from '../../apis/deptAPI';
 import { fetchBalance } from '../../apis/memberApi';
-
+/**
+ * 백화점 페이지 컴포넌트
+ * @author 임재성
+ * @since 2024.08.28
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.28  	임재성        최초 생성
+ * </pre>
+ */
 const Dept = () => {
   const [showWishlist, setShowWishlist] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -48,19 +59,16 @@ const Dept = () => {
   const [purchaseMessage, setPurchaseMessage] = useState('');
   const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-  const [manualLoading, setManualLoading] = useState(false); // 수동 로딩 상태
+  const [manualLoading, setManualLoading] = useState(false);
   useEffect(() => {
-    // 수동 로딩을 2초 동안 유지
     setManualLoading(true);
     const timer = setTimeout(() => {
       setManualLoading(false);
     }, 2000);
 
-    // 클린업 함수에서 타이머 해제
     return () => clearTimeout(timer);
   }, []);
 
-  // const { refetch } = useQuery('balance', fetchBalance);
   const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
 
   const observerRef = useRef();
@@ -75,7 +83,7 @@ const Dept = () => {
     fetchNextPage: fetchNextClothes,
     hasNextPage: hasMoreClothes,
     isLoading: isClothesLoading,
-    isFetchingNextPage: isFetchingNextClothes, // 무한 스크롤 로딩 상태
+    isFetchingNextPage: isFetchingNextClothes,
   } = useInfiniteQuery('clothesList', fetchClothes, {
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === 3 ? allPages.length : undefined;
@@ -88,7 +96,7 @@ const Dept = () => {
     fetchNextPage: fetchNextWishlist,
     hasNextPage: hasMoreWishlist,
     isLoading: isWishlistLoading,
-    isFetchingNextPage: isFetchingNextWishlist, // 무한 스크롤 로딩 상태
+    isFetchingNextPage: isFetchingNextWishlist,
   } = useInfiniteQuery('wishlist', fetchWishes, {
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === 5 ? allPages.length : undefined;
@@ -103,12 +111,11 @@ const Dept = () => {
       onSuccess: (data) => {
         setPurchaseMessage(data.message);
         setIsResultModalOpen(true);
-        refetchBalance(); // 구매 성공 후 추가 작업을 할 수 있습니다.
+        refetchBalance();
       },
       onError: (error) => {
         const errorMessage = error.response?.data?.msg || '구매 실패';
-        setPurchaseMessage(errorMessage); // 실패 시 메시지
-        // setPurchaseMessage('구매 실패: ' + error.message);
+        setPurchaseMessage(errorMessage);
         setIsResultModalOpen(true);
       },
     }
@@ -126,13 +133,12 @@ const Dept = () => {
 
   const handlePurchaseClick = () => {
     if (selectedItem) {
-      // 구매를 시도한 상품 정보 전송
       ReactGA.event({
         items: [
           {
             id: selectedItem.clothId || selectedItem.wishId,
             name: selectedItem.name,
-            category: 'Cloth', // 카테고리 명 변경 가능
+            category: 'Cloth',
             action: 'Product Viewed',
             brand: selectedItem.brand,
             price: selectedItem.price,
@@ -150,7 +156,6 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      // 실제 구매 이벤트 전송
       ReactGA.event({
         category: 'Cloth',
         action: 'Purchase',
@@ -161,7 +166,6 @@ const Dept = () => {
         transaction_id: selectedItem.clothId || selectedItem.wishId,
       });
 
-      // 구매 처리
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
         isWish: isWishSelected,
@@ -181,21 +185,13 @@ const Dept = () => {
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        // IntersectionObserver의 콜백 함수가 호출되었음을 확인
-        console.log('IntersectionObserver 호출됨', entries[0]);
-
         if (entries[0].isIntersecting) {
-          console.log('LoadMoreTrigger가 화면에 보입니다.');
-
           if (showWishlist && hasMoreWishlist) {
-            console.log('위시 상품 데이터를 로드합니다.');
             fetchNextWishlist();
           } else if (!showWishlist && hasMoreClothes) {
-            console.log('의류 상품 데이터를 로드합니다.');
             fetchNextClothes();
           }
         } else {
-          console.log('LoadMoreTrigger가 화면에 보이지 않습니다.');
         }
       },
       { threshold: 0.1 }

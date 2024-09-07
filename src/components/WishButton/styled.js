@@ -13,9 +13,9 @@ export const StyledWishButton = styled.button`
   background-color: white;
   color: ${colors.dark_gray};
   cursor: pointer;
-  display: flex; /* Flexbox로 변경 */
-  align-items: center; /* 수직 중앙 정렬 */
-  justify-content: space-between; /* 양 끝으로 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:hover {
     background-color: ${colors.super_light_green};
@@ -33,8 +33,7 @@ export const StyledWishButton = styled.button`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    // flex-grow: 1; /* 텍스트 영역이 가능한 공간을 차지하도록 */
-    margin-right: 10px; /* 가격과 텍스트 사이의 간격 */
+    margin-right: 10px;
   }
 `;
 
@@ -45,7 +44,6 @@ export const PriceWrapper = styled.div`
 `;
 
 export const MoaImage = styled.img`
-  width: 4dvh; /* 작게 설정 */
-  // height: 12px; /* 작게 설정 */
-  margin-left: 4px; /* 텍스트와 이미지 사이의 간격 */
+  width: 4dvh;
+  margin-left: 4px;
 `;

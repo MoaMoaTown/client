@@ -4,12 +4,10 @@ import { colors } from '../../styles/colors';
 export const Container = styled.div`
   width: 90%;
   height: 75%;
-  // background-color: white;
   border-radius: 20px;
   padding: 5%;
   display: flex;
   flex-direction: column;
-  // border: 1px solid red;
 `;
 
 export const TopWrapper = styled.div`
@@ -19,7 +17,6 @@ export const TopWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 4px;
-  // border: 1px solid green;
 `;
 
 export const BottomWrapper = styled.div`
@@ -29,7 +26,6 @@ export const BottomWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 5%;
-  // border: 1px solid red;
 `;
 
 export const BottomSection = styled.div`
@@ -37,7 +33,6 @@ export const BottomSection = styled.div`
   display: flex;
   justify-content: space-between;
   width: 120%;
-  // border: 1px solid blue;
   margin-top: 2dvh;
 `;
 
@@ -69,26 +64,22 @@ export const TopSectionTop = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // border: 1px solid black;
-  justify-content: space-between; /* 양쪽으로 나누기 */
+  justify-content: space-between;
 `;
 export const TopSectionBottom = styled.div`
   margin-top: 3dvh;
   width: 86dvw;
-  // height: 100%;
   display: flex;
-  flex-direction: row; /* 가로로 나열 */
+  flex-direction: row;
   align-items: center;
-  // border: 1px solid black;
-  justify-content: space-between; /* 양쪽으로 나누기 */
+  justify-content: space-between;
 `;
 export const BuySectionBox = styled.div`
   width: 40dvw;
   height: 18dvh;
-  // border: 1px solid red;
   border-radius: 50%;
   background-color: ${colors.white};
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,8 +99,7 @@ export const SectionBox = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  // border: 1px solid purple;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 `;
 
 export const AverageWrapper = styled.div`
@@ -129,7 +119,6 @@ export const AverageItem = styled.div`
   width: 100%;
   margin-bottom: 0px;
   font-size: 0.9rem;
-  // font-weight: bold;
 `;
 
 export const AverageLabel = styled.div`
@@ -154,17 +143,6 @@ export const TextLabel = styled.div`
   color: ${colors.black};
 `;
 
-// export const SellButton = styled.button`
-//   width: 80%;
-//   padding: 5px 10px;
-//   background-color: ${colors.green};
-//   color: white;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   margin-top: 10px;
-//   border: 1px solid red;
-// `;
 export const SellButton = styled.div`
   margin-top: 6px;
   font-size: 1rem;
@@ -172,37 +150,9 @@ export const SellButton = styled.div`
   color: ${colors.orange};
 `;
 
-// export const HintBubble = styled.div`
-//   position: relative;
-//   background-color: ${colors.background_gray};
-//   color: ${colors.black};
-//   padding: 15px 15px;
-//   border-radius: 15px;
-//   margin-bottom: 5px;
-//   font-size: 1rem;
-//   font-weight: bold;
-//   text-align: center;
-//   // max-width: 80px;
-//   width: 50dvw;
-//   height: 6dvh;
-//   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
-
-//   &:after {
-//     content: '';
-//     position: absolute;
-//     bottom: -20px;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     border-width: 10px;
-//     border-style: solid;
-//     border-color: ${colors.background_gray} transparent transparent transparent;
-//     z-index: 1;
-//   }
-// `;
 export const QuestionImage = styled.img`
   width: 16dvh;
   margin-top: -4dvh;
-  // margin-bottom: 10px;
 `;
 export const QuestionAndHDY = styled.img``;
 
@@ -335,7 +285,6 @@ export const PriceTypeItem = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50%;
-  // margin-top: 4.4dvh;
 `;
 export const HintTitle = styled.div`
   color: red;
@@ -354,16 +303,14 @@ export const TitleWithLines = styled.div`
   display: flex;
   margin-top: 2dvh;
   margin-bottom: 1dvh;
-
   align-items: center;
   text-align: center;
-  // border: 1px solid red;
   font-weight: bold;
   &::before,
   &::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid black; /* 선 스타일 */
-    margin: 0 10px; /* 텍스트와 선 사이의 여백 */
+    border-bottom: 1px solid black;
+    margin: 0 10px;
   }
 `;

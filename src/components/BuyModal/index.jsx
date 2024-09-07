@@ -6,12 +6,10 @@ import {
   ModalContent,
   TitleText,
   HdyImage,
-  QuantityDisplay,
   TotalPrice,
   MoaImage,
   QuantityInputWrapper,
   QuantityContainer,
-  ArrowButton,
   YesterdayPriceWrapper,
   TodayPriceWrapper,
   YesterdayToday,
@@ -23,7 +21,6 @@ import {
   PayInput,
 } from './styled';
 import { Button, InfoModal } from '../index';
-import hdyImage from '../../assets/images/hdHello.svg';
 import moaImage from '../../assets/images/moa.svg';
 import {
   buyInvest,
@@ -32,6 +29,18 @@ import {
 } from '../../apis/InvestApi';
 import { fetchBalance } from '../../apis/memberApi';
 
+/**
+ * 매수 모달 컴포넌트
+ * @author 임재성
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  	임재성        최초 생성
+ * </pre>
+ */
 const LargeInfoModal = ({
   isOpen,
   title,
@@ -72,7 +81,7 @@ const LargeInfoModal = ({
         setResponseMessage(
           response.message || '매수가 성공적으로 완료되었습니다.'
         );
-        refetchBalance(); // 성공 시 balance를 갱신
+        refetchBalance();
         setIsInfoModalOpen(true);
       },
       onError: () => {

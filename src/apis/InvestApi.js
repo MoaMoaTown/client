@@ -1,13 +1,23 @@
 import { axiosInstance } from './index';
 
-// 오늘의 투자 정보를 가져오는 API 호출
+/**
+ *  투자 관련 API
+ * @author 임재성
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  	임재성        최초 생성
+ * </pre>
+ */
+
 export const getTodayPrice = async () => {
   try {
     const response = await axiosInstance.get('/invest/today', {});
-    console.log('API 응답 데이터:', response.data); // 응답 데이터를 콘솔에 출력
     return response.data;
   } catch (error) {
-    console.error('API 호출 중 오류 발생:', error); // 오류가 발생한 경우 콘솔에 출력
     throw error;
   }
 };
@@ -30,7 +40,6 @@ export const getAverageWeightAndStep = async () => {
     const response = await axiosInstance.get('/invest/average');
     return response.data;
   } catch (error) {
-    console.error('평균 평단가 및 보유 수량을 가져오는 중 오류 발생:', error);
     throw error;
   }
 };
@@ -43,7 +52,6 @@ export const sellInvest = async ({ typeId, sellAmount }) => {
     });
     return response.data;
   } catch (error) {
-    console.error('매도 요청 중 오류 발생:', error); // 오류가 발생한 경우 콘솔에 출력
     throw error;
   }
 };
