@@ -76,6 +76,12 @@ const KnowledgeDetail = () => {
     }
   }, [word]);
 
+  useEffect(() => {
+    if (!modalOpen) {
+      setWord('');
+    }
+  }, [modalOpen]);
+
   if (isLoading) {
     return (
       <DetailContainer>
