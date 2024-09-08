@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ToastContainer, CloseIcon, Title, Wrapper } from './styled';
+import { ToastContainer, CloseIcon, Title, Wrapper, Content } from './styled';
 import closeIcon from '../../assets/images/close.svg';
 
 /**
@@ -42,8 +42,7 @@ const NotiToast = ({ setToast, text }) => {
           }}
         />
       </Wrapper>
-      {/* <Heendy src={heendy} /> */}
-      <p>{text}</p>
+      <Content>{text}</Content>
     </ToastContainer>
   );
 };

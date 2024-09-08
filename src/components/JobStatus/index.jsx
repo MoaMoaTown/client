@@ -17,8 +17,8 @@ import { StatusTable, Loading } from '../index';
  */
 
 const JobStatus = () => {
-  const [page, setPage] = useState(1);
-  const [size, setSize] = useState(4);
+  const [page] = useState(1);
+  const [size] = useState(4);
   const { data, isLoading } = useQuery(['jobRequests', page, size], () =>
     fetchJobRequests(page, size)
   );

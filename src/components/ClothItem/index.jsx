@@ -34,7 +34,7 @@ const ClothItem = ({ item, onClick }) => {
     <ItemContainer onClick={handleClick} isSelected={isSelected}>
       <ItemImage src={item.image} alt={item.name} />
       <ItemBrand>{`[${item.brand}]`}</ItemBrand>
-      <ItemName>{`${item.name}`}</ItemName>
+      <ItemName>{item.name}</ItemName>
     </ItemContainer>
   );
 };
