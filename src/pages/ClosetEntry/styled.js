@@ -30,13 +30,45 @@ export const Title = styled.div`
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  margin-top: 13vh;
+  margin-top: 4dvh;
+`;
+
+export const SubTitle = styled.div`
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 8dvh;
+`;
+
+export const Username = styled.div`
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 10dvh;
 `;
 
 export const ProfileImage = styled.img`
   width: 70dvw;
   height: 70dvw;
-  border-radius: 8px;
-  margin: 8vh;
+  border-radius: 20px;
+  margin: 4dvh;
   object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const PawWrapper = styled.div`
+  position: fixed;
+  top: 45dvh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 82dvw;
+  height: auto;
+  z-index: 1;
+`;
+
+export const Paw = styled.img`
+  width: 12dvw;
+  height: 12dvw;
 `;
