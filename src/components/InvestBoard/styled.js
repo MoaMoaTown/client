@@ -75,7 +75,7 @@ export const TopSectionBottom = styled.div`
   justify-content: space-between;
 `;
 export const BuySectionBox = styled.div`
-  width: 40dvw;
+  width: 38dvw;
   height: 18dvh;
   border-radius: 50%;
   background-color: ${colors.white};

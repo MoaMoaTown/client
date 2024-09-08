@@ -37,7 +37,7 @@ export const TitleText = styled.h2`
 `;
 
 export const DescriptionText = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: ${colors.dark_gray};
   margin-bottom: 20px;
 `;
