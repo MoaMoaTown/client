@@ -26,7 +26,7 @@ const NotiComponent = () => {
     if (login.isLogin) {
       const EventSource = NativeEventSource || EventSourcePolyfill;
       const source = new EventSource(
-        `http://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
+        `https://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
         { withCredentials: true }
       );
 
