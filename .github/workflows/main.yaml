@@ -1,0 +1,35 @@
+name: Deploy To S3
+
+on:
+  push:
+    branches: [release]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependence
+        run: npm install
+
+      - name: Build app
+        run: CI=false npm run build
+        env:
+          REACT_APP_ENDPOINT: ${{ secrets.SERVER_URL }}
+          REACT_APP_GA_TRACKING_ID: ${{ secrets.GA_ID }}
+
+      - name: Deploy To S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build s3://moamoa-dev
