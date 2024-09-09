@@ -48,21 +48,32 @@ export const Username = styled.div`
   margin-bottom: 10dvh;
 `;
 
-export const ProfileImage = styled.img`
+export const ProfileWrapper = styled.div`
   width: 70dvw;
   height: 70dvw;
-  border-radius: 20px;
   margin: 4dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+`;
+
+export const ProfileImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
   object-fit: cover;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const PawWrapper = styled.div`
   position: fixed;
-  top: 45dvh;
+  top: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform: translateY(-50%);
   width: 82dvw;
   height: auto;
   z-index: 1;

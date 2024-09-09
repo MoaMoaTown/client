@@ -15,6 +15,7 @@ import {
   SubTitle,
   Title,
   Username,
+  ProfileWrapper,
 } from './styled';
 
 /**
@@ -58,11 +59,14 @@ const ClosetEntry = () => {
       <Header />
       <Title>나의 옷장</Title>
       <SubTitle>현재 프로필</SubTitle>
-      <ProfileImage src={imageUrl} alt='프로필 이미지' />
-      <PawWrapper>
-        <Paw src={paw} />
-        <Paw src={paw} />
-      </PawWrapper>
+      <ProfileWrapper>
+        <ProfileImage src={imageUrl} alt='프로필 이미지' />
+        <PawWrapper>
+          <Paw src={paw} />
+          <Paw src={paw} />
+        </PawWrapper>
+      </ProfileWrapper>
+
       <Username>{user.nickname}</Username>
       <Button variant='entryBtn' onClick={handleEntry}>
         흰디 꾸미기
