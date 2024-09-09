@@ -60,7 +60,7 @@ const ItemContainer = ({ onSelectItem }) => {
   // 선택된 타입이 얼굴일 때
   if (selectedType === 0) {
     return (
-      <ContainerWrapper>
+      <ContainerWrapper face={selectedType === 0}>
         {faceItems.map((item) => (
           <FaceItem
             key={item.id}

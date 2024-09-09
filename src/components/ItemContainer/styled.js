@@ -8,7 +8,7 @@ export const ContainerWrapper = styled.div`
   gap: 3dvw;
   margin-top: 2.8dvh;
   padding: 1dvh 1dvw;
-  overflow-y: auto;
+  overflow-y: ${({ face }) => (face ? 'hidden' : 'auto')};
   overflow-x: hidden;
   justify-content: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
   align-items: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
