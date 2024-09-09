@@ -25,7 +25,6 @@ const NotiComponent = () => {
 
   useEffect(() => {
     if (login.isLogin && user.hasTownId) {
-      console.log(user.hasTownId);
       const EventSource = NativeEventSource || EventSourcePolyfill;
       const source = new EventSource(
         `http://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
