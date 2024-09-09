@@ -210,8 +210,7 @@ export const MoaImageinModal = styled.img`
 `;
 
 export const LoadMoreTrigger = styled.div`
-  // border: 1px solid transparent;
-  border: 1px solid red;
+  border: 1px solid transparent;
 `;
 
 export const WishWrapWrap = styled.div`

@@ -6,7 +6,7 @@ export const ContainerWrapper = styled.div`
   display: ${({ isLoading }) => (isLoading ? 'flex' : 'grid')};
   flex-wrap: wrap;
   gap: 3dvw;
-  margin-top: 3dvh;
+  margin-top: 2.8dvh;
   padding: 1dvh 1dvw;
   overflow-y: auto;
   overflow-x: hidden;

@@ -260,6 +260,7 @@ const Dept = () => {
                 </WishButton>
               ))
             )}
+            <LoadMoreTrigger ref={loadMoreRef} />
           </WishButtonStyled>
         ) : (
           <ClothButtonStyled>
@@ -275,9 +276,9 @@ const Dept = () => {
                 />
               ))
             )}
+            <LoadMoreTrigger ref={loadMoreRef} />
           </ClothButtonStyled>
         )}
-        <LoadMoreTrigger ref={loadMoreRef} />
       </ContentWrapper>
 
       <Button variant='buyBtn' onClick={handlePurchaseClick}>

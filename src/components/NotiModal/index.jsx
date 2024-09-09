@@ -12,8 +12,12 @@ import {
   Thead,
   CloseIcon,
   Wrapper,
+  EmptyMsg,
+  EmptyImg,
+  EmptyWrapper,
 } from './styled';
 import { Loading } from '../index';
+import empty from '../../assets/images/empty.png';
 import closeIcon from '../../assets/images/close.svg';
 
 /**
@@ -49,7 +53,12 @@ const NotiModal = ({ isOpen, toggleNotiModal }) => {
             <CloseIcon src={closeIcon} onClick={toggleNotiModal} />
           </Wrapper>
 
-          {isLoading ? (
+          {notifications.length === 0 ? (
+            <EmptyWrapper>
+              <EmptyImg src={empty} />
+              <EmptyMsg>받은 알림이 없습니다.</EmptyMsg>
+            </EmptyWrapper>
+          ) : isLoading ? (
             <Loading text={'로딩 중...'}></Loading>
           ) : isError ? (
             <p>오류가 발생했습니다.</p>
