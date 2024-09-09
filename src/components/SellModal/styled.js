@@ -49,8 +49,10 @@ export const QuantityInputWrapper = styled.div`
   align-items: center;
   width: 100%;
   font-size: 1.5rem;
-  margin-bottom: -10px;
+  margin-top: 3dvh;
+  margin-bottom: -1dvw;
   padding-left: 150px;
+  // border: 1px solid red;
 `;
 export const PayInput = styled.input`
   width: 5%;
@@ -75,6 +77,16 @@ export const QuantityContainer = styled.div`
   background-color: ${colors.background_gray};
   border-radius: 20px;
   padding: 2px;
+  width: 21dvw;
+  height: 6dvh;
+  margin-left: 3dvw;
+`;
+
+export const QuantityDisplay = styled.span`
+  width: 20dvw;
+  text-align: center;
+  // border: 1px solid red;
+  margin-left: 5dvw;
 `;
 
 export const ArrowButton = styled.button`
@@ -87,7 +99,6 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 4dvw;
 
   &.up {
     background-image: url(${ChevronUp});
