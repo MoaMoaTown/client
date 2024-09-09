@@ -277,9 +277,6 @@ const Dept = () => {
               ))
             )}
             <LoadMoreTrigger ref={loadMoreRef} />
-            {/* {(isFetchingNextClothes || isFetchingNextWishlist) && ( // 무한 스크롤 로딩 상태
-            <Loading text={'더 불러오는 중...'} page />
-          )} */}
           </ClothButtonStyled>
         )}
       </ContentWrapper>
