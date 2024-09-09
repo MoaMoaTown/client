@@ -31,7 +31,7 @@ export const ModalContent = styled.div`
   border-radius: 10px;
   padding: 3dvh 5dvw;
   width: 80dvw;
-  height: 22dvh;
+  height: 24dvh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-repeat: no-repeat;
   background-position: right bottom 10%;
@@ -84,7 +84,7 @@ export const QuantityContainer = styled.div`
 
 export const QuantityDisplay = styled.span`
   width: 20dvw;
-  text-align: center;
+  text-align: c모enter;
   // border: 1px solid red;
   margin-left: 5dvw;
 `;
