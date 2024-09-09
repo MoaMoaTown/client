@@ -41,7 +41,7 @@ const AdminWish = () => {
   const [page, setPage] = useState(0);
   const [size] = useState(10);
 
-  const { data, refetch, isLoading } = useQuery(
+  const { data, refetch } = useQuery(
     ['wish', page, size],
     () => fetchWishlist(page, size),
     { keepPreviousData: true }

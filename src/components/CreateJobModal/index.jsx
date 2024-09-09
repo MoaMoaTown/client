@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Button } from '../index';
+import React from 'react';
+import closeIcon from '../../assets/images/close.svg';
+import moaIcon from '../../assets/images/moa.svg';
 import useDebouncedState from '../../hooks/useDebouncedState';
+import { Button } from '../index';
 import {
-  Overlay,
-  Container,
-  Title,
-  ModalContent,
-  Label,
-  Input,
-  MoaImage,
-  PayWrapper,
-  PayInput,
   CloseIcon,
+  Container,
+  Input,
+  Label,
+  MoaImage,
+  ModalContent,
+  Overlay,
+  PayInput,
+  PayWrapper,
+  Title,
   TitleWrapper,
 } from './styled';
-import moaIcon from '../../assets/images/moa.svg';
-import closeIcon from '../../assets/images/close.svg';
 
 /**
  * 역할 만들기 모달
@@ -70,7 +70,7 @@ const CreateJobModal = ({ isOpen, onClose, onCreate }) => {
               type='number'
               onChange={(e) => debouncedSetPay(Number(e.target.value))}
               min='0'
-              placeholder='급여를 입력하세요'
+              placeholder='급여'
             />
             <Button
               variant='makeTownBtn'

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { logout } from '../../apis/memberApi';
-import { loginState, loginInfo, townInfoState } from '../../store/atoms';
+import logo from '../../assets/images/logo.png';
+import noti from '../../assets/images/noti.svg';
+import { loginInfo, loginState, townInfoState } from '../../store/atoms';
+import { NotiModal } from '../index';
 import {
   Container,
   LeftWrapper,
-  Title,
   LogoImage,
-  RightWrapper,
-  NotiImage,
-  Nickname,
   Logout,
+  Nickname,
+  NotiImage,
+  RightWrapper,
+  Title,
 } from './styled';
-import { NotiModal } from '../index';
-import logo from '../../assets/images/logo.png';
-import noti from '../../assets/images/noti.svg';
 
 /**
  * 관리자 페이지 헤더

@@ -11,7 +11,7 @@ export const Container = styled.div`
   width: 84dvw;
   height: 92dvh;
   padding: 4dvh 8dvw;
-  gap: 3.4dvh;
+  gap: 3dvh;
 `;
 
 export const DeptTitle = styled.div`
@@ -42,7 +42,17 @@ export const ClothButtonStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 1.6dvh;
+  overflow-y: auto;
+`;
+export const WishButtonStyled = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2dvh;
   overflow-y: auto;
 `;
 
@@ -52,17 +62,16 @@ export const ToggleWrapper = styled.div`
   align-items: center;
   background-color: ${colors.white};
   border-radius: 200px;
-  padding: 5px;
+  padding: 1dvh 2.5%;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 95%;
 `;
 
 export const ToggleContainer = styled.div`
   display: flex;
   width: 100%;
   position: relative;
-  height: 50px;
-  border-radius: 15px;
+  height: 5dvh;
 `;
 
 export const ActiveBackground = styled.div`
@@ -72,7 +81,7 @@ export const ActiveBackground = styled.div`
   width: 50%;
   height: 100%;
   background-color: ${colors.green};
-  border-radius: 200px;
+  border-radius: 50px;
   transition: left 0.5s ease;
   z-index: 1;
 `;
@@ -87,6 +96,9 @@ export const ToggleButton = styled.button`
   padding: 10px 20px;
   margin: 0;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: color 0.3s ease;
   z-index: 2;
@@ -108,7 +120,6 @@ export const MoaImage = styled.img`
   margin-left: 5px;
 `;
 
-// 추가된 모달 관련 스타일
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -162,22 +173,17 @@ export const ModalPriceWrapper = styled.div`
   margin-left: -4dvw;
 `;
 
-// export const ModalButtonWrapper = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   margin-top: 20px;
-// `;
 export const ModalButtonWrapper = styled.div`
   display: flex;
-  justify-content: center; /* 버튼들을 왼쪽 정렬 */
+  justify-content: center;
   margin-top: 20px;
 
   button {
-    margin-right: 20px; /* 버튼 간의 간격을 설정 (마지막 버튼은 제외하려면 nth-child 등을 사용) */
+    margin-right: 20px;
   }
 
   button:last-child {
-    margin-right: 0; /* 마지막 버튼은 간격 제거 */
+    margin-right: 0;
   }
 `;
 
@@ -188,7 +194,7 @@ export const CloseButton = styled.button`
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   transition: background-color 0.3s ease;
 
@@ -198,13 +204,14 @@ export const CloseButton = styled.button`
 `;
 
 export const MoaImageinModal = styled.img`
-  width: 12dvw; /* 원하는 크기로 조정 */
+  width: 12dvw;
   height: 8dvh;
-  margin-right: 1dvw; /* 가격과 이미지 사이의 간격 */
+  margin-right: 1dvw;
 `;
 
 export const LoadMoreTrigger = styled.div`
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+  border: 1px solid red;
 `;
 
 export const WishWrapWrap = styled.div`

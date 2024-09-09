@@ -9,7 +9,7 @@ export const colors = {
   intermediate_color: '#F8961E',
   purple: '#C76EFD',
   white: '#ffffff',
-  super_light_green: '#D2EBE8', // 기존 색상
+  super_light_green: '#D2EBE8',
   dark_green: '#14695D',
   table_orange: '#D59233',
 };

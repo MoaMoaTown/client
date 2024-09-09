@@ -22,9 +22,8 @@ export const Container = styled.div`
 export const ModalContent = styled.div`
   background-color: white;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5dvw;
   width: 80dvw;
-  max-width: 500px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -44,10 +43,10 @@ export const DescriptionText = styled.p`
 `;
 
 export const TextArea = styled.textarea`
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  font-size: 1.3rem;
+  width: 80%;
+  height: 10dvh;
+  padding: 3%;
+  font-size: 1.2rem;
   border-radius: 5px;
   border: 1px solid ${colors.gray};
   resize: none;
@@ -57,28 +56,7 @@ export const TextArea = styled.textarea`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  gap: 10px;
-`;
-
-export const Button = styled.button`
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &.cancelBtn {
-    background-color: ${colors.light_gray};
-    color: ${colors.dark_gray};
-    border: 1px solid ${colors.gray};
-  }
-
-  &.confirmBtn {
-    background-color: ${colors.primary};
-    color: white;
-    border: none;
-  }
+  width: 86%;
 `;
 
 export const PayText = styled.div`

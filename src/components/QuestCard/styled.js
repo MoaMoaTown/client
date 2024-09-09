@@ -23,7 +23,6 @@ export const ItemWrapper = styled.div`
   border-radius: 10px;
   padding: 2dvh 5% 1.6dvh 5%;
   width: 90%;
-  height: 15dvh;
   display: flex;
   flex-direction: column;
 `;

@@ -10,12 +10,24 @@ import {
   LoadingText,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
-
+import Loading from '../Loading';
+/**
+ * 역할 리스트 컴포넌트
+ * @author 임재성
+ * @since 2024.09.02
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.02  	임재성        최초 생성
+ * </pre>
+ */
 const JobList = ({ onClick, ...rest }) => {
   const loadMoreRef = useRef();
 
   const fetchJobs = ({ pageParam = 0 }) =>
-    getJobsByTownId({ page: pageParam, size: 5 }); // 페이지 크기를 5로 설정
+    getJobsByTownId({ page: pageParam, size: 5 });
 
   const {
     data: jobData = { pages: [] },
@@ -52,7 +64,7 @@ const JobList = ({ onClick, ...rest }) => {
 
   return (
     <ListWrapper>
-      {isLoading && <LoadingText>Loading...</LoadingText>}
+      {isLoading && <Loading />}
       {jobData.pages.map((page, index) => (
         <React.Fragment key={index}>
           {page.map((job) => (

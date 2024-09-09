@@ -5,6 +5,19 @@ import { Header, Rank } from '../../components';
 import { Container, Title, Image, RankList } from './styled';
 import rank from '../../assets/images/rank.svg';
 
+/**
+ * 랭킹 페이지
+ * @author 이주현
+ * @since 2024.08.28
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.28  이주현      최초 생성
+ * </pre>
+ */
+
 const Ranking = () => {
   const rankListRef = useRef(null);
   const { data: rankData = [] } = useQuery('ranks', fetchRanks);

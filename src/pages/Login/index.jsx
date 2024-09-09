@@ -17,7 +17,21 @@ import {
   Title,
   Description,
   Form,
+  SignUpText,
 } from './styled';
+
+/**
+ * 로그인 페이지
+ * @author 이주현
+ * @since 2024.08.27
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.27  이주현      최초 생성
+ * </pre>
+ */
 
 const Login = () => {
   const [loginId, debouncedSetUserId] = useDebouncedState('');
@@ -43,7 +57,6 @@ const Login = () => {
       });
 
       if (role === 1) {
-        // role이 1이면 관리자 페이지로 리디렉션
         if (hasTownId) {
           navigate('/admin');
         } else {
@@ -66,6 +79,10 @@ const Login = () => {
     if (!isButtonDisabled) {
       mutation.mutate();
     }
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
   };
 
   return (
@@ -96,6 +113,7 @@ const Login = () => {
             로그인
           </Button>
         </Form>
+        <SignUpText onClick={handleSignUpClick}>회원가입</SignUpText>
       </Container>
     </OuterContainer>
   );

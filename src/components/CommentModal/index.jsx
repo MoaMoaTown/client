@@ -7,16 +7,27 @@ import {
   DescriptionText,
   TextArea,
   ButtonContainer,
-  PayText, // 새로 추가된 styled 컴포넌트
+  PayText,
 } from './styled';
 import { Button } from '../index';
-import moaImage from '../../assets/images/moa.svg'; // 이미지 불러오기
-
+import moaImage from '../../assets/images/moa.svg';
+/**
+ * 역할 신청 모달 컴포넌트
+ * @author 임재성
+ * @since 2024.09.02
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.02  	임재성        최초 생성
+ * </pre>
+ */
 const CommentModal = ({
   isOpen,
   jobName,
   jobDescription,
-  jobPay, // 새로 추가된 prop
+  jobPay,
   onConfirm,
   onClose,
 }) => {
@@ -24,16 +35,16 @@ const CommentModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      setComment(''); // 모달이 열릴 때마다 코멘트 초기화
+      setComment('');
     }
   }, [isOpen]);
 
   const handleCommentChange = (e) => {
-    setComment(e.target.value); // 코멘트 입력시 상태 업데이트
+    setComment(e.target.value);
   };
 
   const handleConfirm = () => {
-    onConfirm(comment); // 코멘트 제출
+    onConfirm(comment);
   };
 
   if (!isOpen) return null;
@@ -49,16 +60,16 @@ const CommentModal = ({
             <img src={moaImage} alt='Moa' />
           </PayText>{' '}
           <TextArea
-            placeholder='간단한 포부를 입력해주세요'
+            placeholder='간단한 포부를 입력해주세요!'
             value={comment}
             onChange={handleCommentChange}
           />
           <ButtonContainer>
-            <Button variant='confirmBtn' onClick={handleConfirm}>
-              신청하기
-            </Button>
             <Button variant='cancelBtn' onClick={onClose}>
               취소
+            </Button>
+            <Button variant='confirmBtn' onClick={handleConfirm}>
+              신청하기
             </Button>
           </ButtonContainer>
         </ModalContent>

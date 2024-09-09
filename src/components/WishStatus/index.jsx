@@ -17,7 +17,7 @@ import { StatusTable, Loading } from '../index';
  */
 
 const WishStatus = () => {
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [size] = useState(4);
   const { data, isLoading } = useQuery(['wishRequests', page, size], () =>
     fetchMemberWishRequests(page, size)

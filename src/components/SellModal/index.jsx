@@ -6,20 +6,31 @@ import {
   ModalContent,
   TitleText,
   QuantityInputWrapper,
-  QuantityContainer,
-  ArrowButton,
   TotalPrice,
   MoaImage,
   SellButtonContainer,
+  PayInput,
+  TotalTitle,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
 import { sellInvest } from '../../apis/InvestApi'; // sellInvest API 호출
-import { fetchBalance } from '../../apis/memberApi'; // sellInvest API 호출
-
+import { fetchBalance } from '../../apis/memberApi'; // fetchBalance API 호출
+/**
+ * 매도 모달 컴포넌트
+ * @author 임재성
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  	임재성        최초 생성
+ * </pre>
+ */
 const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(price);
+  const [quantity, setQuantity] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
@@ -30,7 +41,7 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
       setResponseMessage(
         response.message || '매도가 성공적으로 완료되었습니다.'
       );
-      refetchBalance(); // 성공 시 balance를 갱신
+      refetchBalance();
       setIsInfoModalOpen(true);
     },
     onError: () => {
@@ -41,38 +52,41 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setQuantity(1);
-      setTotalPrice(price);
+      setQuantity('');
+      setTotalPrice(0);
     }
-  }, [isOpen, price]);
+  }, [isOpen]);
+
+  useEffect(() => {
+    const quantityNumber = Number(quantity);
+    setTotalPrice(quantityNumber * price);
+  }, [quantity, price]);
 
   if (!isOpen) return null;
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-    setTotalPrice((quantity + 1) * price);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setTotalPrice((quantity - 1) * price);
+  const handleQuantityChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || /^[0-9\b]+$/.test(value)) {
+      setQuantity(value);
     }
   };
 
   const handleSell = () => {
-    sellMutation.mutate({ typeId, sellAmount: quantity });
+    const sellQuantity = Number(quantity);
+    if (sellQuantity > 0) {
+      sellMutation.mutate({ typeId, sellAmount: sellQuantity });
+    }
   };
 
   const handleCloseInfoModal = () => {
     setIsInfoModalOpen(false);
-    onConfirm(); // 매도 완료 후 추가 동작
-    onClose(); // SellModal 닫기
+    onConfirm();
+    onClose();
   };
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
-      onClose(); // 모달 닫기
+      onClose();
     }
   };
 
@@ -82,17 +96,17 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
         <ModalContent>
           <TitleText>{title}</TitleText>
           <QuantityInputWrapper>
-            <span>개수: </span>
-            <QuantityContainer>
-              <span>{quantity}</span>
-              <div>
-                <ArrowButton className='up' onClick={handleIncrement} />
-                <ArrowButton className='down' onClick={handleDecrement} />
-              </div>
-            </QuantityContainer>
+            <span>개수 </span>
+            <PayInput
+              type='number'
+              value={quantity}
+              onChange={handleQuantityChange}
+              min='0'
+            />
           </QuantityInputWrapper>
           <TotalPrice>
-            총액: {totalPrice}
+            <TotalTitle>총액</TotalTitle>
+            {totalPrice}
             <MoaImage src={moaImage} alt='Moa Icon' />
           </TotalPrice>
           <SellButtonContainer>
@@ -105,7 +119,7 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
         <InfoModal
           isOpen={isInfoModalOpen}
           title='매도 결과'
-          message={responseMessage} // 서버에서 받은 메시지를 표시
+          message={responseMessage}
           onConfirm={handleCloseInfoModal}
         />
       </Container>

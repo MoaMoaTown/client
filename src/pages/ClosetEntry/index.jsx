@@ -1,10 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { Header, Button, Loading } from '../../components';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import { fetchProfile } from '../../apis/closetApi';
-
-import { Container, Title, ProfileImage } from './styled';
+import heendy from '../../assets/images/default_heendy.png';
+import paw from '../../assets/images/paw.png';
+import { Button, Header, Loading } from '../../components';
+import { loginInfo } from '../../store/atoms';
+import {
+  Container,
+  Paw,
+  PawWrapper,
+  ProfileImage,
+  SubTitle,
+  Title,
+  Username,
+} from './styled';
 
 /**
  * 옷장 진입 페이지
@@ -16,24 +27,14 @@ import { Container, Title, ProfileImage } from './styled';
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
  * 2024.08.30  	임원정        최초 생성
+ * 2024.09.07   임원정        프로필 이미지 생성 전 기본 이미지 적용 및 디자인 수정
  * </pre>
  */
 
 const ClosetEntry = () => {
   const navigate = useNavigate();
-
-  const {
-    data: profile,
-    isLoading,
-    isError,
-  } = useQuery('profile', fetchProfile, {
-    onSuccess: () => {
-      console.log('프로필 데이터를 성공적으로 가져왔습니다.');
-    },
-    onError: (error) => {
-      console.error('프로필 이미지 가져오기 실패:', error);
-    },
-  });
+  const user = useRecoilValue(loginInfo);
+  const { data: profile, isLoading } = useQuery('profile', fetchProfile);
 
   const handleEntry = () => {
     navigate('/closet');
@@ -47,19 +48,24 @@ const ClosetEntry = () => {
     );
   }
 
-  if (isError) {
-    return <div>프로필을 불러오는 데 실패했습니다.</div>;
-  }
-
-  const imageUrl = `${profile?.encodedProfileImage}`;
+  const imageUrl =
+    profile && profile.encodedProfileImage
+      ? profile.encodedProfileImage
+      : heendy;
 
   return (
     <Container>
       <Header />
-      <Title>현재 내 프로필</Title>
+      <Title>나의 옷장</Title>
+      <SubTitle>현재 프로필</SubTitle>
       <ProfileImage src={imageUrl} alt='프로필 이미지' />
+      <PawWrapper>
+        <Paw src={paw} />
+        <Paw src={paw} />
+      </PawWrapper>
+      <Username>{user.nickname}</Username>
       <Button variant='entryBtn' onClick={handleEntry}>
-        새 프로필 만들기
+        흰디 꾸미기
       </Button>
     </Container>
   );

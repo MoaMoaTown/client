@@ -6,20 +6,41 @@ import {
   ModalContent,
   TitleText,
   HdyImage,
-  QuantityDisplay,
   TotalPrice,
   MoaImage,
   QuantityInputWrapper,
   QuantityContainer,
-  ArrowButton,
   YesterdayPriceWrapper,
+  TodayPriceWrapper,
+  YesterdayToday,
+  YesterdaySection,
+  TodaySection,
+  TotalPriceTitle,
+  TotalPriceText,
+  YesterdayText,
+  PayInput,
 } from './styled';
 import { Button, InfoModal } from '../index';
-import hdyImage from '../../assets/images/hdy.png';
 import moaImage from '../../assets/images/moa.svg';
-import { buyInvest, getYesterdayPrice } from '../../apis/InvestApi';
+import {
+  buyInvest,
+  getYesterdayPrice,
+  getTodayPrice,
+} from '../../apis/InvestApi';
 import { fetchBalance } from '../../apis/memberApi';
 
+/**
+ * 매수 모달 컴포넌트
+ * @author 임재성
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  	임재성        최초 생성
+ * </pre>
+ */
 const LargeInfoModal = ({
   isOpen,
   title,
@@ -27,9 +48,10 @@ const LargeInfoModal = ({
   typeId,
   onConfirm,
   onClose,
+  image,
 }) => {
-  const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
+  const [quantity, setQuantity] = useState('');
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
@@ -40,6 +62,16 @@ const LargeInfoModal = ({
         data.find((item) => item.type === typeId)?.price || 'N/A',
     });
 
+  const { data: todayPriceData, isLoading: isLoadingTodayPrice } = useQuery(
+    ['todayPrice', typeId],
+    () => getTodayPrice(),
+    {
+      enabled: isOpen,
+      select: (data) =>
+        data.find((item) => item.type === typeId)?.price || 'N/A',
+    }
+  );
+
   const { refetch: refetchBalance } = useQuery('balance', fetchBalance);
 
   const buyMutation = useMutation(
@@ -49,7 +81,7 @@ const LargeInfoModal = ({
         setResponseMessage(
           response.message || '매수가 성공적으로 완료되었습니다.'
         );
-        refetchBalance(); // 성공 시 balance를 갱신
+        refetchBalance();
         setIsInfoModalOpen(true);
       },
       onError: () => {
@@ -61,27 +93,23 @@ const LargeInfoModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      setQuantity(1);
+      setQuantity('');
       setTotalPrice(price);
     }
   }, [isOpen, price]);
 
+  useEffect(() => {
+    if (quantity === '') {
+      setTotalPrice(price);
+    } else {
+      setTotalPrice(quantity * price);
+    }
+  }, [quantity, price]);
+
   if (!isOpen) return null;
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-    setTotalPrice((quantity + 1) * price);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      setTotalPrice((quantity - 1) * price);
-    }
-  };
-
   const handleBuy = () => {
-    buyMutation.mutate({ typeId, purchaseAmount: quantity });
+    buyMutation.mutate({ typeId, purchaseAmount: Number(quantity) });
   };
 
   const handleOverlayClick = (e) => {
@@ -100,27 +128,41 @@ const LargeInfoModal = ({
       <Container>
         <ModalContent>
           <TitleText>{title}</TitleText>
-          <HdyImage src={hdyImage} alt='HDY Image' />
+          <HdyImage src={image} alt='Selected Image' />
+          <YesterdayToday>
+            <YesterdaySection>
+              <YesterdayPriceWrapper>
+                <YesterdayText>어제</YesterdayText>
+                {isLoadingYesterdayPrice ? 'Loading...' : yesterdayPriceData}
+              </YesterdayPriceWrapper>
+            </YesterdaySection>
+            <TodaySection>
+              <TodayPriceWrapper>
+                <YesterdayText>오늘</YesterdayText>
+                {isLoadingTodayPrice ? 'Loading...' : todayPriceData}
+              </TodayPriceWrapper>
+            </TodaySection>
+          </YesterdayToday>
           <QuantityInputWrapper>
-            <span>개수: </span>
+            <span>개수 </span>
             <QuantityContainer>
-              <QuantityDisplay>{quantity}</QuantityDisplay>
-              <div>
-                <ArrowButton className='up' onClick={handleIncrement} />
-                <ArrowButton className='down' onClick={handleDecrement} />
-              </div>
+              <PayInput
+                type='number'
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                min='0'
+              />
             </QuantityContainer>
           </QuantityInputWrapper>
-          <YesterdayPriceWrapper>
-            어제: {isLoadingYesterdayPrice ? 'Loading...' : yesterdayPriceData}
-            <MoaImage src={moaImage} alt='Moa Icon' />
-          </YesterdayPriceWrapper>
-          <TotalPrice>
-            총액: {totalPrice}
-            <MoaImage src={moaImage} alt='Moa Icon' />
-          </TotalPrice>
+          <TotalPriceTitle>
+            <TotalPriceText>총액</TotalPriceText>
+            <TotalPrice>
+              <MoaImage src={moaImage} alt='Moa Icon' />
+              {totalPrice}
+            </TotalPrice>
+          </TotalPriceTitle>
           <Button variant='confirmBtn' onClick={handleBuy}>
-            매수하기
+            구매하기
           </Button>
         </ModalContent>
 

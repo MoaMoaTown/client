@@ -50,6 +50,7 @@ import AdminQuestRequest from './pages/AdminQuestRequest';
  * 2024.09.03   이주현        ProtectedRoute 추가
  * 2024.09.03   임원정        AdminMain, MakeTown 추가
  * 2024.09.04   임원정        AdminWish, AdminWishRequest, AdminQuest 추가
+ * 2024.09.05   임원정        AdminQuestRequest 추가
  * </pre>
  */
 
@@ -62,7 +63,6 @@ const Router = () => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/select-role' element={<SelectRole />} />
-        <Route path='/make-town' element={<MakeTown />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         <Route
@@ -106,6 +106,10 @@ const Router = () => {
         />
 
         {/*시장 권한만 접근 가능*/}
+        <Route
+          path='/make-town'
+          element={<ProtectedRoute element={<MakeTown />} requiredRole={1} />}
+        />
         <Route
           path='/admin'
           element={<ProtectedRoute element={<AdminMain />} requiredRole={1} />}

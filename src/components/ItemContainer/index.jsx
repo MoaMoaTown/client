@@ -4,13 +4,14 @@ import { useQuery } from 'react-query';
 import { selectedTypeState, selectedFaceState } from '../../store/atoms';
 import { fetchMyclothes } from '../../apis/closetApi';
 import { FaceItem, ClothItem, Loading } from '../index';
-import { ContainerWrapper } from './styled';
+import { ContainerWrapper, EmptyMsg, EmptyImg, EmptyWrapper } from './styled';
 import face1 from '../../assets/images/heendy_face1.png';
 import face2 from '../../assets/images/heendy_face2.png';
 import face3 from '../../assets/images/heendy_face3.png';
 import face4 from '../../assets/images/heendy_face4.png';
 import face5 from '../../assets/images/heendy_face5.png';
 import face6 from '../../assets/images/heendy_face6.png';
+import empty from '../../assets/images/empty.png';
 
 /**
  * 아이템 리스트 컨테이너
@@ -73,15 +74,20 @@ const ItemContainer = ({ onSelectItem }) => {
   }
 
   return (
-    <ContainerWrapper>
+    <>
       {data && data.length > 0 ? (
-        data.map((item) => (
-          <ClothItem key={item.clothId} item={item} onClick={onSelectItem} />
-        ))
+        <ContainerWrapper>
+          {data.map((item) => (
+            <ClothItem key={item.clothId} item={item} onClick={onSelectItem} />
+          ))}
+        </ContainerWrapper>
       ) : (
-        <div>가진 옷이 없습니다.</div>
+        <EmptyWrapper>
+          <EmptyImg src={empty} />
+          <EmptyMsg>가진 옷이 없습니다</EmptyMsg>
+        </EmptyWrapper>
       )}
-    </ContainerWrapper>
+    </>
   );
 };
 

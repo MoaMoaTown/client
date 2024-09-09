@@ -17,6 +17,19 @@ import characterModel from '../../assets/glb/heendy_with_closet.glb';
 import jellyModel from '../../assets/glb/jelly.glb';
 import logoModel from '../../assets/glb/logo.glb';
 
+/**
+ * 메인 페이지 3D 모델 컴포넌트
+ * @author 이주현
+ * @since 2024.08.23
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.23  이주현      최초 생성
+ * </pre>
+ */
+
 const Model = React.memo(
   ({ url, refProp, scale, brightness, onLoad, onClick }) => {
     const { scene: loadedScene } = useGLTF(url);
@@ -199,10 +212,9 @@ export default function Model3D() {
             (logoRef.current?.position.y || 0) + 0.4,
             (logoRef.current?.position.z || 0) + 0.8,
           ]}
-          intensity={0.1}
+          intensity={1}
           angle={1}
           penumbra={1}
-          castShadow={false}
           target={logoRef.current}
         />
         <Model

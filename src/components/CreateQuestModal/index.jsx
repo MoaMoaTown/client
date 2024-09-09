@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Button } from '../index';
-import useDebouncedState from '../../hooks/useDebouncedState';
-import {
-  Overlay,
-  Container,
-  Title,
-  ModalContent,
-  Label,
-  Input,
-  MoaImage,
-  RewardWrapper,
-  NumberInput,
-  CloseIcon,
-  TitleWrapper,
-  ThirdWrapper,
-  CapacityWrapper,
-  NumberWrapper,
-  ButtonWrapper,
-} from './styled';
-import moaIcon from '../../assets/images/moa.svg';
+import React from 'react';
 import closeIcon from '../../assets/images/close.svg';
+import moaIcon from '../../assets/images/moa.svg';
+import useDebouncedState from '../../hooks/useDebouncedState';
+import { Button } from '../index';
+import {
+  ButtonWrapper,
+  CapacityWrapper,
+  CloseIcon,
+  Container,
+  Input,
+  Label,
+  MoaImage,
+  ModalContent,
+  NumberInput,
+  NumberWrapper,
+  Overlay,
+  RewardWrapper,
+  ThirdWrapper,
+  Title,
+  TitleWrapper,
+} from './styled';
 
 /**
  * 퀘스트 만들기 모달

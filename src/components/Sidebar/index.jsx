@@ -26,6 +26,19 @@ import six from '../../assets/images/sidebar_6.svg';
 import seven from '../../assets/images/sidebar_7.svg';
 import eight from '../../assets/images/sidebar_8.svg';
 
+/**
+ * 사이드 메뉴 바 컴포넌트
+ * @author 이주현
+ * @since 2024.09.01
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.01  이주현      최초 생성
+ * </pre>
+ */
+
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const navigate = useNavigate();
   const setLoginState = useSetRecoilState(loginState);

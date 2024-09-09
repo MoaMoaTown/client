@@ -98,7 +98,7 @@ const buttonStyles = {
     height: 7dvh;
     background-color: ${colors.green};
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;
@@ -119,11 +119,11 @@ const buttonStyles = {
     cursor: pointer;
   `,
   entryBtn: css`
-    width: 45dvw;
-    height: 5dvh;
+    width: 70dvw;
+    height: 6.4dvh;
     background-color: ${colors.orange};
     color: white;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;

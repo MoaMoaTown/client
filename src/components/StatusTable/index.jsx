@@ -77,11 +77,4 @@ const StatusTable = ({ title, headers, data, emptyMessage, goto }) => {
   );
 };
 
-StatusTable.propTypes = {
-  title: PropTypes.string.isRequired,
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  emptyMessage: PropTypes.string,
-};
-
 export default StatusTable;

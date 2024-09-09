@@ -7,6 +7,19 @@ import logo from '../../assets/images/logo.png';
 import { Container, Logo, Title, Description, Form } from './styled';
 import useDebouncedState from '../../hooks/useDebouncedState';
 
+/**
+ * 회원 가입 페이지
+ * @author 이주현
+ * @since 2024.08.27
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자      수정내용
+ * ----------  --------    ---------------------------
+ * 2024.08.27  이주현      최초 생성
+ * </pre>
+ */
+
 const SignUp = () => {
   const [nickname, debouncedSetNickname] = useDebouncedState('');
   const [loginId, debouncedSetUserId] = useDebouncedState('');

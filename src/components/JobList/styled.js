@@ -14,9 +14,9 @@ export const StyledJobButton = styled.button`
   background-color: white;
   color: ${colors.dark_gray};
   cursor: pointer;
-  display: flex; /* Flexbox로 변경 */
-  align-items: center; /* 수직 중앙 정렬 */
-  justify-content: space-between; /* 양 끝으로 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:hover {
     background-color: ${colors.super_light_green};
@@ -31,9 +31,9 @@ export const StyledJobButton = styled.button`
     cursor: not-allowed;
   }
   span {
-    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
-    text-overflow: ellipsis; /* 넘칠 때 '...' 표시 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -44,14 +44,11 @@ export const PriceWrapper = styled.div`
 `;
 
 export const MoaImage = styled.img`
-  width: 4dvh; /* 작게 설정 */
-  // height: 12px; /* 작게 설정 */
-  margin-left: 4px; /* 텍스트와 이미지 사이의 간격 */
+  width: 4dvh;
+  margin-left: 4px;
 `;
 
-export const ListWrapper = styled.div`
-  // width: 100%;
-`;
+export const ListWrapper = styled.div``;
 
 export const LoadMoreTrigger = styled.div`
   border: 1px solid transparent;

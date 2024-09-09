@@ -3,7 +3,7 @@ import { colors } from '../../styles/colors';
 
 export const Container = styled.div`
   position: relative;
-  width: 96.5%;
+  width: 100%;
   height: auto;
 `;
 
@@ -31,10 +31,10 @@ export const BalanceText = styled.span`
 
 export const ContentWrapper = styled.div`
   position: absolute;
-  top: 25%;
+  top: 28%;
   left: 0;
   right: 0;
-  bottom: 11%;
+  bottom: 15%;
   overflow-y: auto;
 `;
 

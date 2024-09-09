@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 84dvw;
   height: 92dvh;
   padding: 4dvh 8dvw;
-  gap: 4dvh;
+  gap: 3dvh;
 `;
 
 export const Title = styled.div`
@@ -38,8 +38,8 @@ export const JobListContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: ; /* 항목 사이의 간격을 설정 */
-  overflow-y: auto; /* 내부에서 스크롤이 가능하도록 설정 */
+  gap: ;
+  overflow-y: auto;
   height: 100%;
 `;
 
@@ -49,6 +49,4 @@ export const Description = styled.div`
   white-space: pre-line;
   color: ${colors.dark_gray};
   line-height: 1.5;
-  // margin-top: -1dvh;
-  // margin-bottom: 1dvh;
 `;
