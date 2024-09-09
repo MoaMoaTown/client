@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { loginState } from '../../store/atoms';
+import { loginState, loginInfo } from '../../store/atoms';
 import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
 import { NotiToast } from '../index';
 
@@ -19,11 +19,12 @@ import { NotiToast } from '../index';
 
 const NotiComponent = () => {
   const [notification, setNotification] = useState([]);
-  const [toastOpen, setToastOpen] = useState([]);
+  const [toastOpen, setToastOpen] = useState(false);
   const login = useRecoilValue(loginState);
+  const user = useRecoilValue(loginInfo);
 
   useEffect(() => {
-    if (login.isLogin) {
+    if (login.isLogin && user.hasTownId) {
       const EventSource = NativeEventSource || EventSourcePolyfill;
       const source = new EventSource(
         `http://${process.env.REACT_APP_ENDPOINT}/notification/subscribe/`,
@@ -46,7 +47,7 @@ const NotiComponent = () => {
         }
       });
     }
-  }, [login.isLogin]);
+  }, [login.isLogin, user.hasTownId]);
   return (
     <>
       {toastOpen && <NotiToast setToast={setToastOpen} text={notification} />}
