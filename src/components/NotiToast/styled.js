@@ -33,7 +33,7 @@ export const ToastContainer = styled.div`
   left: 6dvw;
   background-color: white;
   color: black;
-  padding: 1.4dvh 3.2dvw;
+  padding: 1.8dvh 3.4dvw;
   border-radius: 8px;
   border: 1px solid ${colors.orange};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -86,6 +86,15 @@ export const Title = styled.h2`
   color: black;
   font-weight: bold;
   text-align: center;
+  @media (min-width: 1024px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const Content = styled.p`
+  font-size: 1rem;
+  color: black;
+  text-align: left;
   @media (min-width: 1024px) {
     font-size: 1.2rem;
   }
