@@ -134,17 +134,13 @@ const Dept = () => {
   const handlePurchaseClick = () => {
     if (selectedItem) {
       ReactGA.event({
-        items: [
-          {
-            id: selectedItem.clothId || selectedItem.wishId,
-            name: selectedItem.name,
-            category: 'Cloth',
-            action: 'Product Viewed',
-            brand: selectedItem.brand,
-            price: selectedItem.price,
-            quantity: 1,
-          },
-        ],
+        category: 'Cloth',
+        action: 'Product Viewed',
+        name: selectedItem.name,
+        brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        transaction_id: selectedItem.clothId || selectedItem.wishId,
       });
 
       setIsPurchaseModalOpen(true);
