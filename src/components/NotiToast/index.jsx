@@ -34,7 +34,7 @@ const NotiToast = ({ setToast, text }) => {
   return (
     <ToastContainer show={show} role='alert' aria-live='assertive'>
       <Wrapper>
-        <Title>🔔알림</Title>
+        <Title>🔔 알림</Title>
         <CloseIcon
           src={closeIcon}
           onClick={() => {

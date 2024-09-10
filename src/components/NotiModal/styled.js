@@ -119,3 +119,24 @@ export const Wrapper = styled.div`
     padding: 1vh 1vw;
   }
 `;
+
+export const EmptyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2dvh;
+`;
+
+export const EmptyMsg = styled.p`
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 10vh;
+`;
+
+export const EmptyImg = styled.img`
+  width: 24dvw;
+  height: auto;
+`;
