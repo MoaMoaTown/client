@@ -4,7 +4,8 @@ import { colors } from '../../styles/colors';
 export const Container = styled.div`
   width: 90%;
   height: 18dvh;
-  padding: 2.13vh 5%;
+  padding: 1.9vh 5%;
+
   display: flex;
   align-items: center;
   cursor: pointer;

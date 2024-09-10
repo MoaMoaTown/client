@@ -52,7 +52,6 @@ export const QuantityInputWrapper = styled.div`
   margin-top: 3dvh;
   margin-bottom: -1dvw;
   padding-left: 150px;
-  // border: 1px solid red;
 `;
 export const PayInput = styled.input`
   width: 5%;
