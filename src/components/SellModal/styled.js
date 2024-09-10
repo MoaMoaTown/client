@@ -31,7 +31,7 @@ export const ModalContent = styled.div`
   border-radius: 10px;
   padding: 3dvh 5dvw;
   width: 80dvw;
-  height: 22dvh;
+  height: 24dvh;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-repeat: no-repeat;
   background-position: right bottom 10%;
@@ -49,7 +49,8 @@ export const QuantityInputWrapper = styled.div`
   align-items: center;
   width: 100%;
   font-size: 1.5rem;
-  margin-bottom: -10px;
+  margin-top: 3dvh;
+  margin-bottom: -1dvw;
   padding-left: 150px;
 `;
 export const PayInput = styled.input`
@@ -75,6 +76,16 @@ export const QuantityContainer = styled.div`
   background-color: ${colors.background_gray};
   border-radius: 20px;
   padding: 2px;
+  width: 21dvw;
+  height: 6dvh;
+  margin-left: 3dvw;
+`;
+
+export const QuantityDisplay = styled.span`
+  width: 20dvw;
+  text-align: c모enter;
+  // border: 1px solid red;
+  margin-left: 5dvw;
 `;
 
 export const ArrowButton = styled.button`
@@ -87,7 +98,6 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 4dvw;
 
   &.up {
     background-image: url(${ChevronUp});

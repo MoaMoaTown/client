@@ -117,13 +117,14 @@ const EmptyBoard = () => {
     setIsModalOpen(true);
   };
 
-  const handleSellClick = (data, typeText) => {
+  const handleSellClick = (data, typeText, amount) => {
     setModalContent({
       title: `${typeText} 매도하기`,
       price: data.price,
       hint: data.hint,
       currentMoa: 1000,
       typeId: data.type,
+      amount: amount,
     });
     setIsSellModalOpen(true);
   };
@@ -196,7 +197,11 @@ const EmptyBoard = () => {
                 <AverageValue>{leftAverage.amount}</AverageValue>
               </AverageItem>
             </AverageWrapper>
-            <SellButton onClick={() => handleSellClick(leftData, '몸무게')}>
+            <SellButton
+              onClick={() =>
+                handleSellClick(leftData, '몸무게', leftAverage.amount)
+              }
+            >
               판매하기
             </SellButton>
           </SectionBox>
@@ -214,7 +219,11 @@ const EmptyBoard = () => {
                 <AverageValue>{rightAverage.amount}</AverageValue>
               </AverageItem>
             </AverageWrapper>
-            <SellButton onClick={() => handleSellClick(rightData, '걸음수')}>
+            <SellButton
+              onClick={() =>
+                handleSellClick(rightData, '걸음수', rightAverage.amount)
+              }
+            >
               판매하기
             </SellButton>
           </SectionBox>
@@ -236,6 +245,7 @@ const EmptyBoard = () => {
         title={modalContent.title}
         price={modalContent.price}
         typeId={modalContent.typeId}
+        amount={modalContent.amount}
         onConfirm={handleSellConfirm}
         onClose={handleCloseSellModal}
       />

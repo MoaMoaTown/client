@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { fetchRanks } from '../../apis/memberApi';
-import { Header, Rank } from '../../components';
+import { Header, Rank, Loading } from '../../components';
 import { Container, Title, Image, RankList } from './styled';
 import rank from '../../assets/images/rank.svg';
 
@@ -20,7 +20,7 @@ import rank from '../../assets/images/rank.svg';
 
 const Ranking = () => {
   const rankListRef = useRef(null);
-  const { data: rankData = [] } = useQuery('ranks', fetchRanks);
+  const { data: rankData = [], isLoading } = useQuery('ranks', fetchRanks);
 
   useEffect(() => {
     if (rankData.length > 0) {
@@ -44,16 +44,20 @@ const Ranking = () => {
       <Image src={rank} />
       <Title>랭킹</Title>
       <RankList ref={rankListRef}>
-        {rankData.map((user, index) => (
-          <Rank
-            key={index}
-            ordinal={index + 1}
-            profile={user.profile}
-            nickname={user.nickname}
-            balance={user.balance}
-            isCurrentUser={user.isCurrentUser}
-          />
-        ))}
+        {isLoading ? (
+          <Loading text={'랭킹 불러오는 중...'} />
+        ) : (
+          rankData.map((user, index) => (
+            <Rank
+              key={index}
+              ordinal={index + 1}
+              profile={user.profile}
+              nickname={user.nickname}
+              balance={user.balance}
+              isCurrentUser={user.isCurrentUser}
+            />
+          ))
+        )}
       </RankList>
     </Container>
   );

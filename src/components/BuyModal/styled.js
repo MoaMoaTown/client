@@ -69,16 +69,18 @@ export const PayInput = styled.input`
   margin-right: -2dvw;
   margin-left: 10dvw;
 `;
-
+export const StyledSpan = styled.span`
+  margin-left: 5dvw;
+`;
 export const QuantityContainer = styled.div`
   display: flex;
-  width: 28dvw;
+  width: 20dvw;
   height: 4dvh;
   align-items: center;
   border-radius: 20px;
-  padding: 2px;
-  // border: 1px solid blue;
-  margin-left: 10dvw;
+  padding: 2dvw;
+  margin-left: 20dvw;
+  background-color: ${colors.background_gray};
 `;
 
 export const QuantityDisplay = styled.span`

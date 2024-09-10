@@ -134,17 +134,14 @@ const Dept = () => {
   const handlePurchaseClick = () => {
     if (selectedItem) {
       ReactGA.event({
-        items: [
-          {
-            id: selectedItem.clothId || selectedItem.wishId,
-            name: selectedItem.name,
-            category: 'Cloth',
-            action: 'Product Viewed',
-            brand: selectedItem.brand,
-            price: selectedItem.price,
-            quantity: 1,
-          },
-        ],
+        category: 'Cloth',
+        action: 'Product Viewed',
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        transaction_id: selectedItem.clothId || selectedItem.wishId,
+        item_id: selectedItem.clothId || selectedItem.wishId,
       });
 
       setIsPurchaseModalOpen(true);
@@ -156,20 +153,28 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      ReactGA.event({
+      const ecommerceEvent = {
         category: 'Cloth',
         action: 'Purchase',
-        name: selectedItem.name,
-        brand: selectedItem.brand,
-        quantity: 1,
-        price: selectedItem.price,
         transaction_id: selectedItem.clothId || selectedItem.wishId,
-      });
+        items: [
+          {
+            item_id: selectedItem.clothId,
+            item_name: selectedItem.name,
+            item_brand: selectedItem.brand,
+            price: selectedItem.price,
+            quantity: 1,
+          },
+        ],
+      };
+
+      ReactGA.event(ecommerceEvent);
 
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
         isWish: isWishSelected,
       });
+
       setIsPurchaseModalOpen(false);
     }
   };
@@ -268,6 +273,7 @@ const Dept = () => {
               page.map((cloth) => (
                 <ClothButton
                   key={cloth.clothId}
+                  clothId={cloth.clothId}
                   imgUrl={cloth.imgUrl}
                   name={cloth.name}
                   brand={cloth.brand}
@@ -289,7 +295,10 @@ const Dept = () => {
         <ModalOverlay onClick={closePurchaseModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
             {!isWishSelected && (
-              <ModalImage src={selectedItem.imgUrl} alt={selectedItem.name} />
+              <ModalImage
+                src={require(`../../assets/clothes/${selectedItem.clothId}.png`)}
+                alt={selectedItem.name}
+              />
             )}
             <ModalBrand>{selectedItem.brand}</ModalBrand>
             <WishWrapWrap>

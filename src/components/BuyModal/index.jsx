@@ -19,6 +19,9 @@ import {
   TotalPriceText,
   YesterdayText,
   PayInput,
+  StyledSpan,
+  ArrowButton,
+  QuantityDisplay,
 } from './styled';
 import { Button, InfoModal } from '../index';
 import moaImage from '../../assets/images/moa.svg';
@@ -28,6 +31,7 @@ import {
   getTodayPrice,
 } from '../../apis/InvestApi';
 import { fetchBalance } from '../../apis/memberApi';
+import useDebouncedState from '../../hooks/useDebouncedState'; // 훅 import 경로 확인
 
 /**
  * 매수 모달 컴포넌트
@@ -91,9 +95,16 @@ const LargeInfoModal = ({
     }
   );
 
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     setQuantity('1');
+  //     setTotalPrice(price);
+  //   }
+  // }, [isOpen, price]);
   useEffect(() => {
     if (isOpen) {
-      setQuantity('');
+      setQuantity(1);
+      // setQuantity(1);
       setTotalPrice(price);
     }
   }, [isOpen, price]);
@@ -123,6 +134,18 @@ const LargeInfoModal = ({
     onConfirm();
   };
 
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+    setTotalPrice((quantity + 1) * price);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      setTotalPrice((quantity - 1) * price);
+    }
+  };
+
   return (
     <Overlay onClick={handleOverlayClick}>
       <Container>
@@ -144,14 +167,20 @@ const LargeInfoModal = ({
             </TodaySection>
           </YesterdayToday>
           <QuantityInputWrapper>
-            <span>개수 </span>
+            <StyledSpan>개수 </StyledSpan>
             <QuantityContainer>
-              <PayInput
+              {/* <PayInput
                 type='number'
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(Number(e.target.value))}
                 min='0'
-              />
+              /> */}
+              <QuantityDisplay>{quantity}</QuantityDisplay>
+
+              <div>
+                <ArrowButton className='up' onClick={handleIncrement} />
+                <ArrowButton className='down' onClick={handleDecrement} />
+              </div>
             </QuantityContainer>
           </QuantityInputWrapper>
           <TotalPriceTitle>

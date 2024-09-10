@@ -32,7 +32,10 @@ const ClothItem = ({ item, onClick }) => {
 
   return (
     <ItemContainer onClick={handleClick} isSelected={isSelected}>
-      <ItemImage src={item.image} alt={item.name} />
+      <ItemImage
+        src={require(`../../assets/clothes/${item.clothId}.png`)}
+        alt={item.name}
+      />
       <ItemBrand>{`[${item.brand}]`}</ItemBrand>
       <ItemName>{item.name}</ItemName>
     </ItemContainer>
