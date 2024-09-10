@@ -9,13 +9,16 @@ import {
   TotalPrice,
   MoaImage,
   SellButtonContainer,
-  PayInput,
+  QuantityDisplay,
+  QuantityContainer,
+  ArrowButton,
   TotalTitle,
 } from './styled';
 import moaImage from '../../assets/images/moa.svg';
 import { Button, InfoModal } from '../index';
-import { sellInvest } from '../../apis/InvestApi'; // sellInvest API 호출
-import { fetchBalance } from '../../apis/memberApi'; // fetchBalance API 호출
+import { sellInvest } from '../../apis/InvestApi';
+import { fetchBalance } from '../../apis/memberApi';
+
 /**
  * 매도 모달 컴포넌트
  * @author 임재성
@@ -28,8 +31,16 @@ import { fetchBalance } from '../../apis/memberApi'; // fetchBalance API 호출
  * 2024.09.01  	임재성        최초 생성
  * </pre>
  */
-const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
-  const [quantity, setQuantity] = useState('');
+const SellModal = ({
+  isOpen,
+  title,
+  price,
+  typeId,
+  amount,
+  onConfirm,
+  onClose,
+}) => {
+  const [quantity, setQuantity] = useState(amount || 0); // 초기 수량 설정
   const [totalPrice, setTotalPrice] = useState(0);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
@@ -52,14 +63,13 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setQuantity('');
+      setQuantity(amount || 0);
       setTotalPrice(0);
     }
-  }, [isOpen]);
+  }, [isOpen, amount]);
 
   useEffect(() => {
-    const quantityNumber = Number(quantity);
-    setTotalPrice(quantityNumber * price);
+    setTotalPrice(quantity * price);
   }, [quantity, price]);
 
   if (!isOpen) return null;
@@ -67,14 +77,13 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
   const handleQuantityChange = (e) => {
     const value = e.target.value;
     if (value === '' || /^[0-9\b]+$/.test(value)) {
-      setQuantity(value);
+      setQuantity(Number(value));
     }
   };
 
   const handleSell = () => {
-    const sellQuantity = Number(quantity);
-    if (sellQuantity > 0) {
-      sellMutation.mutate({ typeId, sellAmount: sellQuantity });
+    if (quantity > 0) {
+      sellMutation.mutate({ typeId, sellAmount: quantity });
     }
   };
 
@@ -90,6 +99,14 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
     }
   };
 
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 0));
+  };
+
   return (
     <Overlay onClick={handleOverlayClick}>
       <Container>
@@ -97,12 +114,13 @@ const SellModal = ({ isOpen, title, price, typeId, onConfirm, onClose }) => {
           <TitleText>{title}</TitleText>
           <QuantityInputWrapper>
             <span>개수 </span>
-            <PayInput
-              type='number'
-              value={quantity}
-              onChange={handleQuantityChange}
-              min='0'
-            />
+            <QuantityContainer>
+              <QuantityDisplay>{quantity}</QuantityDisplay>
+              <div>
+                <ArrowButton className='up' onClick={handleIncrement} />
+                <ArrowButton className='down' onClick={handleDecrement} />
+              </div>
+            </QuantityContainer>
           </QuantityInputWrapper>
           <TotalPrice>
             <TotalTitle>총액</TotalTitle>
