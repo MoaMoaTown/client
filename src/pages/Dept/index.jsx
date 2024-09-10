@@ -264,6 +264,7 @@ const Dept = () => {
               page.map((cloth) => (
                 <ClothButton
                   key={cloth.clothId}
+                  clothId={cloth.clothId}
                   imgUrl={cloth.imgUrl}
                   name={cloth.name}
                   brand={cloth.brand}
@@ -285,7 +286,10 @@ const Dept = () => {
         <ModalOverlay onClick={closePurchaseModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
             {!isWishSelected && (
-              <ModalImage src={selectedItem.imgUrl} alt={selectedItem.name} />
+              <ModalImage
+                src={require(`../../assets/clothes/${selectedItem.clothId}.png`)}
+                alt={selectedItem.name}
+              />
             )}
             <ModalBrand>{selectedItem.brand}</ModalBrand>
             <WishWrapWrap>

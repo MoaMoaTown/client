@@ -2,17 +2,16 @@ import styled from 'styled-components';
 
 export const ContainerWrapper = styled.div`
   width: 84dvw;
-  height: 100%;
+  height: ${({ isLoading }) => (isLoading ? '50dvh' : 'auto')};
   display: ${({ isLoading }) => (isLoading ? 'flex' : 'grid')};
   flex-wrap: wrap;
   gap: 3dvw;
   margin-top: 2.8dvh;
-  padding: 1dvh 1dvw;
+  padding: 0dvh 2dvw 1dvh;
   overflow-y: ${({ face }) => (face ? 'hidden' : 'auto')};
   overflow-x: hidden;
   justify-content: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
   align-items: ${({ isLoading }) => (isLoading ? 'center' : 'flex-start')};
-  height: ${({ isLoading }) => (isLoading ? '50dvh' : 'auto')};
 
   ${({ isLoading }) =>
     !isLoading &&
