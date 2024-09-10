@@ -136,11 +136,12 @@ const Dept = () => {
       ReactGA.event({
         category: 'Cloth',
         action: 'Product Viewed',
-        name: selectedItem.name,
-        brand: selectedItem.brand,
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
         quantity: 1,
         price: selectedItem.price,
         transaction_id: selectedItem.clothId || selectedItem.wishId,
+        item_id: selectedItem.clothId || selectedItem.wishId,
       });
 
       setIsPurchaseModalOpen(true);
@@ -152,20 +153,28 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      ReactGA.event({
+      const ecommerceEvent = {
         category: 'Cloth',
         action: 'Purchase',
-        name: selectedItem.name,
-        brand: selectedItem.brand,
-        quantity: 1,
-        price: selectedItem.price,
         transaction_id: selectedItem.clothId || selectedItem.wishId,
-      });
+        items: [
+          {
+            item_id: selectedItem.clothId,
+            item_name: selectedItem.name,
+            item_brand: selectedItem.brand,
+            price: selectedItem.price,
+            quantity: 1,
+          },
+        ],
+      };
+
+      ReactGA.event(ecommerceEvent);
 
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
         isWish: isWishSelected,
       });
+
       setIsPurchaseModalOpen(false);
     }
   };
