@@ -102,7 +102,7 @@ const SellModal = ({
   };
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    setQuantity((prevQuantity) => Math.min(prevQuantity + 1, amount));
   };
 
   const handleDecrement = () => {
