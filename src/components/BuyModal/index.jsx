@@ -31,7 +31,6 @@ import {
   getTodayPrice,
 } from '../../apis/InvestApi';
 import { fetchBalance } from '../../apis/memberApi';
-import useDebouncedState from '../../hooks/useDebouncedState'; // 훅 import 경로 확인
 
 /**
  * 매수 모달 컴포넌트
@@ -88,23 +87,17 @@ const LargeInfoModal = ({
         refetchBalance();
         setIsInfoModalOpen(true);
       },
-      onError: () => {
-        setResponseMessage('잔액이 부족합니다.');
+      onError: (error) => {
+        const response = error.response?.data;
+        setResponseMessage(response.msg || '실패 : 잔액이 부족합니다.');
         setIsInfoModalOpen(true);
       },
     }
   );
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     setQuantity('1');
-  //     setTotalPrice(price);
-  //   }
-  // }, [isOpen, price]);
   useEffect(() => {
     if (isOpen) {
       setQuantity(1);
-      // setQuantity(1);
       setTotalPrice(price);
     }
   }, [isOpen, price]);
@@ -169,12 +162,6 @@ const LargeInfoModal = ({
           <QuantityInputWrapper>
             <StyledSpan>개수 </StyledSpan>
             <QuantityContainer>
-              {/* <PayInput
-                type='number'
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                min='0'
-              /> */}
               <QuantityDisplay>{quantity}</QuantityDisplay>
 
               <div>
