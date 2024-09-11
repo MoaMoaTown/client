@@ -40,6 +40,23 @@ import {
   purchaseWishItem,
 } from '../../apis/deptAPI';
 import { fetchBalance } from '../../apis/memberApi';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics, logEvent } from 'firebase/analytics';
+import firebase from 'firebase/app';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCe9WdxXVHt0dWDUqHY3-qpmetokjYwKoQ',
+  authDomain: 'moamoatown.firebaseapp.com',
+  projectId: 'moamoatown',
+  storageBucket: 'moamoatown.appspot.com',
+  messagingSenderId: '1023869979983',
+  appId: '1:1023869979983:web:be5e55579b702562af493a',
+  measurementId: 'G-79QHQDS077',
+};
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
 /**
  * 백화점 페이지 컴포넌트
  * @author 임재성
@@ -53,6 +70,8 @@ import { fetchBalance } from '../../apis/memberApi';
  * </pre>
  */
 const Dept = () => {
+  logEvent(analytics, 'test');
+
   const [showWishlist, setShowWishlist] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isWishSelected, setIsWishSelected] = useState(false);
@@ -133,16 +152,21 @@ const Dept = () => {
 
   const handlePurchaseClick = () => {
     if (selectedItem) {
-      ReactGA.event({
-        category: 'Cloth',
-        action: 'Product Viewed',
-        item_name: selectedItem.name,
-        item_brand: selectedItem.brand,
-        quantity: 1,
-        price: selectedItem.price,
-        transaction_id: selectedItem.clothId || selectedItem.wishId,
-        item_id: selectedItem.clothId || selectedItem.wishId,
-      });
+      logEvent(analytics, 'test');
+      console.log(
+        `Event logged: test_Firebase_analytics_${selectedItem.clothId}`
+      );
+
+      // ReactGA.event({
+      //   category: 'Cloth',
+      //   action: 'Product Viewed',
+      //   item_name: selectedItem.name,
+      //   item_brand: selectedItem.brand,
+      //   quantity: 1,
+      //   price: selectedItem.price,
+      //   transaction_id: selectedItem.clothId || selectedItem.wishId,
+      //   item_id: selectedItem.clothId || selectedItem.wishId,
+      // });
 
       setIsPurchaseModalOpen(true);
     } else {
