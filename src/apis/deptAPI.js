@@ -13,10 +13,14 @@ import { axiosInstance } from './index';
  */
 
 export const fetchClothesList = async ({ page }) => {
-  const response = await axiosInstance.get('/clothes/list', {
-    params: { page, size: 3 },
-  });
-  return response.data;
+  try {
+    const response = await axiosInstance.get('/clothes/list', {
+      params: { page, size: 3 },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error('옷 목록을 불러오는 데 실패했습니다.');
+  }
 };
 
 export const purchaseClothes = async (clothId) => {

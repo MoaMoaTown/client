@@ -40,7 +40,7 @@ const SellModal = ({
   onConfirm,
   onClose,
 }) => {
-  const [quantity, setQuantity] = useState(amount || 0); // 초기 수량 설정
+  const [quantity, setQuantity] = useState(amount || 0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
@@ -55,8 +55,10 @@ const SellModal = ({
       refetchBalance();
       setIsInfoModalOpen(true);
     },
-    onError: () => {
-      setResponseMessage('매도 요청에 실패했습니다.');
+
+    onError: (error) => {
+      const response = error.response?.data;
+      setResponseMessage(response?.msg || '매도가 실패했습니다.');
       setIsInfoModalOpen(true);
     },
   });
@@ -100,7 +102,7 @@ const SellModal = ({
   };
 
   const handleIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    setQuantity((prevQuantity) => Math.min(prevQuantity + 1, amount));
   };
 
   const handleDecrement = () => {
