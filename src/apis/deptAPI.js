@@ -19,7 +19,6 @@ export const fetchClothesList = async ({ page }) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching clothes list:', error);
     throw new Error('옷 목록을 불러오는 데 실패했습니다.');
   }
 };
@@ -37,7 +36,6 @@ export const fetchWishlist = async ({ page }) => {
   const response = await axiosInstance.get('/wish/wishlist', {
     params: { page, size: 5 },
   });
-  console.log('API Response:', response.data);
   return response.data;
 };
 
