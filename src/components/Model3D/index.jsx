@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { useNavigate } from 'react-router-dom';
-import { Loading } from '../index';
+import { Loading, SpeechBubble } from '../index';
 import landModel from '../../assets/glb/land.glb';
 import cloudModel1 from '../../assets/glb/cloud1.glb';
 import cloudModel2 from '../../assets/glb/cloud2.glb';
@@ -68,6 +68,10 @@ const Model = React.memo(
 export default function Model3D() {
   const [loading, setLoading] = useState(true);
   const [loadedModels, setLoadedModels] = useState(0);
+  const [bubbleVisible, setBubbleVisible] = useState(false);
+  const [bubblePosition, setBubblePosition] = useState({ top: 0, left: 0 });
+  const [bubbleModel, setBubbleModel] = useState(null);
+
   const navigate = useNavigate();
   const landRef = useRef();
   const departmentRef = useRef();
@@ -83,7 +87,23 @@ export default function Model3D() {
   const cloudRef2 = useRef();
   const cloudRef3 = useRef();
 
-  const handleModelClick = (modelName) => {
+  const handleModelClick = (event, modelName) => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    let top = event.clientY - 200;
+    let left = event.clientX - 100;
+
+    if (top < 0) top = 0;
+    if (left < 0) left = 0;
+    if (top + 200 > windowHeight) top = windowHeight - 200;
+    if (left + 200 > windowWidth) left = windowWidth - 200;
+
+    setBubblePosition({ top, left });
+    setBubbleModel(modelName);
+    setBubbleVisible(true);
+  };
+
+  const handleConfirm = (modelName) => {
     switch (modelName) {
       case 'Department':
         navigate('/dept');
@@ -110,6 +130,11 @@ export default function Model3D() {
       default:
         break;
     }
+    setBubbleVisible(false);
+  };
+
+  const handleClose = () => {
+    setBubbleVisible(false);
   };
 
   const handleModelLoad = (loadedScene, name) => {
@@ -183,6 +208,14 @@ export default function Model3D() {
   return (
     <React.Fragment>
       {loading && <Loading text={'타운으로 들어가는 중...'} page />}
+      {bubbleVisible && (
+        <SpeechBubble
+          modelName={bubbleModel}
+          onConfirm={() => handleConfirm(bubbleModel)}
+          onClose={handleClose}
+          position={bubblePosition}
+        />
+      )}
       <Canvas
         shadows
         style={{
@@ -248,48 +281,48 @@ export default function Model3D() {
           refProp={departmentRef}
           scale={new THREE.Vector3(0.07, 0.07, 0.04)}
           onLoad={(scene) => handleModelLoad(scene, 'Department')}
-          onClick={() => handleModelClick('Department')}
+          onClick={(e) => handleModelClick(e, 'Department')}
         />
         <Model
           url={boardModel}
           refProp={boardRef}
           scale={new THREE.Vector3(0.15, 0.15, 0.15)}
           onLoad={(scene) => handleModelLoad(scene, 'Board')}
-          onClick={() => handleModelClick('Quest')}
+          onClick={(e) => handleModelClick(e, 'Quest')}
         />
         <Model
           url={fountainModel}
           refProp={fountainRef}
           scale={new THREE.Vector3(0.1, 0.1, 0.1)}
           onLoad={(scene) => handleModelLoad(scene, 'Fountain')}
-          onClick={() => handleModelClick('Ranking')}
+          onClick={(e) => handleModelClick(e, 'Ranking')}
         />
         <Model
           url={jobMoaModel}
           refProp={jobMoaRef}
           scale={new THREE.Vector3(0.15, 0.15, 0.15)}
           onLoad={(scene) => handleModelLoad(scene, 'Job Moa')}
-          onClick={() => handleModelClick('Jobmoa')}
+          onClick={(e) => handleModelClick(e, 'Jobmoa')}
         />
         <Model
           url={investModel}
           refProp={investRef}
           onLoad={(scene) => handleModelLoad(scene, 'Invest')}
-          onClick={() => handleModelClick('Invest')}
+          onClick={(e) => handleModelClick(e, 'Invest')}
         />
         <Model
           url={characterModel}
           refProp={characterRef}
           scale={new THREE.Vector3(0.2, 0.2, 0.2)}
           onLoad={(scene) => handleModelLoad(scene, 'Character')}
-          onClick={() => handleModelClick('Closet')}
+          onClick={(e) => handleModelClick(e, 'Closet')}
         />
         <Model
           url={jellyModel}
           refProp={jellyRef}
           scale={new THREE.Vector3(0.5, 0.5, 0.5)}
           onLoad={(scene) => handleModelLoad(scene, 'Jelly')}
-          onClick={() => handleModelClick('Knowledge')}
+          onClick={(e) => handleModelClick(e, 'Knowledge')}
         />
         <Model
           url={logoModel}

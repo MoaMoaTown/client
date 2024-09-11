@@ -183,6 +183,15 @@ const buttonStyles = {
       font-weight: bold;
     }
   `,
+  confirmBtn3: css`
+    padding: 1dvh 5dvw;
+    font-size: 1rem;
+    color: white;
+    background-color: ${colors.green};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  `,
   cancelBtn: css`
     padding: 1dvh 5dvw;
     font-size: 1rem;
