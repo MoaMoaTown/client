@@ -177,22 +177,23 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      const ecommerceEvent = {
-        category: 'Cloth',
-        action: 'Purchase',
-        transaction_id: selectedItem.clothId || selectedItem.wishId,
-        items: [
-          {
-            item_id: selectedItem.clothId,
-            item_name: selectedItem.name,
-            item_brand: selectedItem.brand,
-            price: selectedItem.price,
-            quantity: 1,
-          },
-        ],
-      };
+      logEvent(analytics, 'test2');
+      // const ecommerceEvent = {
+      //   category: 'Cloth',
+      //   action: 'Purchase',
+      //   transaction_id: selectedItem.clothId || selectedItem.wishId,
+      //   items: [
+      //     {
+      //       item_id: selectedItem.clothId,
+      //       item_name: selectedItem.name,
+      //       item_brand: selectedItem.brand,
+      //       price: selectedItem.price,
+      //       quantity: 1,
+      //     },
+      //   ],
+      // };
 
-      ReactGA.event(ecommerceEvent);
+      // ReactGA.event(ecommerceEvent);
 
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
