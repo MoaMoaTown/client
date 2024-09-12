@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
-import ReactGA from 'react-ga4';
-
 import {
   Header,
   Button,
@@ -42,21 +40,20 @@ import {
 import { fetchBalance } from '../../apis/memberApi';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, logEvent } from 'firebase/analytics';
-import firebase from 'firebase/app';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyCe9WdxXVHt0dWDUqHY3-qpmetokjYwKoQ',
-  authDomain: 'moamoatown.firebaseapp.com',
-  projectId: 'moamoatown',
-  storageBucket: 'moamoatown.appspot.com',
-  messagingSenderId: '1023869979983',
-  appId: '1:1023869979983:web:be5e55579b702562af493a',
-  measurementId: 'G-79QHQDS077',
-};
 
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+};
+
 /**
  * 백화점 페이지 컴포넌트
  * @author 임재성
@@ -70,8 +67,6 @@ const analytics = getAnalytics(app);
  * </pre>
  */
 const Dept = () => {
-  logEvent(analytics, 'test');
-
   const [showWishlist, setShowWishlist] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isWishSelected, setIsWishSelected] = useState(false);
@@ -152,21 +147,13 @@ const Dept = () => {
 
   const handlePurchaseClick = () => {
     if (selectedItem) {
-      logEvent(analytics, 'test');
-      console.log(
-        `Event logged: test_Firebase_analytics_${selectedItem.clothId}`
-      );
-
-      // ReactGA.event({
-      //   category: 'Cloth',
-      //   action: 'Product Viewed',
-      //   item_name: selectedItem.name,
-      //   item_brand: selectedItem.brand,
-      //   quantity: 1,
-      //   price: selectedItem.price,
-      //   transaction_id: selectedItem.clothId || selectedItem.wishId,
-      //   item_id: selectedItem.clothId || selectedItem.wishId,
-      // });
+      logEvent(analytics, 'cloth_item_click', {
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        item_id: selectedItem.clothId || selectedItem.wishId,
+      });
 
       setIsPurchaseModalOpen(true);
     } else {
@@ -177,23 +164,13 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      logEvent(analytics, 'test2');
-      // const ecommerceEvent = {
-      //   category: 'Cloth',
-      //   action: 'Purchase',
-      //   transaction_id: selectedItem.clothId || selectedItem.wishId,
-      //   items: [
-      //     {
-      //       item_id: selectedItem.clothId,
-      //       item_name: selectedItem.name,
-      //       item_brand: selectedItem.brand,
-      //       price: selectedItem.price,
-      //       quantity: 1,
-      //     },
-      //   ],
-      // };
-
-      // ReactGA.event(ecommerceEvent);
+      logEvent(analytics, 'cloth_purchase', {
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        item_id: selectedItem.clothId || selectedItem.wishId,
+      });
 
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
