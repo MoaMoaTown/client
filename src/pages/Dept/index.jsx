@@ -41,9 +41,6 @@ import { fetchBalance } from '../../apis/memberApi';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 
-const app = initializeApp(firebaseConfig);
-
-const analytics = getAnalytics(app);
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -53,7 +50,9 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
+const app = initializeApp(firebaseConfig);
 
+const analytics = getAnalytics(app);
 /**
  * 백화점 페이지 컴포넌트
  * @author 임재성
