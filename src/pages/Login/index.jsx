@@ -82,7 +82,7 @@ const Login = () => {
   };
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    navigate('/select-role');
   };
 
   return (
