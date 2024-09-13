@@ -41,6 +41,7 @@ export const HeaderTitle = styled.span`
   font-weight: 700;
   text-align: center;
   flex: 1.5;
+  line-height: 1.5;
 `;
 
 export const HeaderDate = styled.span`
