@@ -11,6 +11,7 @@ export const Container = styled.div`
   height: 92dvh;
   padding: 4dvh 8dvw;
   gap: 3dvh;
+  overflow-y: hidden;
 `;
 
 export const Title = styled.div`
