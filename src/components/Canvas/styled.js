@@ -9,7 +9,7 @@ export const CanvasContainer = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 10px;
-  margin: 4dvh 0dvw;
+  margin: 3dvh 0dvw 4dvh;
 `;
 
 export const StyledCanvas = styled.canvas`

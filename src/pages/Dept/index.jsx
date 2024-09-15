@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
-import ReactGA from 'react-ga4';
-
 import {
   Header,
   Button,
@@ -40,6 +38,21 @@ import {
   purchaseWishItem,
 } from '../../apis/deptAPI';
 import { fetchBalance } from '../../apis/memberApi';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics, logEvent } from 'firebase/analytics';
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+};
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
 /**
  * 백화점 페이지 컴포넌트
  * @author 임재성
@@ -133,18 +146,12 @@ const Dept = () => {
 
   const handlePurchaseClick = () => {
     if (selectedItem) {
-      ReactGA.event({
-        items: [
-          {
-            id: selectedItem.clothId || selectedItem.wishId,
-            name: selectedItem.name,
-            category: 'Cloth',
-            action: 'Product Viewed',
-            brand: selectedItem.brand,
-            price: selectedItem.price,
-            quantity: 1,
-          },
-        ],
+      logEvent(analytics, 'cloth_item_click', {
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
+        quantity: 1,
+        price: selectedItem.price,
+        item_id: selectedItem.clothId || selectedItem.wishId,
       });
 
       setIsPurchaseModalOpen(true);
@@ -156,20 +163,19 @@ const Dept = () => {
 
   const confirmPurchase = () => {
     if (selectedItem) {
-      ReactGA.event({
-        category: 'Cloth',
-        action: 'Purchase',
-        name: selectedItem.name,
-        brand: selectedItem.brand,
+      logEvent(analytics, 'cloth_purchase', {
+        item_name: selectedItem.name,
+        item_brand: selectedItem.brand,
         quantity: 1,
         price: selectedItem.price,
-        transaction_id: selectedItem.clothId || selectedItem.wishId,
+        item_id: selectedItem.clothId || selectedItem.wishId,
       });
 
       purchaseMutation.mutate({
         itemId: selectedItem.clothId || selectedItem.wishId,
         isWish: isWishSelected,
       });
+
       setIsPurchaseModalOpen(false);
     }
   };
@@ -268,6 +274,7 @@ const Dept = () => {
               page.map((cloth) => (
                 <ClothButton
                   key={cloth.clothId}
+                  clothId={cloth.clothId}
                   imgUrl={cloth.imgUrl}
                   name={cloth.name}
                   brand={cloth.brand}
@@ -277,9 +284,6 @@ const Dept = () => {
               ))
             )}
             <LoadMoreTrigger ref={loadMoreRef} />
-            {/* {(isFetchingNextClothes || isFetchingNextWishlist) && ( // 무한 스크롤 로딩 상태
-            <Loading text={'더 불러오는 중...'} page />
-          )} */}
           </ClothButtonStyled>
         )}
       </ContentWrapper>
@@ -292,7 +296,10 @@ const Dept = () => {
         <ModalOverlay onClick={closePurchaseModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
             {!isWishSelected && (
-              <ModalImage src={selectedItem.imgUrl} alt={selectedItem.name} />
+              <ModalImage
+                src={require(`../../assets/clothes/${selectedItem.clothId}.png`)}
+                alt={selectedItem.name}
+              />
             )}
             <ModalBrand>{selectedItem.brand}</ModalBrand>
             <WishWrapWrap>

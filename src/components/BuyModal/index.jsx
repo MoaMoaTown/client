@@ -19,6 +19,9 @@ import {
   TotalPriceText,
   YesterdayText,
   PayInput,
+  StyledSpan,
+  ArrowButton,
+  QuantityDisplay,
 } from './styled';
 import { Button, InfoModal } from '../index';
 import moaImage from '../../assets/images/moa.svg';
@@ -84,8 +87,9 @@ const LargeInfoModal = ({
         refetchBalance();
         setIsInfoModalOpen(true);
       },
-      onError: () => {
-        setResponseMessage('잔액이 부족합니다.');
+      onError: (error) => {
+        const response = error.response?.data;
+        setResponseMessage(response.msg || '실패 : 잔액이 부족합니다.');
         setIsInfoModalOpen(true);
       },
     }
@@ -93,7 +97,7 @@ const LargeInfoModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      setQuantity('');
+      setQuantity(1);
       setTotalPrice(price);
     }
   }, [isOpen, price]);
@@ -123,6 +127,18 @@ const LargeInfoModal = ({
     onConfirm();
   };
 
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+    setTotalPrice((quantity + 1) * price);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      setTotalPrice((quantity - 1) * price);
+    }
+  };
+
   return (
     <Overlay onClick={handleOverlayClick}>
       <Container>
@@ -144,14 +160,14 @@ const LargeInfoModal = ({
             </TodaySection>
           </YesterdayToday>
           <QuantityInputWrapper>
-            <span>개수 </span>
+            <StyledSpan>개수 </StyledSpan>
             <QuantityContainer>
-              <PayInput
-                type='number'
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                min='0'
-              />
+              <QuantityDisplay>{quantity}</QuantityDisplay>
+
+              <div>
+                <ArrowButton className='up' onClick={handleIncrement} />
+                <ArrowButton className='down' onClick={handleDecrement} />
+              </div>
             </QuantityContainer>
           </QuantityInputWrapper>
           <TotalPriceTitle>

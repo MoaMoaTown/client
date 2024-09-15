@@ -49,11 +49,11 @@ const QuestCard = () => {
   const getStatusText = (status) => {
     switch (status) {
       case 0:
-        return '수락하기';
+        return '수락 요청';
       case 1:
-        return '수락 대기 중';
+        return '수락 대기중';
       case 2:
-        return '퀘스트 수락';
+        return '퀘스트 진행중';
       case 3:
         return '퀘스트 완료';
       case 4:

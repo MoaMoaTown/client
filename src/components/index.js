@@ -90,3 +90,5 @@ export { default as CreateQuestModal } from './CreateQuestModal';
 export { default as NotiComponent } from './NotiComponent';
 // 알림 토스트
 export { default as NotiToast } from './NotiToast';
+// 말풍선
+export { default as SpeechBubble } from './SpeechBubble';

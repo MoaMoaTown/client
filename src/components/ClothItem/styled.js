@@ -11,6 +11,7 @@ export const ItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  gap: 0.5dvh;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 `;
 
@@ -18,7 +19,6 @@ export const ItemImage = styled.img`
   width: 15dvw;
   height: 15dvw;
   object-fit: contain;
-  margin-bottom: 8px;
 `;
 
 export const ItemBrand = styled.div`
@@ -29,6 +29,7 @@ export const ItemBrand = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-bottom: 0.2dvh;
 `;
 
 export const ItemName = styled.div`
@@ -39,5 +40,4 @@ export const ItemName = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 0.5dvh;
 `;

@@ -21,14 +21,17 @@ import moaImage from '../../assets/images/moa.svg';
  * 2024.08.29  	임재성        최초 생성
  * </pre>
  */
-const ClothButton = ({ imgUrl, name, brand, price, onClick }) => {
+const ClothButton = ({ clothId, imgUrl, name, brand, price, onClick }) => {
   const handleClick = () => {
-    onClick({ imgUrl, name, brand, price });
+    onClick({ clothId, imgUrl, name, brand, price });
   };
 
   return (
     <Container onClick={handleClick}>
-      <ClothImage src={imgUrl} alt={name} />
+      <ClothImage
+        src={require(`../../assets/clothes/${clothId}.png`)}
+        alt={name}
+      />
       <InfoWrapper>
         <Brand>{brand}</Brand>
         <Name>{name}</Name>

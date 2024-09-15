@@ -13,6 +13,7 @@
     "axios": "^1.7.4",
     "event-source-polyfill": "^1.0.31",
     "eventsource-polyfill": "^0.9.6",
+    "firebase": "^10.13.1",
     "html2canvas": "^1.4.1",
     "http-proxy-middleware": "^3.0.2",
     "lodash": "^4.17.21",

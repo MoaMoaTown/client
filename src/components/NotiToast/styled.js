@@ -33,13 +33,13 @@ export const ToastContainer = styled.div`
   left: 6dvw;
   background-color: white;
   color: black;
-  padding: 1.8dvh 3.4dvw;
+  padding: 1.8dvh 3.2dvw;
   border-radius: 8px;
   border: 1px solid ${colors.orange};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   gap: 1dvh;
-  max-width: 53dvw;
+  max-width: 55dvw;
   word-wrap: keep-all;
   word-break: keep-all;
 
