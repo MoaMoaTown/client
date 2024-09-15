@@ -13,7 +13,7 @@ import { axiosInstance } from './index';
  * </pre>
  */
 
-export const fetchKnowledge = async (page = 1, size = 10) => {
+export const fetchKnowledge = async (page = 1, size = 6) => {
   const response = await axiosInstance.get('/knowledge', {
     params: { page, size },
   });

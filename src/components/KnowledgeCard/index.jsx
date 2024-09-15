@@ -46,7 +46,7 @@ const KnowledgeCard = () => {
       ({ pageParam = 1 }) => fetchKnowledge(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
-          return lastPage && lastPage.length === 10
+          return lastPage && lastPage.length === 6
             ? allPages.length + 1
             : undefined;
         },
