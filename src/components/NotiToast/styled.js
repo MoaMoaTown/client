@@ -40,8 +40,8 @@ export const ToastContainer = styled.div`
   z-index: 1000;
   gap: 1dvh;
   max-width: 55dvw;
-  word-wrap: break-word;
-  word-break: break-word;
+  word-wrap: keep-all;
+  word-break: keep-all;
 
   ${(props) =>
     props.show
@@ -54,9 +54,11 @@ export const ToastContainer = styled.div`
 
   @media (min-width: 1024px) {
     width: 20dvw;
-    max-width: 40dvw;
+    max-width: 16dvw;
     left: 2dvw;
     padding: 2dvh 1dvw;
+    word-wrap: keep-all;
+    word-break: keep-all;
     gap: 1dvh;
   }
 `;
