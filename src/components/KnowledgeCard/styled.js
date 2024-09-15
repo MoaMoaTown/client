@@ -72,7 +72,7 @@ export const TitleText = styled.span`
   text-overflow: ellipsis;
   flex: 1.5;
   text-align: center;
-  line-height: 2;
+  line-height: 1.9;
 `;
 
 export const DateText = styled.span`
