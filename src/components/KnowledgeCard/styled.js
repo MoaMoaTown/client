@@ -41,7 +41,6 @@ export const HeaderTitle = styled.span`
   font-weight: 700;
   text-align: center;
   flex: 1.5;
-  line-height: 1.5;
 `;
 
 export const HeaderDate = styled.span`
@@ -66,17 +65,18 @@ export const ItemWrapper = styled.div`
 `;
 
 export const TitleText = styled.span`
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   flex: 1.5;
   text-align: center;
+  line-height: 2;
 `;
 
 export const DateText = styled.span`
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: ${colors.gray};
   flex: 1;
   text-align: center;
