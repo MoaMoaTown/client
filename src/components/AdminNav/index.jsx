@@ -61,6 +61,16 @@ const AdminNav = ({ townInfo }) => {
             퀘스트 관리
           </MenuLink>
         </Menu>
+        <Title>Google Analytics</Title>
+        <Menu>
+          <MenuLink
+            as={Link}
+            to='https://lookerstudio.google.com/u/0/reporting/e7f6b440-66a6-4625-b902-d9cdf30450e4/page/tEnnC'
+            target='_blank'
+          >
+            데이터 보기
+          </MenuLink>
+        </Menu>
       </MenuWrapper>
       <CopyrightText>{`© 2024 The More.\nAll rights reserved.`}</CopyrightText>
     </Container>
