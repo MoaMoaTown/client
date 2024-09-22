@@ -58,7 +58,7 @@ const PassbookDetail = () => {
       case 4:
         return '매도';
       case 5:
-        return '납세';
+        return '소득세';
       case 6:
         return '일반 상품 구매';
       case 7:

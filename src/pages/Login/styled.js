@@ -26,8 +26,9 @@ export const Container = styled.div`
   position: relative;
   overflow: hidden;
   @media (min-width: 1024px) {
-    width: 23vw;
-    height: 70vh;
+    width: 25vw;
+    height: 55vh;
+    padding-top: 20vh;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -83,7 +84,7 @@ export const Description = styled.p`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

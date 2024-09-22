@@ -75,7 +75,8 @@ const Login = () => {
     },
   });
 
-  const handleSignUp = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (!isButtonDisabled) {
       mutation.mutate();
     }
@@ -83,6 +84,12 @@ const Login = () => {
 
   const handleSignUpClick = () => {
     navigate('/select-role');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
   };
 
   return (
@@ -95,7 +102,7 @@ const Login = () => {
           {`모아모아 타운에 들어가기 위해서는
         로그인이 필요해요.`}
         </Description>
-        <Form>
+        <Form onSubmit={handleLogin}>
           <Input
             placeholder='아이디를 입력해주세요.'
             onChange={(e) => debouncedSetUserId(e.target.value)}
@@ -108,7 +115,8 @@ const Login = () => {
           <Button
             variant='loginBtn'
             disabled={isButtonDisabled}
-            onClick={handleSignUp}
+            onClick={handleLogin}
+            type='submit'
           >
             로그인
           </Button>
