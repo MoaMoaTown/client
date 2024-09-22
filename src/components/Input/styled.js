@@ -19,7 +19,7 @@ export const StyledInput = styled.input`
     border-color: black;
   }
   @media (min-width: 1024px) {
-    width: 12vw;
+    width: 15vw;
     height: 7vh;
     font-size: 0.8rem;
     padding-left: 1.5vw;
