@@ -27,7 +27,7 @@ export const Container = styled.div`
   overflow: hidden;
   @media (min-width: 1024px) {
     width: 25vw;
-    height: 55vh;
+    height: 60vh;
     padding-top: 20vh;
     background-color: white;
     border-radius: 10px;
@@ -45,7 +45,7 @@ export const BackgroundImage = styled.img`
   @media (min-width: 1024px) {
     width: 60%;
     right: 10%;
-    top: 0%;
+    top: -3%;
     object-fit: contain;
   }
 `;
