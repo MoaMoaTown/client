@@ -66,7 +66,7 @@ const SellModal = ({
   useEffect(() => {
     if (isOpen) {
       setQuantity(amount || 0);
-      setTotalPrice(0);
+      setTotalPrice(price * amount);
     }
   }, [isOpen, amount]);
 
