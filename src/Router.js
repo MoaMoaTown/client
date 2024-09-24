@@ -26,6 +26,7 @@ import AdminWish from './pages/AdminWish';
 import AdminWishRequest from './pages/AdminWishRequest';
 import AdminQuest from './pages/AdminQuest';
 import AdminQuestRequest from './pages/AdminQuestRequest';
+import AdminGA from './pages/AdminGA';
 
 /**
  * 라우터
@@ -143,6 +144,10 @@ const Router = () => {
           element={
             <ProtectedRoute element={<AdminQuestRequest />} requiredRole={1} />
           }
+        />
+        <Route
+          path='/admin/statics'
+          element={<ProtectedRoute element={<AdminGA />} requiredRole={1} />}
         />
       </Routes>
     </BrowserRouter>
