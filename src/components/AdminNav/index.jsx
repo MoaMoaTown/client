@@ -63,11 +63,7 @@ const AdminNav = ({ townInfo }) => {
         </Menu>
         <Title>Google Analytics</Title>
         <Menu>
-          <MenuLink
-            as={Link}
-            to='https://lookerstudio.google.com/u/0/reporting/e7f6b440-66a6-4625-b902-d9cdf30450e4/page/tEnnC'
-            target='_blank'
-          >
+          <MenuLink as={Link} to='/admin/statics'>
             데이터 보기
           </MenuLink>
         </Menu>

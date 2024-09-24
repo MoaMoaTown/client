@@ -92,3 +92,4 @@ export { default as NotiComponent } from './NotiComponent';
 export { default as NotiToast } from './NotiToast';
 // 말풍선
 export { default as SpeechBubble } from './SpeechBubble';
+export { default as CommonChart } from './CommonChart';
