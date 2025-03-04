@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# 어린이 경제 학습 서비스 - 모아모아 타운 클라이언트 페이지
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ✍️ 요약
 
-## Available Scripts
+본 프로젝트 '모아모아타운'은 어린이들이 경제 및 금융 교육을 가상의 사회인 '타운' 내에서 다양한 경제 활동을 체험하며 경제 개념을 습득할 수 있도록 설계된 경제 학습 도구 서비스이다. 본 서비스는 주 사용자를 크게 두 가지 유형으로 구분하여 제공된다. 첫 번째는 타운 내의 역할, 퀘스트, 위시상품 등을 관리하며 경제 사회를 구축하는 '시장'의 역할을 담당하는 사용자이고, 두 번째는 '시민'으로서 타운에 참가하여 경제 활동을 직접 수행하는 사용자이다. 시민들은 가상 화폐인 '모아'를 이용하여 저축, 투자, 세금 납부 등의 활동을 경험함으로써 현실 경제와 연계된 교육적 효과를 얻을 수 있다.
 
-In the project directory, you can run:
+## ✍️ 프로젝트 목표
 
-### `npm start`
+본 프로젝트는 경제 교육 참여자인 아동에게는 쉽고 재미있는 경제 교육을 통해 경제 이해력을 향상시키고, 경제 교육 제공자인 선생님, 부모님 등 지도자에게는 교육을 손쉽게 시작할 수 있는 접근성과 관리의 편리함을 제공하여 다음과 같은 목적을 달성하고자 한다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**[목적 1] 사회문제 해결에 기여**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 경제 교육 참여자인 아동에게 쉽고 재미있는 경제 교육을 통해 경제 이해력을 향상시킨다.
 
-### `npm test`
+**[목적 2] 사회문제 해결에 기여**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 경제 교육 제공자인 선생님, 부모님 등 교육자에게 교육을 쉽게 시작할 수 있는 접근성과 관리의 편리함을 제공한다.
 
-### `npm run build`
+## 🛠 사용 기술 및 라이브러리
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Frontend: React, Recoil, Styled Component, ReactQuery
+- Backend: Spring Leagacy, Mybatis, Spring 스케줄러
+- Database: Oracle 19c, PL/SQL 스토어드 프로시저
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🖥 담당한 기능 (Front-end)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 백화점 페이지, 리스트 페이징 처리
+- 잡모아 페이지, 리스트 페이징 처리
+- 투자 페이지, 리스트 페이징 처리, 매수, 매도 모달
 
-### `npm run eject`
+## 🖥 담당한 기능 (Back-end)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 백화점, 잡모아, 투자 API 설계
+- 스프링 스케줄러를 이용한 매일 투자상품 가격 변동
+- 프로시저(상품 매매 시 계좌내역 추가, 평단가, 보유 수량, 옷장 업데이트, 매수, 매도)
+- GoogleAnalytics를 이용한 현대백화점 아동 의류 선호도 통계 산출
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🪧  Back-end 아키텍처
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![스크린샷 2024-10-02 오후 9.50.40.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/e07080e7-0a8f-4ac5-9a5e-164fb7140a90/8407525e-f84a-4950-88b4-9bd2872c7884/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-10-02_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.50.40.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 💡 어려웠던 부분과 해결
 
-## Learn More
+- **프론트엔드와 백엔드의 데이터 동기화 문제**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**어려움**: 프론트엔드에서 백화점 페이지와 투자페이지에서 상품 구매 또는 판매 시 잔액이 실시간으로 변동이 되지 않는 문제가 있었습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**해결 방법**: ReactQuery의 refetch 기능을 사용하여 상품 구매 또는 판매 시 서버에서 최신 데이터를 다시 불러와 잔액과 상품 수량이 즉시 업데이트되도록 처리했습니다. 이 방식으로 사용자가 거래 후 바로 변동된 잔액을 확인할 수 있게 했으며, 실시간으로 반영되지 않던 문제를 해결할 수 있었습니다
 
-### Code Splitting
+- **복잡한 프로시저 및 거래 처리**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**어려움**: 투자 페이지에서 매수, 매도 시 계좌 내역과 평단가, 보유 수량 등의 데이터를 정확하게 업데이트하는 복잡한 프로시저를 설계하는 과정에서 오류가 발생했습니다. 특히, 여러 프로세스가 동시에 발생할 때, 데이터 정합성 문제로 인해 거래 내역이 잘못 기록되거나 일부 정보가 누락되는 상황이 자주 발생했습니다.
 
-### Analyzing the Bundle Size
+**해결 방법**: MyBatis와 스프링을 이용해 트랜잭션을 관리하고, 프로시저의 로직을 세밀하게 나누어 단계별로 데이터 정합성을 검증할 수 있도록 했습니다. 또한, 테스트 케이스를 만들어 각 상황에서 발생할 수 있는 예외 사항을 체크하며 문제를 해결했습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3.	**Google Analytics 통계 산출**
 
-### Making a Progressive Web App
+•	**어려움**: Google Analytics를 통해 아동 의류 선호도 통계를 수집하고 분석하는 과정에서 데이터를 정확하게 추적하고 시각화하는 데 어려움이 있었습니다. 특히, 이벤트 데이터가 제대로 전송되지 않거나, 배열에 담아 보낸 상품의 이름,브랜드가 누락되는 문제가 있었습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+•	**해결 방법**: Firebase 를 통해 Google Analytics API를 불러왔고 이벤트를 발생시켰습니다. 또한 그 데이터를 BigQuery로 연동시켜 데이터를 집계 할 수 있었습니다. 또한, 통계 산출 과정에서도 LookerStudio를 이용하여 시각화한 결과를 얻을 수 있었습니다.
 
-### Advanced Configuration
+## 💡 성장한 부분
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **프론트엔드와 백엔드의 통합 관리 능력 향상**
+    
+    프론트엔드에서 ReactQuery와 Recoil을 사용해 상태 관리를 개선하고, 백엔드의 Spring Legacy와 MyBatis를 통해 데이터를 효율적으로 처리하는 방법을 학습했습니다. 이를 통해 프론트와 백엔드 간의 데이터 흐름을 보다 효과적으로 관리하는 능력이 크게 향상되었습니다.
+    
+- **복잡한 비즈니스 로직 처리 능력 강화**
+    
+    투자 상품 가격 변동과 같은 복잡한 비즈니스 로직을 스프링 스케줄러와 프로시저를 이용해 구현하면서 백엔드 로직 설계와 트랜잭션 관리에 대한 이해도가 깊어졌습니다. 특히, 데이터를 안정적으로 처리하고, 실시간으로 변화하는 데이터를 반영하는 능력을 키울 수 있었습니다.
+    
+- **데이터 분석 및 통계 처리 능력 강화**
+    
+    Google Analytics를 통해 사용자 데이터를 분석하고, 이를 기반으로 통계 자료를 산출하면서 데이터 분석 능력이 강화되었습니다. 데이터를 추적하고 분석하는 과정을 통해 사용자 행동을 이해하고, 이를 서비스 개선에 활용할 수 있는 방법을 배웠습니다.
+    
+- **ESG 경영과 사회적 가치 실현에 대한 인식 향상**
+    
+    이번 프로젝트를 통해 ESG 경영의 중요성과 사회적 가치 창출의 의미를 깊이 이해하게 되었습니다. 특히, 아동 경제 교육을 위한 플랫폼을 개발하면서 금융 교육을 통해 사회적 문제를 해결하고, 지속 가능한 가치를 만들어가는 데 기여할 수 있다는 점에서 큰 성장을 경험했습니다.
